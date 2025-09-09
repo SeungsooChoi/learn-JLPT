@@ -1,6 +1,6 @@
-import { Button } from "../ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
+import { Button } from "@/app/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/app/ui/table"
 
 export default function Words() {
   return (
@@ -8,13 +8,13 @@ export default function Words() {
       <CardContent>
         <CardHeader className="flex items-center gap-5">
           <CardTitle>레벨 선택</CardTitle>
-          <select id="level-select" className="border rounded px-2 py-1">
+          {/* <select id="level-select" className="border rounded px-2 py-1">
             <option value="N5">N5</option>
             <option value="N4">N4</option>
             <option value="N3">N3</option>
             <option value="N2">N2</option>
             <option value="N1">N1</option>
-          </select>
+          </select> */}
         </CardHeader>
         <div className="overflow-x-auto">
           <Table>
