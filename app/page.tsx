@@ -1,13 +1,8 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { SAMPLE_WORDS } from "./data/data";
 
 export default function Home() {
-  const SAMPLE_WORDS = [
-    { id: "gakkou", word: "学校", reading: "がっこう", kanaType: "ひらがな", meaning: "학교", level: "N5", examples: ["学校へ行きます。", "明日、学校でテストがあります。"] },
-    { id: "taberu", word: "食べる", reading: "たべる", kanaType: "ひらがな", meaning: "먹다", level: "N5", examples: ["朝ごはんを食べました。", "好きなものをたくさん食べてください。"] },
-    { id: "jisho", word: "辞書", reading: "じしょ", kanaType: "ひらがな", meaning: "사전", level: "N4", examples: ["辞書で調べてください。"] },
-    { id: "hanashi", word: "話す", reading: "はなす", kanaType: "ひらがな", meaning: "말하다", level: "N3", examples: ["友達と話しました。", "もっとゆっくり話してください。"] },
-  ];
 
   return (
     <Card className="w-full">
