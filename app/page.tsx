@@ -1,5 +1,5 @@
-import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "@/app/shared/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import { SAMPLE_WORDS } from "./data/data";
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import { Button } from "@/app/ui/button"
+import { Button } from "../shared/ui/button"
 import { SAMPLE_WORDS } from "../data/data"
 
 export default function Words() {
@@ -21,7 +21,7 @@ export default function Words() {
               <th className="px-2">단어</th>
               <th className="px-2">읽기</th>
               <th className="px-2">뜻</th>
-              <th className="px-2">표시</th>
+              <th className="px-2">의미 표시/숨김</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +33,7 @@ export default function Words() {
                 <td className="py-2 px-2">{w.reading}</td>
                 <td className="py-2 px-2">{w.meaning}</td>
                 <td className="py-2 px-2">
-                  <Button size="sm">dfd</Button>
+                  <Button size="sm">표시</Button>
                 </td>
               </tr>
             ))}
