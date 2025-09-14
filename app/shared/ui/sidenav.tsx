@@ -1,20 +1,53 @@
+'use client';
+
 import Link from 'next/link';
-import NavLinks from './nav-links';
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail } from '@/components/ui/sidebar';
+import { usePathname } from 'next/navigation';
+
+const navList = [
+  { title: '단어장', url: '/words' },
+  { title: '회독', url: '/n-th-reading' },
+]
 
 export default function SideNav() {
+  const pathname = usePathname();
+
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
-      <Link
-        className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
-        href="/"
-      >
-        <div className="w-32 text-white md:w-40">
-          logo
-        </div>
-      </Link>
-      <div className="flex grow flex-row space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
-      </div>
-    </div>
+    <Sidebar className="flex">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  logo
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-medium">JLPT 단어장</span>
+                  <span className="">v1.0.0</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {navList.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <Link href={item.url}>{item.title}</Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+
+      <SidebarRail />
+    </Sidebar>
   );
 }

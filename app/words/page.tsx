@@ -1,4 +1,4 @@
-import { Button } from "../shared/ui/button"
+import { Button } from "../../components/ui/button"
 import { SAMPLE_WORDS } from "../data/data"
 
 export default function Words() {
