@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { VocabularyDataTable } from "@/components/vocabulary-data-table";
 import { mockWords } from "@/lib/mock-data";
-import { Library, Volume2 } from "lucide-react";
+import { Library } from "lucide-react";
 import { useState } from "react";
 
 const levels = ["N5", "N4", "N3", "N2", "N1"] as const; // readOnly
@@ -48,45 +48,7 @@ export default function VocabularyPage() {
           </div>
         </Card>
 
-        <div className="mb-4">
-          <p className="text-sm text-muted-foreground">총 {words.length}개의 단어</p>
-        </div>
-        {/* 단어장 테이블 */}
-        <Card className="py-2">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[200px]">단어</TableHead>
-                <TableHead className="w-[200px]">후리가나</TableHead>
-                <TableHead>뜻</TableHead>
-                <TableHead className="w-[80px] text-center">발음</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {words.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={4}>
-                    {selectedLevel}의 단어가 없습니다.
-                  </TableCell>
-                </TableRow>
-              ) : (
-                words.map((word) => (
-                  <TableRow key={word.id} className="hover:bg-muted/50">
-                    <TableCell className="font-medium text-lg">{word.word}</TableCell>
-                    <TableCell className="text-muted-foreground">{word.reading}</TableCell>
-                    <TableCell>{word.meaning}</TableCell>
-                    <TableCell className="text-center">
-                      <Button variant="ghost" size="icon" className="h-8 w-8 cursor-pointer">
-                        <Volume2 className="w-4 h-4" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </Card>
-
+        <VocabularyDataTable data={words} />
       </div>
     </div>
   )
