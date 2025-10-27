@@ -3,16 +3,72 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VocabularyDataTable } from "@/components/vocabulary-data-table";
-import { mockWords } from "@/lib/mock-data";
+import { supabase } from "@/lib/supabase-client";
+import { Word } from "@/lib/types";
 import { Library } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const levels = ["N5", "N4", "N3", "N2", "N1"] as const; // readOnly
 
 export default function VocabularyPage() {
+  const [words, setWords] = useState<Word[]>([]);
   const [selectedLevel, setSelectedLevel] = useState("N5");
 
-  const words = mockWords[selectedLevel] || [];
+  useEffect(() => {
+    async function fetchWords() {
+      // 1. 선택한 레벨의 단어 word_id 목록 가져오기
+      const { data, error: levelError } = await supabase
+        .from('word_jlpt_level')
+        .select('word_id')
+        .eq('jlpt_level', selectedLevel);
+
+      if (levelError) {
+        console.error(levelError);
+        return Response.json({ error: levelError.message }, { status: 500 });
+      }
+
+      // 2. word + meaning 조회
+      const wordIds = data.map((r) => r.word_id);
+      if (wordIds.length === 0) return Response.json([]);
+
+      /**
+       * 내부적으로 Supabase가 쿼리를 REST 요청 URL로 직렬화하기 때문에
+       * wordIds가 너무 길면 BadRequest가 발생한다. 이거 찾는데 3시간 걸렸다.
+       */
+      const { data: wordRows, error: wordError } = await supabase
+        .from('word')
+        .select(`
+          id,
+          word,
+          reading,
+          word_jlpt_level!inner(jlpt_level),
+          meaning(language, meaning)
+        `)
+        .in('id', wordIds.slice(0, 5))
+        .order('id', { ascending: true });
+
+      if (wordError) {
+        console.error(wordError);
+        throw wordError
+      };
+
+      const formatted = wordRows.map((w) => ({
+        id: w.id,
+        word: w.word,
+        reading: w.reading,
+        meanings: w.meaning?.filter(m => m.language === 'ko').flatMap((m) => ({
+          language: m.language,
+          meaning: m.meaning,
+        })) ?? [],
+        level: w.word_jlpt_level?.[0]?.jlpt_level ?? '',
+        created_at: '', // DB에서 안 가져오면 빈 값
+      }));
+
+      console.log(formatted)
+      setWords(formatted);
+    }
+    fetchWords();
+  }, [selectedLevel])
 
   return (
     <div className="bg-background">

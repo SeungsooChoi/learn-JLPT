@@ -8,7 +8,7 @@ export interface Word {
   id: string
   word: string
   reading: string
-  meaning: string
+  meanings: Meaning[]
   level: JLPTLevel
   part_of_speech?: string
   example_sentence?: string
@@ -16,4 +16,9 @@ export interface Word {
   example_translation?: string
   audio_url?: string
   created_at: string
+}
+
+export interface Meaning {
+  meaning: string
+  language: string
 }
