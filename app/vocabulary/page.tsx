@@ -6,18 +6,32 @@ import { VocabularyDataTable } from "@/components/vocabulary-data-table";
 import { supabase } from "@/lib/supabase-client";
 import { Word } from "@/lib/types";
 import { Library, Loader2 } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const levels = ["N5", "N4", "N3", "N2", "N1"] as const; // readOnly
 
 export default function VocabularyPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const levelFromUrl = searchParams.get("level") || "N5";
+  const pageFromUrl = Number.parseInt(searchParams.get("page") || "1", 10);
+
   const [words, setWords] = useState<Word[]>([]);
-  const [selectedLevel, setSelectedLevel] = useState("N5");
+  const [selectedLevel, setSelectedLevel] = useState(levelFromUrl);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = 10;
+  const { replace } = useRouter();
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set("level", selectedLevel)
+    params.set("page", String(currentPage))
+    replace(`/vocabulary?${params.toString()}`);
+  }, [selectedLevel, currentPage, router, replace]);
 
   useEffect(() => {
     async function fetchWords() {
@@ -64,7 +78,7 @@ export default function VocabularyPage() {
   }
 
   const totalPages = Math.ceil(totalCount / pageSize);
-  const canGoPrevious = currentPage > 0;
+  const canGoPrevious = currentPage > 1;
   const canGoNext = currentPage < totalPages - 1;
 
   const goToFirstPage = () => setCurrentPage(1);
