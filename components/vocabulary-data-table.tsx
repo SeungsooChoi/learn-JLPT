@@ -8,9 +8,29 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 
 interface VocabularyDataTableProps {
   data: Word[]
+  currentPage: number
+  totalPages: number
+  totalCount: number
+  canGoPrevious: boolean
+  canGoNext: boolean
+  onFirstPage: () => void
+  onPreviousPage: () => void
+  onNextPage: () => void
+  onLastPage: () => void
 }
 
-export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
+export function VocabularyDataTable({
+  data,
+  currentPage,
+  totalPages,
+  totalCount,
+  canGoPrevious,
+  canGoNext,
+  onFirstPage,
+  onPreviousPage,
+  onNextPage,
+  onLastPage,
+}: VocabularyDataTableProps) {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowVisibility, setRowVisibility] = useState<Record<string, boolean>>({})
 
@@ -40,11 +60,11 @@ export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
       },
     },
     {
-      accessorKey: "meaning",
+      accessorKey: "meanings",
       header: "뜻",
       cell: ({ row }) => {
         const isHidden = rowVisibility[row.id]
-        return <div>{isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue("meaning")}</div>
+        return <div>{isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue("meanings")}</div>
       },
     },
     {
@@ -119,7 +139,7 @@ export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+                  결과가 없습니다.
                 </TableCell>
               </TableRow>
             )}
@@ -129,14 +149,14 @@ export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
         {/* 페이징 */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
           <div className="text-sm text-muted-foreground">
-            단어 총 {data.length}개
+            단어 총 {totalCount}개
           </div>
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
               size="icon"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
+              onClick={onFirstPage}
+              disabled={!canGoPrevious}
               className="h-8 w-8"
             >
               <ChevronsLeft className="w-4 h-4" />
@@ -144,22 +164,22 @@ export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
+              onClick={onPreviousPage}
+              disabled={!canGoPrevious}
               className="h-8 w-8"
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
             <div className="flex items-center gap-1 min-w-[100px] justify-center">
-              <span className="text-sm font-medium">{table.getState().pagination.pageIndex + 1}</span>
+              <span className="text-sm font-medium">{currentPage}</span>
               <span className="text-sm text-muted-foreground">/</span>
-              <span className="text-sm text-muted-foreground">{table.getPageCount()}</span>
+              <span className="text-sm text-muted-foreground">{totalPages}</span>
             </div>
             <Button
               variant="outline"
               size="icon"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
+              onClick={onNextPage}
+              disabled={!canGoNext}
               className="h-8 w-8"
             >
               <ChevronRight className="w-4 h-4" />
@@ -167,8 +187,8 @@ export function VocabularyDataTable({ data }: VocabularyDataTableProps) {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
+              onClick={onLastPage}
+              disabled={!canGoNext}
               className="h-8 w-8"
             >
               <ChevronsRight className="w-4 h-4" />
