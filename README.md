@@ -26,13 +26,14 @@ JLPT 단어 학습을 위한 웹 애플리케이션입니다. 개인적인 일�
 - React 19+
 - TypeScript
 - Next.js 15+ (App Router)
+- Zustand(예정)
 
 **Styling**
 - Tailwind CSS
 - shadcn/ui
 
 **Backend & Database**
-- Supabase (Database, Authentication, Storage)
+- Supabase (Database, Authentication)
 
 ## 🚀 시작하기
 
