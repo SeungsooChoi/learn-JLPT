@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VocabularyDataTable } from "@/components/vocabulary-data-table";
-import { Library, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useWords } from "../hooks/useWord";
