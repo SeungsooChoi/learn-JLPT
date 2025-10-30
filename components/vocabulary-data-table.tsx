@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Eye, EyeOff, Volume2 } from "lucide-react";
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import { useAudio } from "@/app/hooks/useAudio";
 
 interface VocabularyDataTableProps {
   data: Word[]
@@ -33,6 +34,7 @@ export function VocabularyDataTable({
 }: VocabularyDataTableProps) {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowVisibility, setRowVisibility] = useState<Record<string, boolean>>({})
+  const { play, stop } = useAudio();
 
   const toggleRowVisibility = (rowId: string) => {
     setRowVisibility((prev) => ({
@@ -73,7 +75,7 @@ export function VocabularyDataTable({
       cell: ({ row }) => {
         return (
           <div className="text-center">
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button variant="ghost" size="icon" className="h-8 w-8 cursor-pointer" onClick={() => play(row.getValue("reading"))}>
               <Volume2 className="w-4 h-4" />
             </Button>
           </div>
@@ -87,7 +89,7 @@ export function VocabularyDataTable({
         const isHidden = rowVisibility[row.id]
         return (
           <div className="text-center">
-            <Button variant="ghost" size="icon" onClick={() => toggleRowVisibility(row.id)} className="h-8 w-8">
+            <Button variant="ghost" size="icon" className="h-8 w-8 cursor-pointer" onClick={() => toggleRowVisibility(row.id)}>
               {isHidden ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
             </Button>
           </div>
