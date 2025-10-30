@@ -44,62 +44,49 @@ export default function VocabularyPage() {
   const goToLastPage = () => setCurrentPage(totalPages);
 
   return (
-    <div className="bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* 헤더 */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Library className="w-5 h-5 text-primary" />
-            </div>
-            <h1 className="text-3xl font-bold">단어장</h1>
+    <>
+      {/* 레벨 선택 필터 */}
+      <Card className="p-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <span className="font-semibold text-sm">레벨 선택: </span>
+          <div className="flex flex-wrap gap-2">
+            {levels.map((level) => (
+              <Button
+                key={level}
+                variant={selectedLevel === level ? "default" : "outline"}
+                size="sm"
+                className="min-w-[60px] cursor-pointer"
+                onClick={() => handleLevelChange(level)}
+              >
+                {level}
+              </Button>
+            ))}
           </div>
-          <p className="text-muted-foreground">모든 JLPT 레벨의 단어를 찾아볼 수 있습니다.</p>
-          <p className="text-muted-foreground">정확하지 않은 단어, 뜻이 있을 수 있습니다. 발견 시 문의 부탁드립니다.</p>
         </div>
-        {/* 레벨 선택 필터 */}
-        <Card className="p-4 mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <span className="font-semibold text-sm">레벨 선택: </span>
-            <div className="flex flex-wrap gap-2">
-              {levels.map((level) => (
-                <Button
-                  key={level}
-                  variant={selectedLevel === level ? "default" : "outline"}
-                  size="sm"
-                  className="min-w-[60px] cursor-pointer"
-                  onClick={() => handleLevelChange(level)}
-                >
-                  {level}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </Card>
+      </Card>
 
-        {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-          </div>
-        ) : error ? (
-          <Card className="p-8 text-center">
-            <p className="text-destructive mb-2">오류가 발생했습니다. 다시 시도해주세요.</p>
-          </Card>
-        ) : (
-          <VocabularyDataTable
-            data={words}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            totalCount={totalCount}
-            canGoPrevious={canGoPrevious}
-            canGoNext={canGoNext}
-            onFirstPage={goToFirstPage}
-            onPreviousPage={goToPreviousPage}
-            onNextPage={goToNextPage}
-            onLastPage={goToLastPage}
-          />
-        )}
-      </div>
-    </div>
+      {loading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      ) : error ? (
+        <Card className="p-8 text-center">
+          <p className="text-destructive mb-2">오류가 발생했습니다. 다시 시도해주세요.</p>
+        </Card>
+      ) : (
+        <VocabularyDataTable
+          data={words}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalCount={totalCount}
+          canGoPrevious={canGoPrevious}
+          canGoNext={canGoNext}
+          onFirstPage={goToFirstPage}
+          onPreviousPage={goToPreviousPage}
+          onNextPage={goToNextPage}
+          onLastPage={goToLastPage}
+        />
+      )}
+    </>
   )
 }

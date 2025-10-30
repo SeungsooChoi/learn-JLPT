@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, GraduationCap } from "lucide-react"
+import { BookOpen } from "lucide-react"
 import Link from "next/link"
 
 // TODO: wordCount 수치 조정 필요?
@@ -39,47 +39,29 @@ const levels = [
 
 export default function LearningPage() {
   return (
-    <div className="bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* 헤더 */}
-        <div className="mb-8">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block">
-            ← 홈으로 돌아가기
-          </Link>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-primary" />
+    // 레벨 선택
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+      {levels.map((item) => (
+        <Card key={item.level} className={`flex flex-col justify-between ${item.color}`}>
+          <CardHeader>
+            <div className="flex items-center justify-between mb-2">
+              <CardTitle className="text-2xl">{item.level}</CardTitle>
+              <BookOpen className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h1 className="text-3xl font-bold">회독</h1>
-          </div>
-          <p className="text-muted-foreground">레벨을 선택하세요. 가장 쉬운 레벨은 N5이며 가장 어려운 레벨은 N1입니다.</p>
-        </div>
-
-        {/* 레벨 선택 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-          {levels.map((item) => (
-            <Card key={item.level} className={`flex flex-col justify-between ${item.color}`}>
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <CardTitle className="text-2xl">{item.level}</CardTitle>
-                  <BookOpen className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <CardDescription className="text-sm text-foreground">{item.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{item.wordCount}</p>
-                <div>
-                  <Link href={`/learning/${item.level}/review`}>
-                    <Button className="w-full" variant="default">
-                      회독
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+            <CardDescription className="text-sm text-foreground">{item.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">{item.wordCount}</p>
+            <div>
+              <Link href={`/learning/${item.level}/review`}>
+                <Button className="w-full" variant="default">
+                  회독
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   )
 }
