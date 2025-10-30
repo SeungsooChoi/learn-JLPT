@@ -3,11 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { VocabularyDataTable } from "@/components/vocabulary-data-table";
-import { supabase } from "@/lib/supabase-client";
-import { Word } from "@/lib/types";
 import { Library, Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useWords } from "../hooks/useWord";
 
 const levels = ["N5", "N4", "N3", "N2", "N1"] as const; // readOnly
 
@@ -16,15 +15,12 @@ export default function VocabularyPage() {
   const searchParams = useSearchParams();
   const levelFromUrl = searchParams.get("level") || "N5";
   const pageFromUrl = Number.parseInt(searchParams.get("page") || "1", 10);
-
-  const [words, setWords] = useState<Word[]>([]);
-  const [selectedLevel, setSelectedLevel] = useState(levelFromUrl);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(pageFromUrl);
-  const [totalCount, setTotalCount] = useState(0);
-  const pageSize = 10;
   const { replace } = useRouter();
+
+  const [selectedLevel, setSelectedLevel] = useState(levelFromUrl);
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
+  const pageSize = 10;
+  const {words, loading, error, totalCount} = useWords(selectedLevel, currentPage, pageSize);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -32,45 +28,6 @@ export default function VocabularyPage() {
     params.set("page", String(currentPage))
     replace(`/vocabulary?${params.toString()}`);
   }, [selectedLevel, currentPage, router, replace]);
-
-  useEffect(() => {
-    async function fetchWords() {
-      try {
-        setLoading(true);
-        setError(null);
-        const offset = (currentPage - 1) * pageSize;
-
-        const { data, count, error } = await supabase
-          .from('word_with_korean')
-          .select('*', { count: 'exact' }) // 전체 개수 포함
-          .eq('jlpt_level', selectedLevel)
-          .range(offset, offset + pageSize - 1)
-          .order('created_at', { ascending: true }) // 생성 시간순
-
-        if (error) {
-          throw error;
-        }
-        setTotalCount(count || 0);
-
-        const formatted = data.map((w) => ({
-          id: w.id,
-          word: w.word,
-          reading: w.reading,
-          meanings: w.korean_meanings.join(', '),
-          level: w.jlpt_level,
-          created_at: w.created_at,
-        }));
-
-        setWords(formatted);
-      } catch (error) {
-        console.error('데이터를 불러오는 중 오류가 발생했습니다. ', error);
-        setError(error instanceof Error ? error.message : "Failed to fetch words");
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchWords();
-  }, [selectedLevel, currentPage]);
 
   const handleLevelChange = (level: string) => {
     setSelectedLevel(level);
