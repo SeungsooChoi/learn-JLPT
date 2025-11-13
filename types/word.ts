@@ -1,4 +1,4 @@
-export interface Word {
+export type Word = {
   id: number;
   word: string; // 일본어 단어
   reading: string; // 읽는 법
@@ -7,4 +7,5 @@ export interface Word {
   pos: string; // 품사 (명사, 동사 등)
   example: string; // 일본어 예문
   example_ko: string; // 한국어 번역
-}
+  status?: 'unknown' | 'understood' | 'not_understood';
+};

@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Library, Menu } from 'lucide-react';
+import { BookOpen, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
@@ -24,9 +24,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground text-sm">
-              JP
-            </div>
+            <div className="md:hidden">하루 단어(一日の単語)</div>
             <span className="hidden sm:inline">하루 단어(一日の単語)</span>
           </Link>
 
@@ -56,7 +54,7 @@ export default function Navigation() {
               <SheetHeader>
                 <SheetTitle>
                   <Link href="/" className="font-bold text-lg">
-                    JLPT Word Study
+                    하루 단어(一日の単語)
                   </Link>
                 </SheetTitle>
                 <SheetDescription>JLPT 단어 학습</SheetDescription>
