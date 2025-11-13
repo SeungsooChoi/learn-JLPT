@@ -1,23 +1,30 @@
-import { Word } from "@/lib/types";
+import { Word } from '@/lib/types';
 
-import { getCoreRowModel, getPaginationRowModel, useReactTable, type VisibilityState, type ColumnDef, flexRender } from "@tanstack/react-table"
-import { Button } from "./ui/button";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Eye, EyeOff, Volume2 } from "lucide-react";
-import { useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import { useAudio } from "@/app/hooks/useAudio";
+import {
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+  type VisibilityState,
+  type ColumnDef,
+  flexRender,
+} from '@tanstack/react-table';
+import { Button } from './ui/button';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Eye, EyeOff, Volume2 } from 'lucide-react';
+import { useState } from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import { useAudio } from '@/hooks/useAudio';
 
 interface VocabularyDataTableProps {
-  data: Word[]
-  currentPage: number
-  totalPages: number
-  totalCount: number
-  canGoPrevious: boolean
-  canGoNext: boolean
-  onFirstPage: () => void
-  onPreviousPage: () => void
-  onNextPage: () => void
-  onLastPage: () => void
+  data: Word[];
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
+  canGoPrevious: boolean;
+  canGoNext: boolean;
+  onFirstPage: () => void;
+  onPreviousPage: () => void;
+  onNextPage: () => void;
+  onLastPage: () => void;
 }
 
 export function VocabularyDataTable({
@@ -32,71 +39,81 @@ export function VocabularyDataTable({
   onNextPage,
   onLastPage,
 }: VocabularyDataTableProps) {
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [rowVisibility, setRowVisibility] = useState<Record<string, boolean>>({})
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowVisibility, setRowVisibility] = useState<Record<string, boolean>>({});
   const { play, stop } = useAudio();
 
   const toggleRowVisibility = (rowId: string) => {
     setRowVisibility((prev) => ({
       ...prev,
       [rowId]: !prev[rowId],
-    }))
-  }
+    }));
+  };
 
   const columns: ColumnDef<Word>[] = [
     {
-      accessorKey: "word",
-      header: "단어",
-      cell: ({ row }) => <div className="font-medium text-lg">{row.getValue("word")}</div>,
+      accessorKey: 'word',
+      header: '단어',
+      cell: ({ row }) => <div className="font-medium text-lg">{row.getValue('word')}</div>,
     },
     {
-      accessorKey: "reading",
-      header: "후리가나",
+      accessorKey: 'reading',
+      header: '후리가나',
       cell: ({ row }) => {
-        const isHidden = rowVisibility[row.id]
+        const isHidden = rowVisibility[row.id];
         return (
           <div className="text-muted-foreground">
-            {isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue("reading")}
+            {isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue('reading')}
           </div>
-        )
+        );
       },
     },
     {
-      accessorKey: "meanings",
-      header: "뜻",
+      accessorKey: 'meanings',
+      header: '뜻',
       cell: ({ row }) => {
-        const isHidden = rowVisibility[row.id]
-        return <div>{isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue("meanings")}</div>
+        const isHidden = rowVisibility[row.id];
+        return <div>{isHidden ? <span className="text-muted-foreground/30">•••</span> : row.getValue('meanings')}</div>;
       },
     },
     {
-      id: "audio",
+      id: 'audio',
       header: () => <div className="text-center">듣기</div>,
       cell: ({ row }) => {
         return (
           <div className="text-center">
-            <Button variant="ghost" size="icon" className="h-8 w-8 cursor-pointer" onClick={() => play(row.getValue("reading"))}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 cursor-pointer"
+              onClick={() => play(row.getValue('reading'))}
+            >
               <Volume2 className="w-4 h-4" />
             </Button>
           </div>
-        )
+        );
       },
     },
     {
-      id: "actions",
+      id: 'actions',
       header: () => <div className="text-center">표시</div>,
       cell: ({ row }) => {
-        const isHidden = rowVisibility[row.id]
+        const isHidden = rowVisibility[row.id];
         return (
           <div className="text-center">
-            <Button variant="ghost" size="icon" className="h-8 w-8 cursor-pointer" onClick={() => toggleRowVisibility(row.id)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 cursor-pointer"
+              onClick={() => toggleRowVisibility(row.id)}
+            >
               {isHidden ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
             </Button>
           </div>
-        )
+        );
       },
     },
-  ]
+  ];
 
   const table = useReactTable({
     data,
@@ -112,7 +129,7 @@ export function VocabularyDataTable({
         pageSize: 10,
       },
     },
-  })
+  });
 
   return (
     <div>
@@ -132,7 +149,7 @@ export function VocabularyDataTable({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
@@ -150,17 +167,9 @@ export function VocabularyDataTable({
 
         {/* 페이징 */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
-          <div className="text-sm text-muted-foreground">
-            단어 총 {totalCount}개
-          </div>
+          <div className="text-sm text-muted-foreground">단어 총 {totalCount}개</div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={onFirstPage}
-              disabled={!canGoPrevious}
-              className="h-8 w-8"
-            >
+            <Button variant="outline" size="icon" onClick={onFirstPage} disabled={!canGoPrevious} className="h-8 w-8">
               <ChevronsLeft className="w-4 h-4" />
             </Button>
             <Button
@@ -177,27 +186,15 @@ export function VocabularyDataTable({
               <span className="text-sm text-muted-foreground">/</span>
               <span className="text-sm text-muted-foreground">{totalPages}</span>
             </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={onNextPage}
-              disabled={!canGoNext}
-              className="h-8 w-8"
-            >
+            <Button variant="outline" size="icon" onClick={onNextPage} disabled={!canGoNext} className="h-8 w-8">
               <ChevronRight className="w-4 h-4" />
             </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={onLastPage}
-              disabled={!canGoNext}
-              className="h-8 w-8"
-            >
+            <Button variant="outline" size="icon" onClick={onLastPage} disabled={!canGoNext} className="h-8 w-8">
               <ChevronsRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

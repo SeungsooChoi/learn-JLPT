@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { BookOpen, Library, Menu } from "lucide-react";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { BookOpen, Library, Menu } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +13,8 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/learning', label: '회독', icon: BookOpen },
-    { href: '/vocabulary', label: '단어장', icon: Library },
-  ]
+    // { href: '/vocabulary', label: '단어장', icon: Library },
+  ];
 
   const isActive = (href: string) => pathname.startsWith(href);
 
@@ -27,7 +27,7 @@ export default function Navigation() {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground text-sm">
               JP
             </div>
-            <span className="hidden sm:inline">JLPT Word Study</span>
+            <span className="hidden sm:inline">하루 단어(一日の単語)</span>
           </Link>
 
           {/* 데스크톱 Navigation */}
@@ -36,12 +36,12 @@ export default function Navigation() {
               const Icon = item.icon;
               return (
                 <Link key={item.href} href={item.href}>
-                  <Button variant={isActive(item.href) ? "secondary" : "ghost"} className="gap-2 cursor-pointer">
+                  <Button variant={isActive(item.href) ? 'secondary' : 'ghost'} className="gap-2 cursor-pointer">
                     <Icon className="w-4 h-4" />
                     {item.label}
                   </Button>
                 </Link>
-              )
+              );
             })}
           </div>
 
@@ -59,9 +59,7 @@ export default function Navigation() {
                     JLPT Word Study
                   </Link>
                 </SheetTitle>
-                <SheetDescription>
-                  JLPT 단어 학습
-                </SheetDescription>
+                <SheetDescription>JLPT 단어 학습</SheetDescription>
               </SheetHeader>
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => {
@@ -69,14 +67,14 @@ export default function Navigation() {
                   return (
                     <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
                       <Button
-                        variant={isActive(item.href) ? "secondary" : "ghost"}
+                        variant={isActive(item.href) ? 'secondary' : 'ghost'}
                         className="w-full justify-start gap-2"
                       >
                         <Icon className="w-4 h-4" />
                         {item.label}
                       </Button>
                     </Link>
-                  )
+                  );
                 })}
               </div>
             </SheetContent>

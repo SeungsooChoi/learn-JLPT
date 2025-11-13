@@ -1,38 +1,38 @@
-'use client'
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { VocabularyDataTable } from "@/components/vocabulary-data-table";
-import { Loader2 } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useWords } from "../hooks/useWord";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { VocabularyDataTable } from '@/components/vocabulary-data-table';
+import { Loader2 } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useWords } from '../../hooks/useWord';
 
-const levels = ["N5", "N4", "N3", "N2", "N1"] as const; // readOnly
+const levels = ['N5', 'N4', 'N3', 'N2', 'N1'] as const; // readOnly
 
 export default function VocabularyPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const levelFromUrl = searchParams.get("level") || "N5";
-  const pageFromUrl = Number.parseInt(searchParams.get("page") || "1", 10);
+  const levelFromUrl = searchParams.get('level') || 'N5';
+  const pageFromUrl = Number.parseInt(searchParams.get('page') || '1', 10);
   const { replace } = useRouter();
 
   const [selectedLevel, setSelectedLevel] = useState(levelFromUrl);
   const [currentPage, setCurrentPage] = useState(pageFromUrl);
   const pageSize = 10;
-  const {words, loading, error, totalCount} = useWords(selectedLevel, currentPage, pageSize);
+  const { words, loading, error, totalCount } = useWords(selectedLevel, currentPage, pageSize);
 
   useEffect(() => {
     const params = new URLSearchParams();
-    params.set("level", selectedLevel)
-    params.set("page", String(currentPage))
+    params.set('level', selectedLevel);
+    params.set('page', String(currentPage));
     replace(`/vocabulary?${params.toString()}`);
   }, [selectedLevel, currentPage, router, replace]);
 
   const handleLevelChange = (level: string) => {
     setSelectedLevel(level);
     setCurrentPage(1);
-  }
+  };
 
   const totalPages = Math.ceil(totalCount / pageSize);
   const canGoPrevious = currentPage > 1;
@@ -53,7 +53,7 @@ export default function VocabularyPage() {
             {levels.map((level) => (
               <Button
                 key={level}
-                variant={selectedLevel === level ? "default" : "outline"}
+                variant={selectedLevel === level ? 'default' : 'outline'}
                 size="sm"
                 className="min-w-[60px] cursor-pointer"
                 onClick={() => handleLevelChange(level)}
@@ -88,5 +88,5 @@ export default function VocabularyPage() {
         />
       )}
     </>
-  )
+  );
 }
