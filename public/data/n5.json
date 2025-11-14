@@ -1,0 +1,511 @@
+[
+  {
+    "id": 1,
+    "word": "あう",
+    "reading": "あう",
+    "meaning_ko": "만나다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "友だちに会います。",
+    "example_ko": "친구를 만납니다."
+  },
+  {
+    "id": 2,
+    "word": "いく",
+    "reading": "いく",
+    "meaning_ko": "가다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "学校へ行きます。",
+    "example_ko": "학교에 갑니다."
+  },
+  {
+    "id": 3,
+    "word": "みる",
+    "reading": "みる",
+    "meaning_ko": "보다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "映画を見ます。",
+    "example_ko": "영화를 봅니다."
+  },
+  {
+    "id": 4,
+    "word": "たべる",
+    "reading": "たべる",
+    "meaning_ko": "먹다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "りんごを食べます。",
+    "example_ko": "사과를 먹습니다."
+  },
+  {
+    "id": 5,
+    "word": "のむ",
+    "reading": "のむ",
+    "meaning_ko": "마시다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "水を飲みます。",
+    "example_ko": "물을 마십니다."
+  },
+
+  {
+    "id": 6,
+    "word": "ねる",
+    "reading": "ねる",
+    "meaning_ko": "자다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "早く寝ます。",
+    "example_ko": "일찍 잡니다."
+  },
+  {
+    "id": 7,
+    "word": "おきる",
+    "reading": "おきる",
+    "meaning_ko": "일어나다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "7時に起きます。",
+    "example_ko": "7시에 일어납니다."
+  },
+  {
+    "id": 8,
+    "word": "かく",
+    "reading": "かく",
+    "meaning_ko": "쓰다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "手紙を書きます。",
+    "example_ko": "편지를 씁니다."
+  },
+  {
+    "id": 9,
+    "word": "よむ",
+    "reading": "よむ",
+    "meaning_ko": "읽다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "本を読みます。",
+    "example_ko": "책을 읽습니다."
+  },
+  {
+    "id": 10,
+    "word": "きく",
+    "reading": "きく",
+    "meaning_ko": "듣다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "音楽を聞きます。",
+    "example_ko": "음악을 듣습니다."
+  },
+
+  {
+    "id": 11,
+    "word": "はなす",
+    "reading": "はなす",
+    "meaning_ko": "말하다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "日本語で話します。",
+    "example_ko": "일본어로 말합니다."
+  },
+  {
+    "id": 12,
+    "word": "かう",
+    "reading": "かう",
+    "meaning_ko": "사다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "服を買います。",
+    "example_ko": "옷을 삽니다."
+  },
+  {
+    "id": 13,
+    "word": "つくる",
+    "reading": "つくる",
+    "meaning_ko": "만들다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "朝ごはんを作ります。",
+    "example_ko": "아침을 만듭니다."
+  },
+  {
+    "id": 14,
+    "word": "あげる",
+    "reading": "あげる",
+    "meaning_ko": "주다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "友だちにプレゼントをあげます。",
+    "example_ko": "친구에게 선물을 줍니다."
+  },
+  {
+    "id": 15,
+    "word": "もらう",
+    "reading": "もらう",
+    "meaning_ko": "받다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "手紙をもらいました。",
+    "example_ko": "편지를 받았습니다."
+  },
+
+  {
+    "id": 16,
+    "word": "する",
+    "reading": "する",
+    "meaning_ko": "하다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "勉強をします。",
+    "example_ko": "공부를 합니다."
+  },
+  {
+    "id": 17,
+    "word": "くる",
+    "reading": "くる",
+    "meaning_ko": "오다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "学校に来ます。",
+    "example_ko": "학교에 옵니다."
+  },
+  {
+    "id": 18,
+    "word": "あるく",
+    "reading": "あるく",
+    "meaning_ko": "걷다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "道を歩きます。",
+    "example_ko": "길을 걷습니다."
+  },
+  {
+    "id": 19,
+    "word": "はしる",
+    "reading": "はしる",
+    "meaning_ko": "달리다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "公園で走ります。",
+    "example_ko": "공원에서 달립니다."
+  },
+  {
+    "id": 20,
+    "word": "しぬ",
+    "reading": "しぬ",
+    "meaning_ko": "죽다",
+    "level": "N5",
+    "pos": "동사",
+    "example_ja": "魚が死にました。",
+    "example_ko": "물이 죽었습니다."
+  },
+
+  {
+    "id": 21,
+    "word": "かわいい",
+    "reading": "かわいい",
+    "meaning_ko": "귀엽다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "猫はかわいいです。",
+    "example_ko": "고양이는 귀엽습니다."
+  },
+  {
+    "id": 22,
+    "word": "おおきい",
+    "reading": "おおきい",
+    "meaning_ko": "크다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "大きい家です。",
+    "example_ko": "큰 집입니다."
+  },
+  {
+    "id": 23,
+    "word": "ちいさい",
+    "reading": "ちいさい",
+    "meaning_ko": "작다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "小さい箱です。",
+    "example_ko": "작은 상자입니다."
+  },
+  {
+    "id": 24,
+    "word": "あたらしい",
+    "reading": "あたらしい",
+    "meaning_ko": "새롭다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "新しい本です。",
+    "example_ko": "새 책입니다."
+  },
+  {
+    "id": 25,
+    "word": "ふるい",
+    "reading": "ふるい",
+    "meaning_ko": "오래되다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "古い車です。",
+    "example_ko": "오래된 차입니다."
+  },
+
+  {
+    "id": 26,
+    "word": "あつい",
+    "reading": "あつい",
+    "meaning_ko": "덥다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "今日は暑いです。",
+    "example_ko": "오늘은 덥습니다."
+  },
+  {
+    "id": 27,
+    "word": "さむい",
+    "reading": "さむい",
+    "meaning_ko": "춥다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "冬は寒いです。",
+    "example_ko": "겨울은 춥습니다."
+  },
+  {
+    "id": 28,
+    "word": "やさしい",
+    "reading": "やさしい",
+    "meaning_ko": "친절하다 / 쉽다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "先生は優しいです。",
+    "example_ko": "선생님은 친절합니다."
+  },
+  {
+    "id": 29,
+    "word": "むずかしい",
+    "reading": "むずかしい",
+    "meaning_ko": "어렵다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "問題が難しいです。",
+    "example_ko": "문제가 어렵습니다."
+  },
+  {
+    "id": 30,
+    "word": "たかい",
+    "reading": "たかい",
+    "meaning_ko": "비싸다 / 높다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "この店は高いです。",
+    "example_ko": "이 가게는 비쌉니다."
+  },
+
+  {
+    "id": 31,
+    "word": "やすい",
+    "reading": "やすい",
+    "meaning_ko": "싸다",
+    "level": "N5",
+    "pos": "형용사",
+    "example_ja": "この服は安いです。",
+    "example_ko": "이 옷은 쌉니다."
+  },
+  {
+    "id": 32,
+    "word": "きれい",
+    "reading": "きれい",
+    "meaning_ko": "깨끗하다 / 아름답다",
+    "level": "N5",
+    "pos": "형용동사",
+    "example_ja": "部屋がきれいです。",
+    "example_ko": "방이 깨끗합니다."
+  },
+  {
+    "id": 33,
+    "word": "しずか",
+    "reading": "しずか",
+    "meaning_ko": "조용하다",
+    "level": "N5",
+    "pos": "형용동사",
+    "example_ja": "図書館は静かです。",
+    "example_ko": "도서관은 조용합니다."
+  },
+  {
+    "id": 34,
+    "word": "ゆうめい",
+    "reading": "ゆうめい",
+    "meaning_ko": "유명하다",
+    "level": "N5",
+    "pos": "형용동사",
+    "example_ja": "有名な場所です。",
+    "example_ko": "유명한 장소입니다."
+  },
+  {
+    "id": 35,
+    "word": "べんり",
+    "reading": "べんり",
+    "meaning_ko": "편리하다",
+    "level": "N5",
+    "pos": "형용동사",
+    "example_ja": "このアプリは便利です。",
+    "example_ko": "이 앱은 편리합니다."
+  },
+
+  {
+    "id": 36,
+    "word": "ひと",
+    "reading": "ひと",
+    "meaning_ko": "사람",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "人がたくさんいます。",
+    "example_ko": "사람이 많이 있습니다."
+  },
+  {
+    "id": 37,
+    "word": "いえ",
+    "reading": "いえ",
+    "meaning_ko": "집",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "家へ帰ります。",
+    "example_ko": "집에 돌아갑니다."
+  },
+  {
+    "id": 38,
+    "word": "くるま",
+    "reading": "くるま",
+    "meaning_ko": "차",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "車を運転します。",
+    "example_ko": "차를 운전합니다."
+  },
+  {
+    "id": 39,
+    "word": "みず",
+    "reading": "みず",
+    "meaning_ko": "물",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "水を飲みます。",
+    "example_ko": "물을 마십니다."
+  },
+  {
+    "id": 40,
+    "word": "ごはん",
+    "reading": "ごはん",
+    "meaning_ko": "밥",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "ご飯を食べます。",
+    "example_ko": "밥을 먹습니다."
+  },
+
+  {
+    "id": 41,
+    "word": "ねこ",
+    "reading": "ねこ",
+    "meaning_ko": "고양이",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "猫が好きです。",
+    "example_ko": "고양이를 좋아합니다."
+  },
+  {
+    "id": 42,
+    "word": "いぬ",
+    "reading": "いぬ",
+    "meaning_ko": "개",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "犬を飼っています。",
+    "example_ko": "개를 키우고 있습니다."
+  },
+  {
+    "id": 43,
+    "word": "てがみ",
+    "reading": "てがみ",
+    "meaning_ko": "편지",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "手紙を書きます。",
+    "example_ko": "편지를 씁니다."
+  },
+  {
+    "id": 44,
+    "word": "ほん",
+    "reading": "ほん",
+    "meaning_ko": "책",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "本を読みます。",
+    "example_ko": "책을 읽습니다."
+  },
+  {
+    "id": 45,
+    "word": "やま",
+    "reading": "やま",
+    "meaning_ko": "산",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "山に登ります。",
+    "example_ko": "산에 오릅니다."
+  },
+
+  {
+    "id": 46,
+    "word": "かわ",
+    "reading": "かわ",
+    "meaning_ko": "강",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "川で遊びます。",
+    "example_ko": "강에서 놀아요."
+  },
+  {
+    "id": 47,
+    "word": "そら",
+    "reading": "そら",
+    "meaning_ko": "하늘",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "空が青いです。",
+    "example_ko": "하늘이 파랗습니다."
+  },
+  {
+    "id": 48,
+    "word": "て",
+    "reading": "て",
+    "meaning_ko": "손",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "手を洗います。",
+    "example_ko": "손을 씻습니다."
+  },
+  {
+    "id": 49,
+    "word": "あし",
+    "reading": "あし",
+    "meaning_ko": "발 / 다리",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "足が痛いです。",
+    "example_ko": "다리가 아픕니다."
+  },
+  {
+    "id": 50,
+    "word": "とけい",
+    "reading": "とけい",
+    "meaning_ko": "시계",
+    "level": "N5",
+    "pos": "명사",
+    "example_ja": "時計を見ます。",
+    "example_ko": "시계를 봅니다."
+  }
+]

@@ -1,0 +1,460 @@
+[
+  {
+    "level": "N4",
+    "word": "安心",
+    "reading": "あんしん",
+    "meaning_ko": "안심, 마음이 놓임",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "無事だと聞いて安心しました。",
+    "example_ko": "무사하다고 듣고 안심했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "以外",
+    "reading": "いがい",
+    "meaning_ko": "~이외",
+    "pos": "명사",
+    "example_ja": "彼以外には誰も知りません。",
+    "example_ko": "그 사람 이외에는 아무도 모릅니다."
+  },
+  {
+    "level": "N4",
+    "word": "以内",
+    "reading": "いない",
+    "meaning_ko": "이내, ~안",
+    "pos": "명사",
+    "example_ja": "30分以内に戻ります。",
+    "example_ko": "30분 이내로 돌아오겠습니다."
+  },
+  {
+    "level": "N4",
+    "word": "植える",
+    "reading": "うえる",
+    "meaning_ko": "심다",
+    "pos": "동사",
+    "example_ja": "庭に花を植えました。",
+    "example_ko": "정원에 꽃을 심었습니다."
+  },
+  {
+    "level": "N4",
+    "word": "受付",
+    "reading": "うけつけ",
+    "meaning_ko": "접수, 안내",
+    "pos": "명사",
+    "example_ja": "受付で番号をもらってください。",
+    "example_ko": "접수에서 번호표를 받아주세요."
+  },
+  {
+    "level": "N4",
+    "word": "動く",
+    "reading": "うごく",
+    "meaning_ko": "움직이다",
+    "pos": "동사",
+    "example_ja": "ロボットが動き始めました。",
+    "example_ko": "로봇이 움직이기 시작했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "運転",
+    "reading": "うんてん",
+    "meaning_ko": "운전",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "母は車の運転が得意です。",
+    "example_ko": "어머니는 운전을 잘합니다."
+  },
+  {
+    "level": "N4",
+    "word": "遠慮",
+    "reading": "えんりょ",
+    "meaning_ko": "사양",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "どうぞ遠慮しないで食べてください。",
+    "example_ko": "사양하지 말고 드세요."
+  },
+  {
+    "level": "N4",
+    "word": "お祝い",
+    "reading": "おいわい",
+    "meaning_ko": "축하, 축하 선물",
+    "pos": "명사",
+    "example_ja": "友達にお祝いを送りました。",
+    "example_ko": "친구에게 축하 선물을 보냈습니다."
+  },
+  {
+    "level": "N4",
+    "word": "奥",
+    "reading": "おく",
+    "meaning_ko": "안쪽, 깊은 곳",
+    "pos": "명사",
+    "example_ja": "店の奥で待っています。",
+    "example_ko": "가게 안쪽에서 기다리고 있습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "押す",
+    "reading": "おす",
+    "meaning_ko": "누르다",
+    "pos": "동사",
+    "example_ja": "ボタンを押してください。",
+    "example_ko": "버튼을 눌러주세요."
+  },
+  {
+    "level": "N4",
+    "word": "落ちる",
+    "reading": "おちる",
+    "meaning_ko": "떨어지다",
+    "pos": "동사",
+    "example_ja": "葉が風で落ちました。",
+    "example_ko": "잎이 바람에 떨어졌습니다."
+  },
+  {
+    "level": "N4",
+    "word": "届ける",
+    "reading": "とどける",
+    "meaning_ko": "전달하다, 배달하다",
+    "pos": "동사",
+    "example_ja": "荷物を家まで届けます。",
+    "example_ko": "짐을 집까지 배달합니다."
+  },
+  {
+    "level": "N4",
+    "word": "踊る",
+    "reading": "おどる",
+    "meaning_ko": "춤추다",
+    "pos": "동사",
+    "example_ja": "子どもたちが踊っています。",
+    "example_ko": "아이들이 춤추고 있습니다."
+  },
+  {
+    "level": "N4",
+    "word": "落とす",
+    "reading": "おとす",
+    "meaning_ko": "떨어뜨리다",
+    "pos": "동사",
+    "example_ja": "スマホを落としてしまいました。",
+    "example_ko": "스마트폰을 떨어뜨리고 말았습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "ガス",
+    "reading": "がす",
+    "meaning_ko": "가스",
+    "pos": "명사",
+    "example_ja": "ガスが止まりました。",
+    "example_ko": "가스가 끊겼습니다."
+  },
+  {
+    "level": "N4",
+    "word": "関係",
+    "reading": "かんけい",
+    "meaning_ko": "관계",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "この問題は私と関係ありません。",
+    "example_ko": "이 문제는 저와 관련 없습니다."
+  },
+  {
+    "level": "N4",
+    "word": "看護師",
+    "reading": "かんごし",
+    "meaning_ko": "간호사",
+    "pos": "명사",
+    "example_ja": "看護師が患者を助けています。",
+    "example_ko": "간호사가 환자를 돕고 있습니다."
+  },
+  {
+    "level": "N4",
+    "word": "変わる",
+    "reading": "かわる",
+    "meaning_ko": "변하다",
+    "pos": "동사",
+    "example_ja": "季節が変わりました。",
+    "example_ko": "계절이 변했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "気温",
+    "reading": "きおん",
+    "meaning_ko": "기온",
+    "pos": "명사",
+    "example_ja": "今日の気温は低いです。",
+    "example_ko": "오늘 기온은 낮습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "厳しい",
+    "reading": "きびしい",
+    "meaning_ko": "엄격하다",
+    "pos": "형용사",
+    "example_ja": "母は厳しいですが優しいです。",
+    "example_ko": "어머니는 엄격하지만 다정합니다."
+  },
+  {
+    "level": "N4",
+    "word": "急行",
+    "reading": "きゅうこう",
+    "meaning_ko": "급행",
+    "pos": "명사",
+    "example_ja": "急行に乗れば早く着きます。",
+    "example_ko": "급행을 타면 빨리 도착합니다."
+  },
+  {
+    "level": "N4",
+    "word": "禁止",
+    "reading": "きんし",
+    "meaning_ko": "금지",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "ここでは喫煙が禁止です。",
+    "example_ko": "여기서는 흡연이 금지입니다."
+  },
+  {
+    "level": "N4",
+    "word": "空気",
+    "reading": "くうき",
+    "meaning_ko": "공기",
+    "pos": "명사",
+    "example_ja": "この部屋は空気がきれいです。",
+    "example_ko": "이 방은 공기가 깨끗합니다."
+  },
+  {
+    "level": "N4",
+    "word": "比べる",
+    "reading": "くらべる",
+    "meaning_ko": "비교하다",
+    "pos": "동사",
+    "example_ja": "去年と比べて寒いです。",
+    "example_ko": "작년보다 춥습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "詳しい",
+    "reading": "くわしい",
+    "meaning_ko": "자세하다",
+    "pos": "형용사",
+    "example_ja": "先生は歴史に詳しいです。",
+    "example_ko": "선생님은 역사에 대해 자세합니다."
+  },
+  {
+    "level": "N4",
+    "word": "研究",
+    "reading": "けんきゅう",
+    "meaning_ko": "연구",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "新しい薬を研究しています。",
+    "example_ko": "새로운 약을 연구하고 있습니다."
+  },
+  {
+    "level": "N4",
+    "word": "決して",
+    "reading": "けっして",
+    "meaning_ko": "결코 ~아니다",
+    "pos": "부사",
+    "example_ja": "決して諦めません。",
+    "example_ko": "결코 포기하지 않습니다."
+  },
+  {
+    "level": "N4",
+    "word": "見物",
+    "reading": "けんぶつ",
+    "meaning_ko": "구경",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "京都を見物しました。",
+    "example_ko": "교토를 구경했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "講義",
+    "reading": "こうぎ",
+    "meaning_ko": "강의",
+    "pos": "명사",
+    "example_ja": "大学で講義を受けます。",
+    "example_ko": "대학교에서 강의를 듣습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "工場",
+    "reading": "こうじょう",
+    "meaning_ko": "공장",
+    "pos": "명사",
+    "example_ja": "工場で働いています。",
+    "example_ko": "공장에서 일하고 있습니다."
+  },
+  {
+    "level": "N4",
+    "word": "交通",
+    "reading": "こうつう",
+    "meaning_ko": "교통",
+    "pos": "명사",
+    "example_ja": "東京は交通が便利です。",
+    "example_ko": "도쿄는 교통이 편리합니다."
+  },
+  {
+    "level": "N4",
+    "word": "国際",
+    "reading": "こくさい",
+    "meaning_ko": "국제",
+    "pos": "명사",
+    "example_ja": "国際会議が開かれました。",
+    "example_ko": "국제 회의가 열렸습니다."
+  },
+  {
+    "level": "N4",
+    "word": "故障",
+    "reading": "こしょう",
+    "meaning_ko": "고장",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "エレベーターが故障しました。",
+    "example_ko": "엘리베이터가 고장났습니다."
+  },
+  {
+    "level": "N4",
+    "word": "誤解",
+    "reading": "ごかい",
+    "meaning_ko": "오해",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "誤解しないでください。",
+    "example_ko": "오해하지 마세요."
+  },
+
+  {
+    "level": "N4",
+    "word": "子犬",
+    "reading": "こいぬ",
+    "meaning_ko": "강아지",
+    "pos": "명사",
+    "example_ja": "子犬がかわいいです。",
+    "example_ko": "강아지가 귀엽습니다."
+  },
+  {
+    "level": "N4",
+    "word": "込む",
+    "reading": "こむ",
+    "meaning_ko": "붐비다",
+    "pos": "동사",
+    "example_ja": "電車がとても込んでいます。",
+    "example_ko": "전철이 매우 붐빕니다."
+  },
+  {
+    "level": "N4",
+    "word": "最後",
+    "reading": "さいご",
+    "meaning_ko": "마지막",
+    "pos": "명사",
+    "example_ja": "最後のページを読みました。",
+    "example_ko": "마지막 페이지를 읽었습니다."
+  },
+  {
+    "level": "N4",
+    "word": "最近",
+    "reading": "さいきん",
+    "meaning_ko": "최근",
+    "pos": "명사",
+    "example_ja": "最近忙しくなりました。",
+    "example_ko": "최근 바빠졌습니다."
+  },
+  {
+    "level": "N4",
+    "word": "再来週",
+    "reading": "さらいしゅう",
+    "meaning_ko": "다다음 주",
+    "pos": "명사",
+    "example_ja": "再来週旅行に行きます。",
+    "example_ko": "다다음 주에 여행을 갑니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "生活",
+    "reading": "せいかつ",
+    "meaning_ko": "생활",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "日本での生活に慣れました。",
+    "example_ko": "일본에서의 생활에 익숙해졌습니다."
+  },
+  {
+    "level": "N4",
+    "word": "成績",
+    "reading": "せいせき",
+    "meaning_ko": "성적",
+    "pos": "명사",
+    "example_ja": "成績が上がりました。",
+    "example_ko": "성적이 올랐습니다."
+  },
+  {
+    "level": "N4",
+    "word": "選手",
+    "reading": "せんしゅ",
+    "meaning_ko": "선수",
+    "pos": "명사",
+    "example_ja": "彼は有名な選手です。",
+    "example_ko": "그는 유명한 선수입니다."
+  },
+  {
+    "level": "N4",
+    "word": "相談",
+    "reading": "そうだん",
+    "meaning_ko": "상담",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "先生に相談しました。",
+    "example_ko": "선생님께 상담했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "卒業",
+    "reading": "そつぎょう",
+    "meaning_ko": "졸업",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "大学を卒業しました。",
+    "example_ko": "대학교를 졸업했습니다."
+  },
+
+  {
+    "level": "N4",
+    "word": "倒れる",
+    "reading": "たおれる",
+    "meaning_ko": "쓰러지다",
+    "pos": "동사",
+    "example_ja": "木が倒れました。",
+    "example_ko": "나무가 쓰러졌습니다."
+  },
+  {
+    "level": "N4",
+    "word": "確か",
+    "reading": "たしか",
+    "meaning_ko": "아마, 확실히",
+    "pos": "부사 / 형용동사",
+    "example_ja": "確か明日だったと思います。",
+    "example_ko": "아마 내일이었던 것 같습니다."
+  },
+  {
+    "level": "N4",
+    "word": "足りる",
+    "reading": "たりる",
+    "meaning_ko": "충분하다",
+    "pos": "동사",
+    "example_ja": "お金が足りました。",
+    "example_ko": "돈이 충분했습니다."
+  },
+  {
+    "level": "N4",
+    "word": "注意",
+    "reading": "ちゅうい",
+    "meaning_ko": "주의",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "車に注意してください。",
+    "example_ko": "차를 조심하세요."
+  },
+  {
+    "level": "N4",
+    "word": "丁寧",
+    "reading": "ていねい",
+    "meaning_ko": "공손함",
+    "pos": "형용동사",
+    "example_ja": "丁寧に説明しました。",
+    "example_ko": "공손하게 설명했습니다."
+  }
+]

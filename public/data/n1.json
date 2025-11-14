@@ -1,0 +1,465 @@
+[
+  {
+    "level": "N1",
+    "word": "概念",
+    "reading": "がいねん",
+    "meaning_ko": "개념",
+    "pos": "명사",
+    "example_ja": "この概念を理解するには時間がかかります。",
+    "example_ko": "이 개념을 이해하려면 시간이 걸립니다."
+  },
+  {
+    "level": "N1",
+    "word": "促進",
+    "reading": "そくしん",
+    "meaning_ko": "촉진",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "技術革新を促進する政策が必要です。",
+    "example_ko": "기술 혁신을 촉진하는 정책이 필요합니다."
+  },
+  {
+    "level": "N1",
+    "word": "把握",
+    "reading": "はあく",
+    "meaning_ko": "파악",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "状況を正確に把握してください。",
+    "example_ko": "상황을 정확히 파악해주세요."
+  },
+  {
+    "level": "N1",
+    "word": "展開",
+    "reading": "てんかい",
+    "meaning_ko": "전개",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "物語の展開が急すぎます。",
+    "example_ko": "이야기의 전개가 너무 빠릅니다."
+  },
+  {
+    "level": "N1",
+    "word": "善意",
+    "reading": "ぜんい",
+    "meaning_ko": "선의",
+    "pos": "명사",
+    "example_ja": "彼は善意で助けてくれたのです。",
+    "example_ko": "그는 선의로 도와준 것입니다."
+  },
+  {
+    "level": "N1",
+    "word": "悪化",
+    "reading": "あっか",
+    "meaning_ko": "악화",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "天気が急に悪化しました。",
+    "example_ko": "날씨가 갑자기 악화되었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "維持",
+    "reading": "いじ",
+    "meaning_ko": "유지",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "品質を維持することが重要です。",
+    "example_ko": "품질을 유지하는 것이 중요합니다."
+  },
+  {
+    "level": "N1",
+    "word": "徹底",
+    "reading": "てってい",
+    "meaning_ko": "철저",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "対策を徹底してください。",
+    "example_ko": "대책을 철저히 해주세요."
+  },
+  {
+    "level": "N1",
+    "word": "妥当",
+    "reading": "だとう",
+    "meaning_ko": "타당함",
+    "pos": "형용동사",
+    "example_ja": "その判断は妥当です。",
+    "example_ko": "그 판단은 타당합니다."
+  },
+  {
+    "level": "N1",
+    "word": "権利",
+    "reading": "けんり",
+    "meaning_ko": "권리",
+    "pos": "명사",
+    "example_ja": "誰にでも自由を求める権利があります。",
+    "example_ko": "누구에게나 자유를 요구할 권리가 있습니다."
+  },
+
+  {
+    "level": "N1",
+    "word": "根拠",
+    "reading": "こんきょ",
+    "meaning_ko": "근거",
+    "pos": "명사",
+    "example_ja": "その主張には根拠がありません。",
+    "example_ko": "그 주장에는 근거가 없습니다."
+  },
+  {
+    "level": "N1",
+    "word": "革新",
+    "reading": "かくしん",
+    "meaning_ko": "혁신",
+    "pos": "명사",
+    "example_ja": "革新的なアイデアが必要です。",
+    "example_ko": "혁신적인 아이디어가 필요합니다."
+  },
+  {
+    "level": "N1",
+    "word": "随時",
+    "reading": "ずいじ",
+    "meaning_ko": "수시로",
+    "pos": "부사",
+    "example_ja": "情報は随時更新されます。",
+    "example_ko": "정보는 수시로 업데이트됩니다."
+  },
+  {
+    "level": "N1",
+    "word": "意図",
+    "reading": "いと",
+    "meaning_ko": "의도",
+    "pos": "명사",
+    "example_ja": "彼の意図が分かりません。",
+    "example_ko": "그의 의도를 모르겠습니다."
+  },
+  {
+    "level": "N1",
+    "word": "模索",
+    "reading": "もさく",
+    "meaning_ko": "모색",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "新しい方法を模索しています。",
+    "example_ko": "새로운 방법을 모색하고 있습니다."
+  },
+  {
+    "level": "N1",
+    "word": "厳密",
+    "reading": "げんみつ",
+    "meaning_ko": "엄밀함",
+    "pos": "형용동사",
+    "example_ja": "厳密な分析が求められます。",
+    "example_ko": "엄밀한 분석이 요구됩니다."
+  },
+  {
+    "level": "N1",
+    "word": "短縮",
+    "reading": "たんしゅく",
+    "meaning_ko": "단축",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "作業時間を短縮したいです。",
+    "example_ko": "작업 시간을 단축하고 싶습니다."
+  },
+  {
+    "level": "N1",
+    "word": "緩和",
+    "reading": "かんわ",
+    "meaning_ko": "완화",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "規制が緩和されました。",
+    "example_ko": "규제가 완화되었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "整備",
+    "reading": "せいび",
+    "meaning_ko": "정비",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "設備を整備しました。",
+    "example_ko": "설비를 정비했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "依然",
+    "reading": "いぜん",
+    "meaning_ko": "여전히",
+    "pos": "부사",
+    "example_ja": "状況は依然として厳しいです。",
+    "example_ko": "상황은 여전히 어렵습니다."
+  },
+
+  {
+    "level": "N1",
+    "word": "精密",
+    "reading": "せいみつ",
+    "meaning_ko": "정밀함",
+    "pos": "형용동사",
+    "example_ja": "精密な検査を受けました。",
+    "example_ko": "정밀 검사를 받았습니다."
+  },
+  {
+    "level": "N1",
+    "word": "遂行",
+    "reading": "すいこう",
+    "meaning_ko": "수행",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "任務を遂行しました。",
+    "example_ko": "임무를 수행했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "圧倒",
+    "reading": "あっとう",
+    "meaning_ko": "압도",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "観客を圧倒するパフォーマンスでした。",
+    "example_ko": "관객을 압도하는 공연이었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "適応",
+    "reading": "てきおう",
+    "meaning_ko": "적응",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "新しい環境に適応しました。",
+    "example_ko": "새로운 환경에 적응했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "拒否",
+    "reading": "きょひ",
+    "meaning_ko": "거부",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "提案は拒否されました。",
+    "example_ko": "제안이 거부되었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "概略",
+    "reading": "がいりゃく",
+    "meaning_ko": "개략",
+    "pos": "명사",
+    "example_ja": "計画の概略を説明します。",
+    "example_ko": "계획의 개략을 설명하겠습니다."
+  },
+  {
+    "level": "N1",
+    "word": "堅実",
+    "reading": "けんじつ",
+    "meaning_ko": "견실함, 성실함",
+    "pos": "형용동사",
+    "example_ja": "彼は堅実な性格です。",
+    "example_ko": "그는 성실한 성격입니다."
+  },
+  {
+    "level": "N1",
+    "word": "緊急",
+    "reading": "きんきゅう",
+    "meaning_ko": "긴급",
+    "pos": "명사 / 형용동사",
+    "example_ja": "緊急の連絡がありました。",
+    "example_ko": "긴급한 연락이 있었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "誤解",
+    "reading": "ごかい",
+    "meaning_ko": "오해",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "誤解を解きたいです。",
+    "example_ko": "오해를 풀고 싶습니다."
+  },
+  {
+    "level": "N1",
+    "word": "対処",
+    "reading": "たいしょ",
+    "meaning_ko": "대처",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "状況に適切に対処してください。",
+    "example_ko": "상황에 적절히 대처해주세요."
+  },
+
+  {
+    "level": "N1",
+    "word": "提携",
+    "reading": "ていけい",
+    "meaning_ko": "제휴",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "企業同士が提携しました。",
+    "example_ko": "기업끼리 제휴했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "奨励",
+    "reading": "しょうれい",
+    "meaning_ko": "장려",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "読書を奨励しています。",
+    "example_ko": "독서를 장려하고 있습니다."
+  },
+  {
+    "level": "N1",
+    "word": "把握",
+    "reading": "はあく",
+    "meaning_ko": "파악",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "全体像を把握する必要があります。",
+    "example_ko": "전체적인 모습을 파악할 필요가 있습니다."
+  },
+  {
+    "level": "N1",
+    "word": "圧縮",
+    "reading": "あっしゅく",
+    "meaning_ko": "압축",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "データを圧縮しました。",
+    "example_ko": "데이터를 압축했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "継続",
+    "reading": "けいぞく",
+    "meaning_ko": "계속",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "努力を継続することが大切です。",
+    "example_ko": "노력을 계속하는 것이 중요합니다."
+  },
+  {
+    "level": "N1",
+    "word": "克服",
+    "reading": "こくふく",
+    "meaning_ko": "극복",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "弱点を克服したいです。",
+    "example_ko": "약점을 극복하고 싶습니다."
+  },
+  {
+    "level": "N1",
+    "word": "補足",
+    "reading": "ほそく",
+    "meaning_ko": "보충",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "説明を補足します。",
+    "example_ko": "설명을 보충하겠습니다."
+  },
+  {
+    "level": "N1",
+    "word": "厳重",
+    "reading": "げんじゅう",
+    "meaning_ko": "엄중함",
+    "pos": "형용동사",
+    "example_ja": "警備が厳重です。",
+    "example_ko": "경비가 엄중합니다."
+  },
+  {
+    "level": "N1",
+    "word": "阻止",
+    "reading": "そし",
+    "meaning_ko": "저지",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "犯罪を阻止しました。",
+    "example_ko": "범죄를 저지했습니다."
+  },
+
+  {
+    "level": "N1",
+    "word": "排除",
+    "reading": "はいじょ",
+    "meaning_ko": "제거, 배제",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "不要なファイルを排除しました。",
+    "example_ko": "불필요한 파일을 제거했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "凝視",
+    "reading": "ぎょうし",
+    "meaning_ko": "응시",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "彼は画面を凝視していました。",
+    "example_ko": "그는 화면을 응시하고 있었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "恒例",
+    "reading": "こうれい",
+    "meaning_ko": "관례",
+    "pos": "명사",
+    "example_ja": "毎年恒例のイベントです。",
+    "example_ko": "매년 관례적인 행사입니다."
+  },
+  {
+    "level": "N1",
+    "word": "堪能",
+    "reading": "たんのう",
+    "meaning_ko": "능숙함, 숙련됨",
+    "pos": "형용동사",
+    "example_ja": "彼は日本語が堪能です。",
+    "example_ko": "그는 일본어가 능숙합니다."
+  },
+  {
+    "level": "N1",
+    "word": "流通",
+    "reading": "りゅうつう",
+    "meaning_ko": "유통",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "商品が広く流通しています。",
+    "example_ko": "상품이 널리 유통되고 있습니다."
+  },
+  {
+    "level": "N1",
+    "word": "一貫",
+    "reading": "いっかん",
+    "meaning_ko": "일관됨",
+    "pos": "명사 / 형용동사",
+    "example_ja": "一貫した方針が必要です。",
+    "example_ko": "일관된 방침이 필요합니다."
+  },
+  {
+    "level": "N1",
+    "word": "精算",
+    "reading": "せいさん",
+    "meaning_ko": "정산",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "料金を精算しました。",
+    "example_ko": "요금을 정산했습니다."
+  },
+  {
+    "level": "N1",
+    "word": "免除",
+    "reading": "めんじょ",
+    "meaning_ko": "면제",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "授業料が免除されました。",
+    "example_ko": "수업료가 면제되었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "確保",
+    "reading": "かくほ",
+    "meaning_ko": "확보",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "十分な時間を確保してください。",
+    "example_ko": "충분한 시간을 확보해주세요."
+  },
+  {
+    "level": "N1",
+    "word": "否決",
+    "reading": "ひけつ",
+    "meaning_ko": "부결",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "提案は否決されました。",
+    "example_ko": "제안은 부결되었습니다."
+  },
+  {
+    "level": "N1",
+    "word": "非難",
+    "reading": "ひなん",
+    "meaning_ko": "비난",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "彼は強く非難されました。",
+    "example_ko": "그는 강하게 비난받았습니다."
+  },
+  {
+    "level": "N1",
+    "word": "矛盾",
+    "reading": "むじゅん",
+    "meaning_ko": "모순",
+    "pos": "명사 / 동사(する)",
+    "example_ja": "彼の発言には矛盾があります。",
+    "example_ko": "그의 발언에는 모순이 있습니다."
+  }
+]
