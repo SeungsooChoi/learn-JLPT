@@ -40,6 +40,14 @@ export default function LearningPage() {
     // 레벨 선택
     <main className="bg-background">
       <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-3xl font-bold">회독</h1>
+          </div>
+          <p className="text-muted-foreground">
+            레벨을 선택하세요. 가장 쉬운 레벨은 N5이며 가장 어려운 레벨은 N1입니다.
+          </p>
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
           {levels.map((item) => (
             <Card key={item.level} className={`flex flex-col justify-between ${item.color}`}>

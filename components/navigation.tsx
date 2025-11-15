@@ -11,10 +11,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const navItems = [
-    { href: '/learning', label: '회독', icon: BookOpen },
-    // { href: '/vocabulary', label: '단어장', icon: Library },
-  ];
+  const navItems = [{ href: '/', label: '회독', icon: BookOpen }];
 
   const isActive = (href: string) => pathname.startsWith(href);
 
