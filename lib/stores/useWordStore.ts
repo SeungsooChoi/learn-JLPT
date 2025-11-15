@@ -52,7 +52,8 @@ export const useWordStore = create<WordState>()(
           });
         }
 
-        const record = history[level];
+        const updatedHistory = get().history;
+        const record = updatedHistory[level];
 
         // 실시간 상태 설정
         set({
@@ -66,20 +67,20 @@ export const useWordStore = create<WordState>()(
       // "이해함"
       setKnown: () => {
         set((state) => {
-          const { words, history, currentIndex, currentLevel } = get();
-          const currentWord = words[currentIndex];
+          const currentWord = state.words[state.currentIndex];
           if (!currentWord) return state;
 
-          const record = history[currentLevel];
+          const record = state.history[state.currentLevel];
           if (!record) return state;
 
-          const newIndex = currentIndex + 1;
+          const newIndex = state.currentIndex + 1;
 
           return {
+            ...state,
             currentIndex: newIndex,
             history: {
-              ...history,
-              [currentLevel]: {
+              ...state.history,
+              [state.currentLevel]: {
                 ...record,
                 learned: [...record.learned, currentWord.id],
                 unknown: record.unknown.filter((id) => id !== currentWord.id),
@@ -92,20 +93,20 @@ export const useWordStore = create<WordState>()(
       // "이해못함"
       setUnknown: () => {
         set((state) => {
-          const { words, history, currentIndex, currentLevel } = get();
-          const currentWord = words[currentIndex];
+          const currentWord = state.words[state.currentIndex];
           if (!currentWord) return state;
 
-          const record = history[currentLevel];
+          const record = state.history[state.currentLevel];
           if (!record) return state;
 
-          const newIndex = currentIndex + 1;
+          const newIndex = state.currentIndex + 1;
 
           return {
+            ...state,
             currentIndex: newIndex,
             history: {
-              ...history,
-              [currentLevel]: {
+              ...state.history,
+              [state.currentLevel]: {
                 ...record,
                 unknown: [...record.unknown, currentWord.id],
                 learned: record.learned.filter((id) => id !== currentWord.id),
@@ -119,12 +120,13 @@ export const useWordStore = create<WordState>()(
       // 복습 모드 시작
       startReview: () => {
         set((state) => {
-          const { words, history, currentLevel } = get();
-          const unknownWords = words.filter((w) => history[currentLevel]?.unknown.includes(w.id));
+          const unknownIds = state.history[state.currentLevel]?.unknown || [];
+          const unknownWords = state.words.filter((w) => unknownIds.includes(w.id));
 
           if (unknownWords.length === 0) return state;
 
           return {
+            ...state,
             words: unknownWords,
             currentIndex: 0,
             isReviewMode: true,
@@ -135,16 +137,16 @@ export const useWordStore = create<WordState>()(
       // 현재 레벨 리셋
       resetStudy: () => {
         set((state) => {
-          const { history, currentLevel } = get();
-          const record = history[currentLevel];
+          const record = state.history[state.currentLevel];
           if (!record) return state;
 
           return {
+            ...state,
             currentIndex: 0,
             isReviewMode: false,
             history: {
-              ...history,
-              [currentLevel]: {
+              ...state.history,
+              [state.currentLevel]: {
                 ...record,
                 learned: [],
                 unknown: [],
