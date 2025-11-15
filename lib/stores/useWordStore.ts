@@ -81,7 +81,7 @@ export const useWordStore = create<WordState>()(
               ...history,
               [currentLevel]: {
                 ...record,
-                learned: Array.from(new Set([...record.learned, currentWord.id])),
+                learned: [...record.learned, currentWord.id],
                 unknown: record.unknown.filter((id) => id !== currentWord.id),
                 lastIndex: newIndex,
               },
@@ -107,7 +107,7 @@ export const useWordStore = create<WordState>()(
               ...history,
               [currentLevel]: {
                 ...record,
-                unknown: Array.from(new Set([...record.unknown, currentWord.id])),
+                unknown: [...record.unknown, currentWord.id],
                 learned: record.learned.filter((id) => id !== currentWord.id),
                 lastIndex: newIndex,
               },
