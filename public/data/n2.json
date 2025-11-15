@@ -1,92 +1,102 @@
 [
   {
-    "level": "N2",
-    "word": "改善",
-    "reading": "かいぜん",
-    "meaning_ko": "개선",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "運営方法を改善しました。",
-    "example_ko": "운영 방식을 개선했습니다."
+      "id": 1,
+      "level": "N2",
+      "word": "改善",
+      "reading": "かいぜん",
+      "meaning_ko": "개선",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "運営方法を改善しました。",
+      "example_ko": "운영 방식을 개선했습니다."
   },
   {
-    "level": "N2",
-    "word": "解決",
-    "reading": "かいけつ",
-    "meaning_ko": "해결",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "問題を早く解決したいです。",
-    "example_ko": "문제를 빨리 해결하고 싶습니다."
+      "id": 2,
+      "level": "N2",
+      "word": "解決",
+      "reading": "かいけつ",
+      "meaning_ko": "해결",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "問題を早く解決したいです。",
+      "example_ko": "문제를 빨리 해결하고 싶습니다."
   },
   {
-    "level": "N2",
-    "word": "開催",
-    "reading": "かいさい",
-    "meaning_ko": "개최",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "国際会議が来月開催されます。",
-    "example_ko": "국제 회의가 다음 달에 개최됩니다."
+      "id": 3,
+      "level": "N2",
+      "word": "開催",
+      "reading": "かいさい",
+      "meaning_ko": "개최",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "国際会議が来月開催されます。",
+      "example_ko": "국제 회의가 다음 달에 개최됩니다."
   },
   {
-    "level": "N2",
-    "word": "改正",
-    "reading": "かいせい",
-    "meaning_ko": "개정",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "法律が改正されました。",
-    "example_ko": "법률이 개정되었습니다."
+      "id": 4,
+      "level": "N2",
+      "word": "改正",
+      "reading": "かいせい",
+      "meaning_ko": "개정",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "法律が改正されました。",
+      "example_ko": "법률이 개정되었습니다."
   },
   {
-    "level": "N2",
-    "word": "計画",
-    "reading": "けいかく",
-    "meaning_ko": "계획",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "来年の計画を立てましょう。",
-    "example_ko": "내년의 계획을 세웁시다."
+      "id": 5,
+      "level": "N2",
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning_ko": "계획",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "来年の計画を立てましょう。",
+      "example_ko": "내년의 계획을 세웁시다."
   },
   {
-    "level": "N2",
-    "word": "経済",
-    "reading": "けいざい",
-    "meaning_ko": "경제",
-    "pos": "명사",
-    "example_ja": "日本の経済は回復しています。",
-    "example_ko": "일본의 경제는 회복 중입니다."
+      "id": 6,
+      "level": "N2",
+      "word": "経済",
+      "reading": "けいざい",
+      "meaning_ko": "경제",
+      "pos": "명사",
+      "example_ja": "日本の経済は回復しています。",
+      "example_ko": "일본의 경제는 회복 중입니다."
   },
   {
-    "level": "N2",
-    "word": "機会",
-    "reading": "きかい",
-    "meaning_ko": "기회",
-    "pos": "명사",
-    "example_ja": "こんな機会はなかなかないです。",
-    "example_ko": "이런 기회는 좀처럼 없습니다."
+      "id": 7,
+      "level": "N2",
+      "word": "機会",
+      "reading": "きかい",
+      "meaning_ko": "기회",
+      "pos": "명사",
+      "example_ja": "こんな機会はなかなかないです。",
+      "example_ko": "이런 기회는 좀처럼 없습니다."
   },
   {
-    "level": "N2",
-    "word": "議論",
-    "reading": "ぎろん",
-    "meaning_ko": "논의, 토론",
-    "pos": "명사 / 동사(する)",
-    "example_ja": "議論が白熱しています。",
-    "example_ko": "토론이 열기를 띠고 있습니다."
+      "id": 8,
+      "level": "N2",
+      "word": "議論",
+      "reading": "ぎろん",
+      "meaning_ko": "논의, 토론",
+      "pos": "명사 / 동사(する)",
+      "example_ja": "議論が白熱しています。",
+      "example_ko": "토론이 열기를 띠고 있습니다."
   },
   {
-    "level": "N2",
-    "word": "銀行",
-    "reading": "ぎんこう",
-    "meaning_ko": "은행",
-    "pos": "명사",
-    "example_ja": "銀行で手続きをします。",
-    "example_ko": "은행에서 절차를 밟습니다."
+      "id": 9,
+      "level": "N2",
+      "word": "銀行",
+      "reading": "ぎんこう",
+      "meaning_ko": "은행",
+      "pos": "명사",
+      "example_ja": "銀行で手続きをします。",
+      "example_ko": "은행에서 절차를 밟습니다."
   },
   {
-    "level": "N2",
-    "word": "既に",
-    "reading": "すでに",
-    "meaning_ko": "이미",
-    "pos": "부사",
-    "example_ja": "仕事は既に終わりました。",
-    "example_ko": "일은 이미 끝났습니다."
+      "id": 10,
+      "level": "N2",
+      "word": "既に",
+      "reading": "すでに",
+      "meaning_ko": "이미",
+      "pos": "부사",
+      "example_ja": "仕事は既に終わりました。",
+      "example_ko": "일은 이미 끝났습니다."
   }
 ]
