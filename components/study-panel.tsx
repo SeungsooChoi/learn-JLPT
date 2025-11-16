@@ -9,7 +9,7 @@ import WordCard from './word-card';
 import StudyCompletedPanel from './study-complete-panel';
 
 export default function StudyPanel({ level, initialWords }: { level: string; initialWords: Word[] }) {
-  const { words, currentIndex, setLevel, setKnown, setUnknown } = useWordStore();
+  const { words, currentIndex, setLevel, setKnown, setUnknown, finishStudyAndRecord } = useWordStore();
 
   useEffect(() => {
     setLevel(level, initialWords);
@@ -17,6 +17,14 @@ export default function StudyPanel({ level, initialWords }: { level: string; ini
 
   const currentWord = words[currentIndex];
   const total = words.length;
+
+  /**
+   * 학습 종료시 통계 세션 적용
+   */
+  useEffect(() => {
+    const isFinished = !currentWord;
+    if (isFinished) finishStudyAndRecord();
+  }, [currentWord, finishStudyAndRecord]);
 
   if (!words.length) return <p className="text-center mt-10">단어를 불러오는 중...</p>;
 

@@ -1,6 +1,7 @@
-import { StudyRecord, Word } from '@/types/word';
+import { JLPTLevel, StudyRecord, Word } from '@/types/word';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { useStatsStore } from './useStatsStore';
 
 type WordState = {
   // 실시간 학습 상태
@@ -20,6 +21,7 @@ type WordState = {
   resetStudy: () => void;
   resetLevel: (level: string) => void;
   getUnknownWords: () => Word[];
+  finishStudyAndRecord: () => void;
 };
 
 export const useWordStore = create<WordState>()(
@@ -187,6 +189,36 @@ export const useWordStore = create<WordState>()(
         const { words, history, currentLevel } = get();
         const unknownIds = history[currentLevel]?.unknown || [];
         return words.filter((w) => unknownIds.includes(w.id));
+      },
+
+      /**
+       * 학습 종료 및 세션 기록
+       * @returns
+       */
+      finishStudyAndRecord: () => {
+        const state = get();
+        const { currentLevel, currentIndex, words, history, isReviewMode } = state;
+        const record = history[currentLevel];
+
+        if (!record) return;
+
+        // 복습 모드이거나 모든 단어를 학습 완료시 기록한다.
+        const isFinished = !isReviewMode && currentIndex >= words.length;
+
+        if (!isReviewMode && !isFinished) return;
+
+        // 학습 완료 후 세션 데이터 생성
+        const session = {
+          id: crypto.randomUUID(),
+          level: currentLevel as JLPTLevel,
+          date: new Date().toISOString(),
+          learned: record.learned.length,
+          total: words.length,
+          known: record.learned,
+          unknown: record.unknown,
+        };
+
+        useStatsStore.getState().addSession(session);
       },
     }),
     {
