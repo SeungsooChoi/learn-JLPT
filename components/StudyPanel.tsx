@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 import { useWordStore } from '@/lib/stores/useWordStore';
 import { Button } from '@/components/ui/button';
 import { Word } from '@/types/word';
-import ProgressBar from './progressbar';
-import WordCard from './word-card';
-import StudyCompletedPanel from './study-complete-panel';
+import WordCard from './WordCard';
+import StudyCompletedPanel from './StudyCompletePanel';
+import ProgressBar from './Progressbar';
 
 export default function StudyPanel({ level, initialWords }: { level: string; initialWords: Word[] }) {
   const { words, currentIndex, setLevel, setKnown, setUnknown, finishStudyAndRecord } = useWordStore();

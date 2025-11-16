@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, Menu } from 'lucide-react';
+import { BookOpen, ChartColumn, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
@@ -11,9 +11,12 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const navItems = [{ href: '/', label: '회독', icon: BookOpen }];
+  const navItems = [
+    { href: '/', label: '회독', icon: BookOpen },
+    { href: '/stats', label: '통계', icon: ChartColumn },
+  ];
 
-  const isActive = (href: string) => pathname.startsWith(href);
+  const isActive = (href: string) => pathname.endsWith(href);
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-50">

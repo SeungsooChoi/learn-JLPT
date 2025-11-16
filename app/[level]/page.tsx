@@ -1,4 +1,4 @@
-import StudyPanel from '@/components/study-panel';
+import StudyPanel from '@/components/StudyPanel';
 import { fetchWordsByLevel } from '@/lib/utils/fetchWords';
 
 export default async function Home({ params }: { params: Promise<{ level: string }> }) {
