@@ -12,7 +12,7 @@ export default function DailyProgressChart({
 }) {
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <BarChart data={data} margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
         <XAxis dataKey="date" stroke="#666" />
         <YAxis

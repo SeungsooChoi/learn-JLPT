@@ -16,7 +16,7 @@ function StatsPanel() {
   }, []);
 
   if (!isMounted) {
-    // SSR 시점 또는 Hydration 완료 전에는 간단한 로딩 스켈레톤을 보여줍니다.
+    // SSR 시점 또는 Hydration 완료 전 로딩 스켈레톤 표시
     return (
       <div className="p-4 space-y-8 animate-pulse">
         <div className="h-10 bg-gray-200 rounded w-1/3"></div>
@@ -30,7 +30,6 @@ function StatsPanel() {
     );
   }
   const summary = calculateStatsSummary(localStats);
-  console.log(summary);
 
   // 로컬 통계 데이터가 없을 경우 (초기 상태)
   if (summary.totalLearnedWords === 0) {

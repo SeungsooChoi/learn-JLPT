@@ -33,7 +33,7 @@ export default function StudyPanel({ level, initialWords }: { level: string; ini
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6">
+    <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-6">
       <ProgressBar current={currentIndex + 1} total={total} />
       <WordCard word={currentWord} />
       <div className="flex gap-4 mt-6">
