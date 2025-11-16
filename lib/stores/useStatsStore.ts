@@ -2,7 +2,7 @@ import { JLPTLevel } from '@/types/word';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type StudySession = {
+export type StudySession = {
   id: string; // uuid
   level: JLPTLevel; // N1~N5
   date: string; // ISO string
@@ -12,7 +12,7 @@ type StudySession = {
   unknown: string[]; // unknownWords의 id 목록
 };
 
-type Stats = {
+export type Stats = {
   totalLearned: number;
   levelStats: Record<JLPTLevel, number>;
   sessions: StudySession[]; // 날짜, 레벨별 기록
