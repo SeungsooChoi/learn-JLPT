@@ -1,24 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { useWordStore } from '@/lib/stores/useWordStore';
-import { Word } from '@/types/word';
 
-export default function StudyCompletedPanel({
-  total,
-  level,
-  initialWords,
-}: {
-  total: number;
-  initialWords: Word[];
-  level: string;
-}) {
-  const { isReviewMode, startReview, setLevel, resetLevel, getUnknownWords } = useWordStore();
+export default function StudyCompletedPanel({ total, level }: { total: number; level: string }) {
+  const { allWords, isReviewMode, startReview, initializeStudy, resetLevel, getUnknownWords } = useWordStore();
 
   const unknownWords = getUnknownWords();
 
   const handleRestart = () => {
     resetLevel(level);
-    setLevel(level, initialWords);
-    useWordStore.getState().setLevel(level, initialWords);
+    initializeStudy(level, allWords);
   };
 
   return (
