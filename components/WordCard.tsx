@@ -1,10 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Word } from '@/types/word';
 
 export default function WordCard({ word }: { word: Word }) {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
+        <CardDescription className="text-xl text-center">{word.reading}</CardDescription>
         <CardTitle className="text-2xl text-center">{word.word}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-2 text-center">
