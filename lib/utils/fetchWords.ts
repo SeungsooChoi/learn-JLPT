@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import { Word } from '@/types/word';
 import path from 'path';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 /**
  * @deprecated
@@ -13,19 +14,21 @@ export async function fetchWords(): Promise<Word[]> {
 }
 
 /**
- * 레벨에 맞는 단어 목록 fetch
+ * supabase DB에서 레벨에 맞는 단어 목록 fetch
  * @param level
  * @returns
  */
-export async function fetchWordsByLevel(level: string): Promise<Word[]> {
-  const fileName = `${level.toLowerCase()}.json`; // n5.json
-  const filePath = path.join(process.cwd(), 'public', 'data', fileName);
+export async function fetchWordsByLevel(supabase: SupabaseClient, level: string): Promise<Word[]> {
+  const { data, error } = await supabase
+    .from('jlpt_words')
+    .select('id, word, reading, meaning_ko, level')
+    .eq('level', level)
+    .order('id', { ascending: true });
 
-  try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error(`Failed to load level file: ${fileName}`, err);
+  if (error) {
+    console.error(`Error fetching words for level ${level}:`, error);
     return [];
   }
+
+  return (data || []) as Word[];
 }
