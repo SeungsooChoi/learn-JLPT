@@ -70,6 +70,7 @@ function StatsPanel() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            {/* TODO: 레벨별 학습량 표시 */}
             <CardTitle className="text-sm font-medium">가장 많은 단어를 학습한 레벨</CardTitle>
           </CardHeader>
           <CardContent>
