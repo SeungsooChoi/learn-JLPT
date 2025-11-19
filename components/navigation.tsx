@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/useAuthStore';
 import { toast } from 'sonner';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
@@ -20,6 +21,7 @@ export default function Navigation() {
     await logout();
 
     toast.info('로그아웃되었습니다.');
+    router.push('/login');
   };
 
   const navItems = [
