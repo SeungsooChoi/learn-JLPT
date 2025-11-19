@@ -6,10 +6,21 @@ import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useAuthStore } from '@/lib/stores/useAuthStore';
+import { toast } from 'sonner';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+
+  const handleLogout = async () => {
+    await logout();
+
+    toast.info('로그아웃되었습니다.');
+  };
 
   const navItems = [
     { href: '/', label: '회독', icon: BookOpen },
@@ -41,6 +52,30 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {/* 로그인 / 로그아웃 섹션 */}
+            {!user && (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" className="cursor-pointer">
+                    로그인
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button variant="outline" className="cursor-pointer">
+                    회원가입
+                  </Button>
+                </Link>
+              </>
+            )}
+
+            {user && (
+              <>
+                <span className="text-sm text-muted-foreground mr-2">{user.email}</span>
+                <Button variant="outline" onClick={handleLogout}>
+                  로그아웃
+                </Button>
+              </>
+            )}
           </div>
 
           {/* 모바일 Navigation */}

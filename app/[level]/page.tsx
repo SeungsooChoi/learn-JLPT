@@ -1,5 +1,5 @@
 import StudyPanel from '@/components/StudyPanel';
-import { createClient } from '@/lib/supabase-server';
+import { createClient } from '@/lib/supabaseServer';
 import { fetchWordsByLevel } from '@/lib/utils/fetchWords';
 
 export default async function Home({ params }: { params: Promise<{ level: string }> }) {
