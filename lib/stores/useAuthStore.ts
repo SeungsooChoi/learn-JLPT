@@ -1,15 +1,16 @@
+import { supabase } from '@/lib/supabase/client';
 import { create } from 'zustand';
-import { supabase } from '../supabaseClient';
 
-type User = {
+export type User = {
   id: string;
-  email: string | null;
+  email?: string;
 };
 
 type AuthState = {
   user: User | null;
   loading: boolean;
   error: string | null;
+  setUser: (user: User | null) => void; // ← 추가
   signUp: (email: string, password: string) => Promise<boolean>;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => Promise<void>;
@@ -20,6 +21,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   loading: false,
   error: null,
 
+  setUser: (user) => set({ user }),
   signUp: async (email, password) => {
     set({ loading: true, error: null });
 
@@ -62,7 +64,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({
       user: {
         id: data.user.id,
-        email: data.user.email || null,
+        email: data.user.email,
       },
     });
     return true;

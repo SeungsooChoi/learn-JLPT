@@ -4,18 +4,27 @@ import { BookOpen, ChartColumn, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/stores/useAuthStore';
 import { toast } from 'sonner';
+import { User } from '@supabase/supabase-js';
 
-export default function Navigation() {
+export default function Navigation({ user: serverUser }: { user: User | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
-  const user = useAuthStore((s) => s.user);
+  const clientUser = useAuthStore((s) => s.user);
+  const setUser = useAuthStore((s) => s.setUser);
   const logout = useAuthStore((s) => s.logout);
+
+  // 서버에서 받은 user를 클라이언트 초기값으로만 반영
+  useEffect(() => {
+    if (serverUser) setUser(serverUser);
+  }, [serverUser, setUser]);
+
+  const user = clientUser ?? serverUser; // 클라이언트 우선 적용
 
   const handleLogout = async () => {
     await logout();
@@ -73,7 +82,7 @@ export default function Navigation() {
             {user && (
               <>
                 <span className="text-sm text-muted-foreground mr-2">{user.email}</span>
-                <Button variant="outline" onClick={handleLogout}>
+                <Button variant="outline" className="cursor-pointer" onClick={handleLogout}>
                   로그아웃
                 </Button>
               </>
