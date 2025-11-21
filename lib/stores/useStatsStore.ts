@@ -1,93 +1,72 @@
-import { JLPTLevel } from '@/types/word';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
 export type StudySession = {
-  id: string; // uuid
-  level: JLPTLevel; // N1~N5
-  date: string; // ISO string
-  learned: number; // 이번 회독에서 '이해함' 처리한 단어 수
-  total: number; // 전체 단어 수 (회독 대상)
-  known: string[]; // knownWords의 id 목록
-  unknown: string[]; // unknownWords의 id 목록
+  id: string;
+  level: string;
+  date: string;
+  learned: number;
+  total: number;
+  known: string[];
+  unknown: string[];
 };
 
 export type Stats = {
   totalLearned: number;
-  levelStats: Record<JLPTLevel, number>;
-  sessions: StudySession[]; // 날짜, 레벨별 기록
+  levelStats: Record<string, number>;
+  sessions: StudySession[];
 };
 
 type StatsState = {
-  env: 'local' | 'server';
+  stats: Stats | null;
+  loading: boolean;
 
-  localStats: Stats;
-  serverStats: Stats | null;
-
-  addSession: (session: StudySession) => void; // 학습 종료시 기록
-  setServerStats: (stats: Stats) => void;
-
-  switchToServer: () => void; // 로그인
-  switchToLocal: () => void; // 로그아웃 상태
+  // actions
+  fetchStats: () => Promise<void>;
+  addSession: (session: Omit<StudySession, 'id' | 'date'>) => Promise<void>;
+  setStats: (s: Stats | null) => void;
 };
 
-export const useStatsStore = create<StatsState>()(
-  persist(
-    (set) => ({
-      env: 'local',
-      localStats: { totalLearned: 0, levelStats: { N1: 0, N2: 0, N3: 0, N4: 0, N5: 0 }, sessions: [] },
-      serverStats: null,
+export const useStatsStore = create<StatsState>((set, get) => ({
+  stats: null,
+  loading: false,
 
-      addSession: (session) => {
-        set((state) => {
-          const target = state.env === 'local' ? 'localStats' : 'serverStats';
-          const current = state[target];
-
-          if (!current) return state;
-
-          const newTotalLearned = current.totalLearned + session.learned;
-          const newLevelStats = {
-            ...current.levelStats,
-            [session.level]: (current.levelStats[session.level] || 0) + session.learned,
-          };
-
-          const newSessions = [...current.sessions, session];
-
-          // 업데이트된 통계 객체
-          const updated = {
-            ...current,
-            totalLearned: newTotalLearned,
-            levelStats: newLevelStats,
-            sessions: newSessions,
-          };
-
-          return {
-            ...state,
-            [target]: updated,
-          };
-        });
-      },
-      setServerStats: (stats) => {
-        set((state) => ({
-          ...state,
-          serverStats: stats,
-        }));
-      },
-      switchToServer: () => {
-        set((state) => ({
-          ...state,
-          env: 'server',
-        }));
-      },
-      switchToLocal: () => {
-        set((state) => ({
-          ...state,
-          env: 'local',
-        }));
-      },
-    }),
-    {
-      name: 'jlpt-stats',
+  fetchStats: async () => {
+    set({ loading: true });
+    try {
+      const res = await fetch('/api/stats/fetch', { method: 'GET' });
+      const json = await res.json();
+      if (json.ok) set({ stats: json.stats });
+      else {
+        console.error('fetchStats failed', json);
+        set({ stats: null });
+      }
+    } catch (e) {
+      console.error('fetchStats exception', e);
+      set({ stats: null });
+    } finally {
+      set({ loading: false });
     }
-  )
-);
+  },
+
+  addSession: async (session) => {
+    try {
+      // POST the session to server; server checks auth via cookies
+      const res = await fetch('/api/stats/save', {
+        method: 'POST',
+        body: JSON.stringify({ session }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const json = await res.json();
+      if (!json.ok) {
+        console.error('addSession failed', json);
+        return;
+      }
+      // 성공 시 최신화: 선택사항(다시 fetch 전체 or append)
+      await get().fetchStats();
+    } catch (e) {
+      console.error('addSession exception', e);
+    }
+  },
+
+  setStats: (s) => set({ stats: s }),
+}));

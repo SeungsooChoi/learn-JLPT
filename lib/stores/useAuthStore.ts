@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase/client';
 import { create } from 'zustand';
+import { useStatsStore } from './useStatsStore';
 
 export type User = {
   id: string;
@@ -61,12 +62,14 @@ export const useAuthStore = create<AuthState>((set) => ({
       return false;
     }
 
-    set({
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-      },
-    });
+    const user = {
+      id: data.user.id,
+      email: data.user.email,
+    };
+
+    set({ user });
+
+    await useStatsStore.getState().fetchStats();
     return true;
   },
 

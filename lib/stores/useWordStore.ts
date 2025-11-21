@@ -1,4 +1,4 @@
-import { JLPTLevel, StudyRecord, Word } from '@/types/word';
+import { StudyRecord, Word } from '@/types/word';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useStatsStore } from './useStatsStore';
@@ -234,22 +234,23 @@ export const useWordStore = create<WordState>()(
        * 학습 종료 및 세션 기록
        * @returns
        */
-      finishStudyAndRecord: () => {
+      finishStudyAndRecord: async () => {
         const state = get();
         const { currentLevel, currentIndex, words, history, isReviewMode } = state;
         const record = history[currentLevel];
-
+        console.log('record : ', record);
         if (!record) return;
 
         // 복습 모드이거나 모든 단어를 학습 완료시 기록한다.
         const isFinished = !isReviewMode && currentIndex >= words.length;
+        console.log('!isReviewMode && !isFinished : ', !isReviewMode && !isFinished);
 
         if (!isReviewMode && !isFinished) return;
 
-        // 학습 완료 후 세션 데이터 생성
         const session = {
+          // id/date는 서버에서 부여/사용해도 되지만 여기서 생성해도 무방
           id: crypto.randomUUID(),
-          level: currentLevel as JLPTLevel,
+          level: currentLevel,
           date: new Date().toISOString(),
           learned: record.learned.length,
           total: words.length,
@@ -257,7 +258,7 @@ export const useWordStore = create<WordState>()(
           unknown: record.unknown,
         };
 
-        useStatsStore.getState().addSession(session);
+        await useStatsStore.getState().addSession(session);
       },
     }),
     {
