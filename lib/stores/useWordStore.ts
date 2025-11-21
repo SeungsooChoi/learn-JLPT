@@ -238,17 +238,14 @@ export const useWordStore = create<WordState>()(
         const state = get();
         const { currentLevel, currentIndex, words, history, isReviewMode } = state;
         const record = history[currentLevel];
-        console.log('record : ', record);
         if (!record) return;
 
         // 복습 모드이거나 모든 단어를 학습 완료시 기록한다.
         const isFinished = !isReviewMode && currentIndex >= words.length;
-        console.log('!isReviewMode && !isFinished : ', !isReviewMode && !isFinished);
 
         if (!isReviewMode && !isFinished) return;
 
         const session = {
-          // id/date는 서버에서 부여/사용해도 되지만 여기서 생성해도 무방
           id: crypto.randomUUID(),
           level: currentLevel,
           date: new Date().toISOString(),

@@ -9,14 +9,14 @@ import LevelDistributionChart from './LevelDistributionChart';
 
 function StatsPanel() {
   const [isMounted, setIsMounted] = useState(false);
-  const { localStats, env } = useStatsStore(); // 로컬 통계 조회
+  const { stats, fetchStats, loading } = useStatsStore();
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    fetchStats();
+  }, [fetchStats]);
 
-  if (!isMounted) {
-    // SSR 시점 또는 Hydration 완료 전 로딩 스켈레톤 표시
+  if (!isMounted || loading) {
     return (
       <div className="p-4 space-y-8 animate-pulse">
         <div className="h-10 bg-gray-200 rounded w-1/3"></div>
@@ -29,10 +29,9 @@ function StatsPanel() {
       </div>
     );
   }
-  const summary = calculateStatsSummary(localStats);
 
-  // 로컬 통계 데이터가 없을 경우 (초기 상태)
-  if (summary.totalLearnedWords === 0) {
+  // 학습 데이터가 없는 경우
+  if (!stats || stats.sessions.length === 0) {
     return (
       <div className="text-center mt-10 p-6 bg-gray-50 rounded-lg">
         <h3 className="text-xl font-semibold mb-2">아직 학습 기록이 없습니다 😥</h3>
@@ -40,15 +39,11 @@ function StatsPanel() {
       </div>
     );
   }
+  const summary = calculateStatsSummary(stats);
 
   return (
     <div className="p-4 space-y-8">
-      <h2 className="text-3xl font-bold text-gray-800">
-        나의 학습 통계
-        <span className="text-sm font-normal text-gray-500 ml-2">
-          ({env === 'local' ? '비 로그인 상태입니다. 데이터가 지워질 수 있습니다.' : '로그인 계정 기준'})
-        </span>
-      </h2>
+      <h2 className="text-3xl font-bold text-gray-800">나의 학습 통계</h2>
 
       {/* 요약 카드 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

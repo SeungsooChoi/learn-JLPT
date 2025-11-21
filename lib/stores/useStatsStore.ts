@@ -1,3 +1,5 @@
+import { fetchStats } from '@/app/actions/stats/fetchStats';
+import { saveSession } from '@/app/actions/stats/saveSession';
 import { create } from 'zustand';
 
 export type StudySession = {
@@ -22,7 +24,7 @@ type StatsState = {
 
   // actions
   fetchStats: () => Promise<void>;
-  addSession: (session: Omit<StudySession, 'id' | 'date'>) => Promise<void>;
+  addSession: (session: StudySession) => Promise<void>;
   setStats: (s: Stats | null) => void;
 };
 
@@ -33,13 +35,8 @@ export const useStatsStore = create<StatsState>((set, get) => ({
   fetchStats: async () => {
     set({ loading: true });
     try {
-      const res = await fetch('/api/stats/fetch', { method: 'GET' });
-      const json = await res.json();
-      if (json.ok) set({ stats: json.stats });
-      else {
-        console.error('fetchStats failed', json);
-        set({ stats: null });
-      }
+      const newStats = await fetchStats();
+      set({ stats: newStats });
     } catch (e) {
       console.error('fetchStats exception', e);
       set({ stats: null });
@@ -49,23 +46,16 @@ export const useStatsStore = create<StatsState>((set, get) => ({
   },
 
   addSession: async (session) => {
-    try {
-      // POST the session to server; server checks auth via cookies
-      const res = await fetch('/api/stats/save', {
-        method: 'POST',
-        body: JSON.stringify({ session }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const json = await res.json();
-      if (!json.ok) {
-        console.error('addSession failed', json);
-        return;
-      }
-      // 성공 시 최신화: 선택사항(다시 fetch 전체 or append)
-      await get().fetchStats();
-    } catch (e) {
-      console.error('addSession exception', e);
+    const result = await saveSession(session);
+
+    if (!result.ok) {
+      console.error('addSession failed', result);
+      return;
     }
+
+    // 서버에서 최신 stats 다시 가져오기
+    const stats = await fetchStats();
+    set({ stats });
   },
 
   setStats: (s) => set({ stats: s }),

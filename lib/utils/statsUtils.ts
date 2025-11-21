@@ -28,15 +28,15 @@ export const calculateStatsSummary = (stats: Stats) => {
 
   const { totalLearned, sessions, levelStats } = stats;
 
-  // 1. 레벨별 학습 단어 수 (Recharts Pie Chart 또는 Bar Chart용)
+  // 1) 레벨별 누적 학습 단어 수
   const levelData = Object.entries(levelStats)
-    .map(([level, learnedCount]) => ({
+    .map(([level, learned]) => ({
       name: level as JLPTLevel,
-      learned: learnedCount,
+      learned,
     }))
-    .sort((a, b) => b.learned - a.learned); // 학습량이 많은 순서로 정렬
+    .sort((a, b) => b.learned - a.learned);
 
-  // 2. 최근 7일간의 학습 단어 수 (Recharts Line/Bar Chart용)
+  // 2) 최근 7일 증분 학습량
   const lastSevenDays = getDailyLearned(sessions, 7);
 
   return {
@@ -56,45 +56,53 @@ export const calculateStatsSummary = (stats: Stats) => {
 const getDailyLearned = (sessions: StudySession[], days: number) => {
   const dailyData: Record<string, number> = {};
 
-  // 오늘 날짜 (로컬 시간 기준, 시/분/초 제거)
+  // 1) 날짜순 정렬
+  const sorted = [...sessions].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  // 2) 세션별 이전 learned 를 기억
+  const prevLearnedMap = new Map<string, number>();
+
+  // 3) delta 기반 일일 학습량 계산
+  for (const s of sorted) {
+    const sessionDate = new Date(s.date);
+    if (isNaN(sessionDate.getTime())) continue;
+
+    const dateKey = getLocalISODateKey(sessionDate);
+
+    const prev = prevLearnedMap.get(s.id) ?? 0;
+    const delta = Math.max(0, s.learned - prev);
+
+    dailyData[dateKey] = (dailyData[dateKey] || 0) + delta;
+
+    prevLearnedMap.set(s.id, s.learned);
+  }
+
+  // ------------------------------------
+  // 4) days 범위 필터링 (추가 계산 없음)
+  // ------------------------------------
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // N일 전 날짜 계산 (루프의 시작점)
   const startDate = new Date(today);
-  startDate.setDate(today.getDate() - days + 1); // 예: 오늘이 15일이고 days=7이면, 9일부터 시작
+  startDate.setDate(today.getDate() - days + 1);
 
-  // 1. sessions 필터링 및 집계
-  sessions.forEach((session) => {
-    const sessionDate = new Date(session.date);
+  const result = [];
 
-    // sessionDate가 유효한 날짜인지 확인
-    if (isNaN(sessionDate.getTime())) return;
-
-    // 로컬 시간 기준으로 날짜 키 생성
-    const dateKey = getLocalISODateKey(sessionDate);
-
-    // startDate 이전의 세션은 무시 (startDate는 로컬 자정 기준)
-    if (sessionDate.getTime() < startDate.getTime()) return;
-
-    dailyData[dateKey] = (dailyData[dateKey] || 0) + session.learned;
-  });
-
-  // 2. N일치 데이터 배열 생성 (데이터가 없는 날은 0으로 채움)
-  const dataArray = [];
-
+  // 5) days 범위만큼 날짜를 순회하며 데이터 구성
   for (let i = 0; i < days; i++) {
     const currentDate = new Date(startDate);
     currentDate.setDate(startDate.getDate() + i);
 
-    const dateKey = getLocalISODateKey(currentDate);
+    const key = getLocalISODateKey(currentDate);
 
-    dataArray.push({
-      // Recharts X축 표시에 사용할 포맷 (예: 11.16)
-      date: currentDate.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' }),
-      learned: dailyData[dateKey] || 0,
+    result.push({
+      date: currentDate.toLocaleDateString('ko-KR', {
+        month: '2-digit',
+        day: '2-digit',
+      }),
+      learned: dailyData[key] ?? 0,
     });
   }
 
-  return dataArray;
+  return result;
 };
