@@ -2,7 +2,7 @@ import StudyPanel from '@/components/StudyPanel';
 import { createClient } from '@/lib/supabase/server';
 import { fetchWordsByLevel } from '@/lib/utils/fetchWords';
 
-export default async function Home({ params }: { params: Promise<{ level: string }> }) {
+export default async function LearnPage({ params }: { params: Promise<{ level: string }> }) {
   const { level } = await params;
   const supabase = await createClient();
 

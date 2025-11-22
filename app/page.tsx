@@ -60,7 +60,7 @@ export default function LearningPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">{item.wordCount}</p>
                 <div>
-                  <Link href={`/${item.level}`}>
+                  <Link href={`/learn/${item.level}`}>
                     <Button className="w-full cursor-pointer" variant="outline">
                       선택
                     </Button>
