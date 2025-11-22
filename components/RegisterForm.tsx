@@ -5,16 +5,17 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/lib/stores/useAuthStore';
 import { emailRegex, passwordRegex } from '@/lib/validate';
 import { toast } from 'sonner';
+import { createClient } from '@/lib/supabase/client';
 
 export default function RegisterForm() {
-  const router = useRouter();
-  const { signUp, loading, error } = useAuthStore();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const supabase = createClient();
+  const router = useRouter();
 
   const [validationError, setValidationError] = useState<string | null>(null);
 
@@ -24,6 +25,9 @@ export default function RegisterForm() {
     }
     if (!passwordRegex.test(password)) {
       return '비밀번호는 최소 6자이며, 영문, 숫자, 특수문자를 포함해야 합니다.';
+    }
+    if (password !== passwordConfirm) {
+      return '비밀번호가 다릅니다.';
     }
     return null;
   };
@@ -39,10 +43,15 @@ export default function RegisterForm() {
 
     setValidationError(null);
 
-    const isSuccess = await signUp(email, password);
-    if (isSuccess) {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) throw error;
       toast.success('회원가입이 완료되었습니다. 로그인해주세요.');
       router.push('/login');
+    } catch (error) {
+      toast.error('회원가입에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.');
+      setLoading(false);
     }
   };
 
@@ -66,7 +75,17 @@ export default function RegisterForm() {
           />
         </div>
 
-        {(validationError || error) && <p className="text-red-500 text-sm">{validationError || error}</p>}
+        <div>
+          <label className="text-sm font-medium">비밀번호 확인</label>
+          <Input
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            placeholder="비밀번호 확인"
+            type="password"
+          />
+        </div>
+
+        {validationError && <p className="text-red-500 text-sm">{validationError}</p>}
 
         <Button type="submit" disabled={loading}>
           {loading ? '가입 중...' : '회원가입'}

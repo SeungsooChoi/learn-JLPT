@@ -3,19 +3,18 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAuthStore } from '@/lib/stores/useAuthStore';
 import { emailRegex, passwordRegex } from '@/lib/validate';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 export default function LoginForm() {
-  const login = useAuthStore((s) => s.login);
-  const loading = useAuthStore((s) => s.loading);
-  const router = useRouter();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const router = useRouter();
+  const supabase = createClient();
 
   const validateEmail = (value: string) => {
     if (!value) return '이메일을 입력해주세요.';
@@ -40,15 +39,17 @@ export default function LoginForm() {
 
     if (emailErr || passwordErr) return;
 
-    const isSuccess = await login(email, password);
-
-    if (!isSuccess) {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      toast.success('로그인 성공!');
+      router.push('/');
+    } catch (error) {
       toast.error('로그인에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.');
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    toast.success('로그인 성공!');
-    router.push('/');
   };
 
   return (

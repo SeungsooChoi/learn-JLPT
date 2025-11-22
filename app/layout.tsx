@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import { Toaster } from '@/components/ui/sonner';
-import { cookies } from 'next/headers';
-import { createServerClient } from '@supabase/ssr';
+import AuthListener from '@/components/AuthListener';
 
 export const metadata: Metadata = {
   title: '하루 단어(一日の単語)',
@@ -15,32 +14,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name, value, options) {
-          cookieStore.set(name, value, options);
-        },
-      },
-    }
-  );
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   return (
     <html lang="en">
       <body>
-        <Navigation user={user} />
+        <AuthListener />
+        <Navigation />
         {children}
-        <Toaster position="top-right" richColors duration={1000} />
+        <Toaster position="bottom-center" richColors duration={1000} />
       </body>
     </html>
   );

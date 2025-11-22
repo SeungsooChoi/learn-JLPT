@@ -4,33 +4,26 @@ import { BookOpen, ChartColumn, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuthStore } from '@/lib/stores/useAuthStore';
 import { toast } from 'sonner';
-import { User } from '@supabase/supabase-js';
+import { useAuthStore } from '@/lib/stores/authStore';
+import { createClient } from '@/lib/supabase/client';
 
-export default function Navigation({ user: serverUser }: { user: User | null }) {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const supabase = createClient();
   const router = useRouter();
-
-  const clientUser = useAuthStore((s) => s.user);
-  const setUser = useAuthStore((s) => s.setUser);
-  const logout = useAuthStore((s) => s.logout);
-
-  // 서버에서 받은 user를 클라이언트 초기값으로만 반영
-  useEffect(() => {
-    if (serverUser) setUser(serverUser);
-  }, [serverUser, setUser]);
-
-  const user = clientUser ?? serverUser; // 클라이언트 우선 적용
+  const user = useAuthStore((s) => s.user);
 
   const handleLogout = async () => {
-    await logout();
+    // logout
+    await supabase.auth.signOut();
 
+    // 로그인 페이지로 리디렉션
     toast.info('로그아웃되었습니다.');
-    router.push('/login');
+    router.replace('/login');
   };
 
   const navItems = [
