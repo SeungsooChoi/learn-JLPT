@@ -1,83 +1,83 @@
-import { supabase } from '@/lib/supabase/client';
-import { create } from 'zustand';
-import { useStatsStore } from './useStatsStore';
+// import { supabase } from '@/lib/supabase/client';
+// import { create } from 'zustand';
+// import { useStatsStore } from './useStatsStore';
 
-export type User = {
-  id: string;
-  email?: string;
-};
+// export type User = {
+//   id: string;
+//   email?: string;
+// };
 
-type AuthState = {
-  user: User | null;
-  loading: boolean;
-  error: string | null;
-  setUser: (user: User | null) => void; // ← 추가
-  signUp: (email: string, password: string) => Promise<boolean>;
-  login: (email: string, password: string) => Promise<boolean>;
-  logout: () => Promise<void>;
-};
+// type AuthState = {
+//   user: User | null;
+//   loading: boolean;
+//   error: string | null;
+//   setUser: (user: User | null) => void; // ← 추가
+//   signUp: (email: string, password: string) => Promise<boolean>;
+//   login: (email: string, password: string) => Promise<boolean>;
+//   logout: () => Promise<void>;
+// };
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  loading: false,
-  error: null,
+// export const useAuthStore = create<AuthState>((set) => ({
+//   user: null,
+//   loading: false,
+//   error: null,
 
-  setUser: (user) => set({ user }),
-  signUp: async (email, password) => {
-    set({ loading: true, error: null });
+//   setUser: (user) => set({ user }),
+//   signUp: async (email, password) => {
+//     set({ loading: true, error: null });
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+//     const { data, error } = await supabase.auth.signUp({
+//       email,
+//       password,
+//     });
 
-    set({ loading: false });
+//     set({ loading: false });
 
-    if (error || !data.user) {
-      set({ error: error?.message ?? 'Signup failed' });
-      return false;
-    }
+//     if (error || !data.user) {
+//       set({ error: error?.message ?? 'Signup failed' });
+//       return false;
+//     }
 
-    return true;
-  },
+//     return true;
+//   },
 
-  /**
-   * 로그인
-   * @param email
-   * @param password
-   * @returns
-   */
-  login: async (email, password) => {
-    set({ loading: true, error: null });
+//   /**
+//    * 로그인
+//    * @param email
+//    * @param password
+//    * @returns
+//    */
+//   login: async (email, password) => {
+//     set({ loading: true, error: null });
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+//     const { data, error } = await supabase.auth.signInWithPassword({
+//       email,
+//       password,
+//     });
 
-    set({ loading: false });
+//     set({ loading: false });
 
-    if (error || !data.user) {
-      set({ error: error?.message ?? 'Login failed' });
-      return false;
-    }
+//     if (error || !data.user) {
+//       set({ error: error?.message ?? 'Login failed' });
+//       return false;
+//     }
 
-    const user = {
-      id: data.user.id,
-      email: data.user.email,
-    };
+//     const user = {
+//       id: data.user.id,
+//       email: data.user.email,
+//     };
 
-    set({ user });
+//     set({ user });
 
-    await useStatsStore.getState().fetchStats();
-    return true;
-  },
+//     await useStatsStore.getState().fetchStats();
+//     return true;
+//   },
 
-  /**
-   * 로그아웃
-   */
-  logout: async () => {
-    await supabase.auth.signOut();
-    set({ user: null });
-  },
-}));
+//   /**
+//    * 로그아웃
+//    */
+//   logout: async () => {
+//     await supabase.auth.signOut();
+//     set({ user: null });
+//   },
+// }));

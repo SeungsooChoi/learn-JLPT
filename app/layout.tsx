@@ -20,7 +20,7 @@ export default async function RootLayout({
         <AuthListener />
         <Navigation />
         {children}
-        <Toaster position="bottom-center" richColors duration={1000} />
+        <Toaster position="top-center" richColors duration={1000} />
       </body>
     </html>
   );
