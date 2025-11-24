@@ -15,7 +15,7 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
   }
 
   return (
-    <div className="bg-background">
+    <main className="bg-background">
       <div className="container mx-auto px-4 py-8">
         {/* 헤더 */}
         <Link href="/" className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block">
@@ -23,6 +23,6 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
         </Link>
         {children}
       </div>
-    </div>
+    </main>
   );
 }

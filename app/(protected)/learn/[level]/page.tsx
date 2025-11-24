@@ -25,11 +25,5 @@ export default async function LearnPage({ params }: { params: Promise<{ level: s
       </div>
     );
 
-  return (
-    <main className="bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <WordLearningPanel initialWords={words} />
-      </div>
-    </main>
-  );
+  return <WordLearningPanel initialWords={words} />;
 }
