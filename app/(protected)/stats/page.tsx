@@ -31,18 +31,18 @@ export default async function StatsPage() {
         <h2 className="text-xl font-semibold mb-4">오늘 학습 요약</h2>
         <div className="grid grid-cols-3 gap-4">
           <div className="p-4 border rounded-lg text-center shadow-sm bg-white">
-            <div className="text-sm text-gray-500">오늘 학습</div>
-            <div className="text-2xl font-semibold">{todayStats[0].today_total ?? 0}</div>
+            <div className="text-sm text-gray-500">오늘 학습 단어</div>
+            <div className="text-2xl font-semibold">{todayStats[0].today_total.toLocaleString() ?? 0}</div>
           </div>
 
           <div className="p-4 border rounded-lg text-center shadow-sm bg-white">
-            <div className="text-sm text-gray-500">신규 학습</div>
-            <div className="text-2xl font-semibold">{todayStats[0].new_words ?? 0}</div>
+            <div className="text-sm text-gray-500">신규 학습 단어</div>
+            <div className="text-2xl font-semibold">{todayStats[0].new_words.toLocaleString() ?? 0}</div>
           </div>
 
           <div className="p-4 border rounded-lg text-center shadow-sm bg-white">
-            <div className="text-sm text-gray-500">복습</div>
-            <div className="text-2xl font-semibold">{todayStats[0].review_words ?? 0}</div>
+            <div className="text-sm text-gray-500">복습 예정 단어</div>
+            <div className="text-2xl font-semibold">{todayStats[0].review_words.toLocaleString() ?? 0}</div>
           </div>
         </div>
       </section>
