@@ -1,3 +1,49 @@
+import { ReviewQuality, SM2Result } from "@/types/word"
+
+export function calculateSM2(
+  quality: ReviewQuality,
+  currentRepetitions: number,   
+  currentInterval: number,
+  currentEF: number,
+  lastReviewDate: Date
+): SM2Result {
+  // 1. EF 계산
+  let newEF = currentEF + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
+  newEF = Math.max(1.3, newEF)
+
+  // 2. repetitions과 interval 계산
+  let newRepetitions: number
+  let newInterval: number
+
+  if (quality < 3) {
+    // 실패: 완전 리셋
+    newRepetitions = 0
+    newInterval = 0
+  } else {
+    // 성공: repetitions에 따른 간격
+    newRepetitions = currentRepetitions + 1
+    
+    if (newRepetitions === 1) {
+      newInterval = 1      // 첫 성공
+    } else if (newRepetitions === 2) {
+      newInterval = 3      // 두 번째 성공
+    } else {
+      newInterval = Math.round(currentInterval * newEF)
+    }
+  }
+
+  // 3. 날짜 계산
+  const nextReviewDate = new Date(lastReviewDate)
+  nextReviewDate.setDate(nextReviewDate.getDate() + newInterval)
+  
+  return {
+    interval: newInterval,
+    e_factor: parseFloat(newEF.toFixed(2)),
+    repetitions: newRepetitions,
+    next_review_date: nextReviewDate.toISOString().split('T')[0]
+  }
+}
+
 /**
  * 간격 반복 알고리즘
  * @param repetitions // 해당 단어 반복 횟수
