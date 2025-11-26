@@ -2,14 +2,12 @@
 
 import { useEffect } from 'react';
 import { useLearningStore } from '@/lib/stores/learningStore';
-import { Word } from '@/types/word';
 import WordCard from './WordCard';
 import ProgressBar from './Progressbar';
-import { Button } from './ui/button';
-import { createClient } from '@/lib/supabase/client';
-import { calculateNextReview, getNextReviewDate } from '@/lib/sm2';
+import { JLPTWord, ReviewQuality } from '@/types/word';
+import { recordReview } from '@/app/(protected)/learn/actions';
 
-export function WordLearningPanel({ initialWords }: { initialWords: Word[] }) {
+export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }) {
   const { words, currentIndex, isFinished, setWords, next } = useLearningStore();
 
   useEffect(() => {
@@ -19,41 +17,15 @@ export function WordLearningPanel({ initialWords }: { initialWords: Word[] }) {
   const currentWord = words[currentIndex];
   const totalWordsCount = words.length;
 
-  const handleAnswer = async (quality: 0 | 1) => {
-    console.log(currentWord, quality);
-    const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+  const handleRate = async (quality: ReviewQuality) => {
+    if (!words[currentIndex]) return;
 
-    // TODO: 사용자 확인 필요?
-    if (!user) return null;
-
-    const sm2Result = calculateNextReview(
-      currentWord.repetitions,
-      currentWord.easeFactor,
-      currentWord.interval_days,
-      quality
-    );
-
-    // 다음 복습 날짜 계산
-    const nextReviewDate = getNextReviewDate(sm2Result.interval_days);
-
-    const { data, error } = await supabase
-      .from('learning_records')
-      .upsert({
-        user_id: user.id,
-        word_id: currentWord.id,
-        repetitions: sm2Result.repetitions,
-        e_factor: sm2Result.easeFactor,
-        interval_days: sm2Result.interval_days,
-        next_review_date: nextReviewDate,
-      })
-      .select();
-
-    if (error) throw error;
-    console.log(data);
-    next();
+    try {
+      await recordReview(words[currentIndex].id, quality);
+      next();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!words.length) return <p className="text-center mt-10">단어를 불러오는 중...</p>;
@@ -69,15 +41,7 @@ export function WordLearningPanel({ initialWords }: { initialWords: Word[] }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-6">
       <ProgressBar current={currentIndex + 1} total={totalWordsCount} />
-      <WordCard word={currentWord} />
-      <div className="flex gap-4">
-        <Button variant="outline" onClick={() => handleAnswer(0)}>
-          이해못함
-        </Button>
-        <Button variant="outline" onClick={() => handleAnswer(1)}>
-          이해함
-        </Button>
-      </div>
+      <WordCard word={currentWord} onRate={handleRate} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
-import { Word } from '@/types/word';
+import { JLPTWord } from '@/types/word';
 
-export async function fetchWords(level: string, userId: string): Promise<Word[]> {
+export async function fetchWords(level: string, userId: string): Promise<JLPTWord[]> {
   const LIMIT_WORDS = 30;
   const supabase = await createClient();
 
@@ -15,6 +15,5 @@ export async function fetchWords(level: string, userId: string): Promise<Word[]>
     return [];
   }
 
-  // RPC는 이미 merged된 형태로 반환되므로 추가 가공 필요 없음
-  return data as Word[];
+  return data as JLPTWord[];
 }
