@@ -11,7 +11,7 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
 
   // 인증 확인 및 리다이렉션
   if (!user) {
-    redirect('/login');
+    redirect('/auth/login');
   }
 
   return (

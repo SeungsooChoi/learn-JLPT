@@ -2,7 +2,6 @@ import { fetchWords } from '@/app/actions/fetchWords';
 import { WordLearningPanel } from '@/components/WordLearningPanel';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { toast } from 'sonner';
 
 export default async function LearnPage({ params }: { params: Promise<{ level: string }> }) {
   const { level } = await params;
@@ -12,8 +11,7 @@ export default async function LearnPage({ params }: { params: Promise<{ level: s
   } = await supabase.auth.getUser();
 
   if (!user) {
-    toast.info('로그인이 필요한 서비스입니다.');
-    redirect('/login');
+    redirect('/auth/login');
   }
 
   const words = await fetchWords(level, user.id);
