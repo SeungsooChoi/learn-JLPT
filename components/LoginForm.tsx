@@ -1,64 +1,74 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { emailRegex, passwordRegex } from '@/lib/validate';
-import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { loginAction } from "@/app/(public)/auth/actions";
+import { useAuthStore } from "@/lib/stores/authStore";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+    global?: string;
+  }>({});
+  const setUser = useAuthStore((s) => s.setUser);
   const router = useRouter();
-  const supabase = createClient();
-
-  const validateEmail = (value: string) => {
-    if (!value) return '이메일을 입력해주세요.';
-    if (!emailRegex.test(value)) return '이메일 형식이 올바르지 않습니다.';
-    return '';
-  };
-
-  const validatePw = (value: string) => {
-    if (!value) return '비밀번호를 입력해주세요.';
-    if (!passwordRegex.test(value)) {
-      return '비밀번호는 최소 6자이며, 영문, 숫자, 특수문자를 포함해야 합니다.';
-    }
-    return '';
-  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
 
-    const emailErr = validateEmail(email);
-    const passwordErr = validatePw(password);
-    setErrors({ email: emailErr, password: passwordErr });
-
-    if (emailErr || passwordErr) return;
+    if (!email || !password) {
+      setErrors({
+        email: !email ? "이메일을 입력해주세요." : "",
+        password: !password ? "비밀번호를 입력해주세요." : "",
+      });
+      return;
+    }
 
     try {
       setLoading(true);
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-      toast.success('로그인 성공!');
-      router.push('/');
+      const result = await loginAction({ email, password });
+
+      if (result.success && result.user) {
+        setUser(result.user);
+        toast.success(result.message);
+        router.push("/");
+      } else {
+        setErrors({ global: result.error });
+        toast.error(result.error);
+      }
     } catch (error) {
-      toast.error('로그인에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.');
+      const errorMessage = "로그인 중 오류가 발생했습니다.";
+      setErrors({ global: errorMessage });
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form className="max-w-sm mx-auto p-6 border rounded-xl shadow-sm space-y-4" onSubmit={onSubmit}>
+    <form
+      className="max-w-sm mx-auto p-6 border rounded-xl shadow-sm space-y-4"
+      onSubmit={onSubmit}
+    >
       <h2 className="text-xl font-semibold mb-2">로그인</h2>
 
       {/* 이메일 */}
       <div className="space-y-1">
-        <Input type="email" placeholder="이메일 입력" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input
+          type="email"
+          placeholder="이메일 입력"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={loading}
+        />
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
       </div>
 
@@ -69,12 +79,17 @@ export default function LoginForm() {
           placeholder="6자 이상의 비밀번호 입력"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={loading}
         />
-        {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+        {errors.password && (
+          <p className="text-red-500 text-sm">{errors.password}</p>
+        )}
       </div>
 
+      {errors.global && <p className="text-red-500 text-sm">{errors.global}</p>}
+
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? '로그인 중...' : '로그인'}
+        {loading ? "로그인 중..." : "로그인"}
       </Button>
     </form>
   );

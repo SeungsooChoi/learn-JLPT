@@ -62,7 +62,7 @@ export async function getReviewWords(
 
   if (error) throw error
   
-  const words = data?.map((record: any) => record.jlpt_words) || []
+  const words = data?.map((record) => record.jlpt_words) || []
   return words as JLPTWord[]
 }
 

@@ -1,40 +1,41 @@
 import { create } from 'zustand';
-import type { User } from '@supabase/supabase-js';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-// DB UserProfile 스키마 타입
-export type UserProfile = {
-  id: string;
-  username: string | null;
-  current_jlpt_level: string | null;
-};
+export interface User {
+  id: string
+  email?: string
+}
 
-export type AuthState = {
-  user: User | null;
-  userProfile: UserProfile | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
+interface AuthStore {
+  user: User | null
+  isLoading: boolean
+  
+  setUser: (user: User | null) => void
+  logout: () => void
+  setLoading: (loading: boolean) => void
+}
 
-  // Actions
-  setAuthLoading: (loading: boolean) => void;
-  setUser: (user: User | null) => void;
-  setUserProfile: (profile: UserProfile | null) => void;
-};
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      user: null,
+      isLoading: true,
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  userProfile: null,
-  isAuthenticated: false,
-  isLoading: true, // 초기 로딩 상태는 true로 설정 (Supabase 세션 확인 대기)
-
-  setAuthLoading: (loading) => set({ isLoading: loading }),
-
-  setUser: (user) =>
-    set({
-      user,
-      isAuthenticated: !!user,
-      // 사용자가 로그아웃하면 프로필 정보도 제거
-      userProfile: user ? useAuthStore.getState().userProfile : null,
+      setUser: (user) => set({ user, isLoading: false}),
+      setLoading: (loading) => set({ isLoading: loading }),
+      logout: () => set({ user: null, isLoading: false }),
     }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => localStorage),
+      
+      partialize: (state) => ({
+        user: state.user,
+      }),
 
-  setUserProfile: (profile) => set({ userProfile: profile }),
-}));
+      onRehydrateStorage: () => (state) => {
+        state?.setLoading(false)
+      },
+    }
+  )
+)
