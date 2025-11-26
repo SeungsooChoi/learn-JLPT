@@ -1,21 +1,14 @@
-"use client";
+'use client';
 
-import { BookOpen, ChartColumn, Menu } from "lucide-react";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useAuthStore } from "@/lib/stores/authStore";
-import { createClient } from "@/lib/supabase/client";
+import { BookOpen, ChartColumn, Menu } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { useAuthStore } from '@/lib/stores/authStore';
+import { createClient } from '@/lib/supabase/client';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,13 +22,13 @@ export default function Navigation() {
     await supabase.auth.signOut();
 
     // 로그인 페이지로 리디렉션
-    toast.info("로그아웃되었습니다.");
-    router.replace("/");
+    toast.info('로그아웃되었습니다.');
+    router.replace('/');
   };
 
   const navItems = [
-    { href: "/", label: "회독", icon: BookOpen },
-    { href: "/stats", label: "통계", icon: ChartColumn },
+    { href: '/', label: '학습', icon: BookOpen },
+    { href: '/stats', label: '통계', icon: ChartColumn },
   ];
 
   const isActive = (href: string) => pathname.endsWith(href);
@@ -56,10 +49,7 @@ export default function Navigation() {
               const Icon = item.icon;
               return (
                 <Link key={item.href} href={item.href}>
-                  <Button
-                    variant={isActive(item.href) ? "secondary" : "ghost"}
-                    className="gap-2 cursor-pointer"
-                  >
+                  <Button variant={isActive(item.href) ? 'secondary' : 'ghost'} className="gap-2 cursor-pointer">
                     <Icon className="w-4 h-4" />
                     {item.label}
                   </Button>
@@ -84,14 +74,8 @@ export default function Navigation() {
 
             {user && (
               <>
-                <span className="text-sm text-muted-foreground mr-2">
-                  {user.email}
-                </span>
-                <Button
-                  variant="outline"
-                  className="cursor-pointer"
-                  onClick={handleLogout}
-                >
+                <span className="text-sm text-muted-foreground mr-2">{user.email}</span>
+                <Button variant="outline" className="cursor-pointer" onClick={handleLogout}>
                   로그아웃
                 </Button>
               </>
@@ -118,13 +102,9 @@ export default function Navigation() {
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                    >
+                    <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
                       <Button
-                        variant={isActive(item.href) ? "secondary" : "ghost"}
+                        variant={isActive(item.href) ? 'secondary' : 'ghost'}
                         className="w-full justify-start gap-2"
                       >
                         <Icon className="w-4 h-4" />
