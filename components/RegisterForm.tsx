@@ -45,10 +45,14 @@ export default function RegisterForm() {
 
     try {
       setLoading(true);
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
       if (error) throw error;
-      toast.success('회원가입이 완료되었습니다. 로그인해주세요.');
-      router.push('/login');
+      toast.success('회원가입이 완료되었습니다.');
+      // 이메일 확인이 비활성화된 경우 사용자와 세션이 모두 반환됨.
+      router.push('/');
     } catch (error) {
       toast.error('회원가입에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.');
       setLoading(false);
