@@ -50,7 +50,7 @@ export default function RegisterForm() {
         password,
       });
       if (error) throw error;
-      toast.success('회원가입이 완료되었습니다.');
+      toast.success('입력하신 이메일로 회원가입 확인 메일이 전송되었습니다.');
       // 이메일 확인이 비활성화된 경우 사용자와 세션이 모두 반환됨.
       router.push('/');
     } catch (error) {

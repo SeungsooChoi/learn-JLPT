@@ -1,24 +1,27 @@
-'use server'
+'use server';
 
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
-import { z } from 'zod'
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
+import { z } from 'zod';
+import { createClientAdmin } from '@/lib/supabase/admin';
 
 // 유효성 검사를 위한 스키마
-const signUpSchema = z.object({
-  email: z.string().email('이메일 형식이 올바르지 않습니다.'),
-  password: z
-    .string()
-    .min(6, '비밀번호는 최소 6자 이상이어야 합니다.')
-    .regex(/[a-zA-Z]/, '영문을 포함해야 합니다.')
-    .regex(/[0-9]/, '숫자를 포함해야 합니다.')
-    .regex(/[!@#$%^&*]/, '특수문자(!@#$%^&*)를 포함해야 합니다.'),
-  passwordConfirm: z.string(),
-}).refine((data) => data.password === data.passwordConfirm, {
-  message: '비밀번호가 다릅니다.',
-  path: ['passwordConfirm'],
-});
+const signUpSchema = z
+  .object({
+    email: z.string().email('이메일 형식이 올바르지 않습니다.'),
+    password: z
+      .string()
+      .min(6, '비밀번호는 최소 6자 이상이어야 합니다.')
+      .regex(/[a-zA-Z]/, '영문을 포함해야 합니다.')
+      .regex(/[0-9]/, '숫자를 포함해야 합니다.')
+      .regex(/[!@#$%^&*]/, '특수문자(!@#$%^&*)를 포함해야 합니다.'),
+    passwordConfirm: z.string(),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: '비밀번호가 다릅니다.',
+    path: ['passwordConfirm'],
+  });
 
 const loginSchema = z.object({
   email: z.string().email('이메일 형식이 올바르지 않습니다.'),
@@ -30,10 +33,7 @@ const loginSchema = z.object({
     .regex(/[!@#$%^&*]/, '특수문자(!@#$%^&*)를 포함해야 합니다.'),
 });
 
-export async function loginAction(formData:  {
-  email: string;
-  password: string;
-}) {
+export async function loginAction(formData: { email: string; password: string }) {
   try {
     const validatedData = loginSchema.parse(formData);
 
@@ -70,11 +70,7 @@ export async function loginAction(formData:  {
   }
 }
 
-export async function signupAction(formData: {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}) {
+export async function signupAction(formData: { email: string; password: string; passwordConfirm: string }) {
   try {
     const validatedData = signUpSchema.parse(formData);
 
@@ -106,9 +102,23 @@ export async function signupAction(formData: {
 }
 
 export async function logoutAction() {
-  const supabase = await createClient()
-  await supabase.auth.signOut()
-  
-  revalidatePath('/', 'layout')
-  redirect('/auth/login')
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+
+  revalidatePath('/', 'layout');
+  redirect('/auth/login');
+}
+
+export async function deleteUser(userId: string) {
+  try {
+    console.log('deleteUser ::: userID ::: ', userId);
+    const supabaseAdmin = await createClientAdmin();
+
+    // auth.users에서 사용자 삭제
+    const { data, error } = await supabaseAdmin.auth.admin.deleteUser(userId);
+
+    if (error) throw error;
+  } catch (error) {
+    console.error('회원 탈퇴에 실패했습니다.', error);
+  }
 }
