@@ -2,11 +2,11 @@
 
 import { BookOpen, BookOpenTextIcon, ChartColumn, Menu } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from './ui/button';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { Button } from '../ui/button';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import UserNav from './auth/UserNav';
+import UserNav from './UserNav';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);

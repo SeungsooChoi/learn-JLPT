@@ -1,9 +1,9 @@
-import LoginForm from '@/components/auth/LoginForm';
+import ResetPasswordForm from '@/components/auth/ResetPassword';
 
 export default function LoginPage() {
   return (
     <div className="py-16">
-      <LoginForm />
+      <ResetPasswordForm />
     </div>
   );
 }

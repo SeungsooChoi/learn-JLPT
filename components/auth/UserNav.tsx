@@ -32,12 +32,21 @@ import {
 
 export default function UserNav() {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openResetPasswordDialog, setOpenResetPasswordDialog] = useState(false);
 
   const user = useAuthStore((s) => s.user);
   const isLoading = useAuthStore((s) => s.isLoading); // Store에 isLoading이 있어야 함
 
   const router = useRouter();
   const supabase = createClient();
+
+  const handleResetPassword = async () => {
+    const userEmail = user?.email;
+    if (!userEmail) return;
+    const { data, error } = await supabase.auth.resetPasswordForEmail(userEmail, {
+      redirectTo: 'http://localhost:3000/auth/resetPassword',
+    });
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -87,7 +96,7 @@ export default function UserNav() {
         <DropdownMenuContent className="min-w-3xs">
           <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOpenResetPasswordDialog(!openResetPasswordDialog)}>
             <span className="cursor-pointer">비밀번호 재설정</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpenDeleteDialog(!openDeleteDialog)}>
@@ -108,6 +117,19 @@ export default function UserNav() {
           <AlertDialogFooter>
             <AlertDialogCancel>취소</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteAccount}>확인</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={openResetPasswordDialog} onOpenChange={setOpenResetPasswordDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>비밀번호를 재설정하시겠습니까?</AlertDialogTitle>
+            <AlertDialogDescription>가입한 이메일로 비밀번호 재설정 링크가 전달됩니다.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>취소</AlertDialogCancel>
+            <AlertDialogAction onClick={handleResetPassword}>확인</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

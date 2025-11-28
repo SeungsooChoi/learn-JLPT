@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Navigation from '@/components/Navigation';
 import { Toaster } from '@/components/ui/sonner';
-import AuthListener from '@/components/AuthListener';
+import AuthListener from '@/components/auth/AuthListener';
+import Navigation from '@/components/auth/Navigation';
 
 export const metadata: Metadata = {
   title: '하루 단어(一日の単語)',
