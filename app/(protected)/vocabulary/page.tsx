@@ -1,8 +1,16 @@
 import Pagination from '@/components/vocabulary/Pagination';
 import SearchInput from '@/components/vocabulary/SearchInput';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import Link from 'next/link';
 import { getVocabularyList } from './actions';
+import VocaTableRow from '@/components/vocabulary/VocaTableRow';
 
 // Next.js 15: params와 searchParams는 Promise입니다.
 export default async function VocabularyPage({
@@ -34,7 +42,9 @@ export default async function VocabularyPage({
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">단어장</h1>
-          <p className="text-gray-500 text-sm mt-1">총 {totalCount.toLocaleString()}개의 단어가 있습니다.</p>
+          <p className="text-gray-500 text-sm mt-1">
+            총 {totalCount.toLocaleString()}개의 단어가 있습니다.
+          </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto items-stretch sm:items-center">
@@ -49,7 +59,9 @@ export default async function VocabularyPage({
               return (
                 <Link
                   key={lvl}
-                  href={`/vocabulary?${new URLSearchParams(queryParams).toString()}`}
+                  href={`/vocabulary?${new URLSearchParams(
+                    queryParams
+                  ).toString()}`}
                   className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
                     currentLevel === lvl
                       ? 'bg-white text-blue-600 shadow-sm ring-1 ring-black/5'
@@ -69,28 +81,28 @@ export default async function VocabularyPage({
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-50 hover:bg-gray-50">
-              <TableHead className="w-[100px] text-center font-bold">레벨</TableHead>
+              <TableHead className="w-[100px] text-center font-bold">
+                레벨
+              </TableHead>
               <TableHead className="font-bold">단어</TableHead>
               <TableHead className="font-bold">후리가나 (읽는 법)</TableHead>
               <TableHead className="font-bold">의미</TableHead>
+              <TableHead className="font-bold">예문(일본어)</TableHead>
+              <TableHead className="font-bold">예문(한글)</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {words.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="h-24 text-center text-gray-500">
+                <TableCell
+                  colSpan={4}
+                  className="h-24 text-center text-gray-500"
+                >
                   {query ? '검색 결과가 없습니다.' : '등록된 단어가 없습니다.'}
                 </TableCell>
               </TableRow>
             ) : (
-              words.map((word) => (
-                <TableRow key={word.id} className="hover:bg-gray-50/50">
-                  <TableCell className="text-center font-medium text-gray-600">{word.level}</TableCell>
-                  <TableCell className="text-lg text-gray-600">{word.word}</TableCell>
-                  <TableCell className="text-gray-700">{word.reading}</TableCell>
-                  <TableCell className="text-gray-900">{word.meaning_ko}</TableCell>
-                </TableRow>
-              ))
+              words.map((word) => <VocaTableRow key={word.id} word={word} />)
             )}
           </TableBody>
         </Table>
