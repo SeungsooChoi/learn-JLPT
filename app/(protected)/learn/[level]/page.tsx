@@ -1,5 +1,5 @@
 import { fetchWords } from '@/app/actions/fetchWords';
-import { WordLearningPanel } from '@/components/WordLearningPanel';
+import { WordLearningPanel } from '@/components/learn/WordLearningPanel';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 

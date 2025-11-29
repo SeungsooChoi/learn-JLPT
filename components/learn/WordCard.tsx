@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { JLPTWord, ReviewQuality } from '@/types/word';
 import { useState } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 export default function WordCard({ word, onRate }: { word: JLPTWord; onRate: (quality: ReviewQuality) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
