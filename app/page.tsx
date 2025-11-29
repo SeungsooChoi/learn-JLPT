@@ -6,31 +6,31 @@ const levels = [
   {
     level: 'N5',
     description: `히라가나, 가타카나, 일상생활에서 사용되는 기본적인 한자로 쓰인 정형적인 어구나 글을 읽고 이해할 수 있다.`,
-    wordCount: '800+ 단어',
+    wordCount: '718 단어',
     color: 'bg-green-500/10 border-green-500/20',
   },
   {
     level: 'N4',
     description: `기본적인 어휘나 한자를 이용해서 쓰여진 일상생활에서 흔히 접할 수 있는 화제의 글을 읽고 이해할 수 있다.`,
-    wordCount: '1,500+ 단어',
+    wordCount: '668 단어',
     color: 'bg-blue-500/10 border-blue-500/20',
   },
   {
     level: 'N3',
     description: `일상적인 상황에서 사용되는 일본어를 어느 정도 이해할 수 있다.`,
-    wordCount: '3,750+ 단어',
+    wordCount: '2,140 단어',
     color: 'bg-yellow-500/10 border-yellow-500/20',
   },
   {
     level: 'N2',
     description: `일상적인 상황에서 사용되는 일본어의 이해와 더불어, 보다 폭넓은 상황에서 사용되는 일본어를 어느 정도 이해할 수 있다.`,
-    wordCount: '6,000+ 단어',
+    wordCount: '1,906 단어',
     color: 'bg-orange-500/10 border-orange-500/20',
   },
   {
     level: 'N1',
     description: `폭넓은 상황에서 사용되는 일본어를 이해할 수 있다.`,
-    wordCount: '10,000+ 단어',
+    wordCount: '2,699 단어',
     color: 'bg-red-500/10 border-red-500/20',
   },
 ];
