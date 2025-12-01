@@ -1,0 +1,36 @@
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: T2T-Engine
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: ByteDanceSpider
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: ai-scraper
+Disallow: /
+
+# 검색엔진은 허용
+User-agent: Googlebot
+Disallow:
+
+User-agent: Bingbot
+Disallow:
+
+User-agent: *
+Allow: /

@@ -8,6 +8,10 @@ import { Footer } from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: '하루 단어(一日の単語)',
   description: 'Learn Japanese vocabulary for JLPT N5-N1',
+  keywords: ['JLPT', 'JLPT 단어', 'JLPT N2', 'JLPT N3', '일본어 단어', '일본어 공부', '일본어 학습'],
+  authors: [{ name: 'Seungsoo Choi' }],
+  creator: 'Seungsoo Choi',
+  publisher: 'Seungsoo Choi',
 };
 
 export default async function RootLayout({
@@ -16,7 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <AuthListener>
           <Navigation />
