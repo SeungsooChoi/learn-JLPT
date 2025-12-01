@@ -1,23 +1,11 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { JLPTWord, ReviewQuality } from '@/types/word';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Volume2Icon } from 'lucide-react';
 import { useAudio } from '@/hooks/useAudio';
 
-export default function WordCard({
-  word,
-  onRate,
-}: {
-  word: JLPTWord;
-  onRate: (quality: ReviewQuality) => void;
-}) {
+export default function WordCard({ word, onRate }: { word: JLPTWord; onRate: (quality: ReviewQuality) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isRating, setIsRating] = useState(false);
   const { play, stop } = useAudio();
@@ -44,17 +32,10 @@ export default function WordCard({
   return (
     <Card className="w-full max-w-md mx-auto gap-2">
       <CardHeader>
-        <CardDescription className="text-xl text-center">
-          {word.reading}
-        </CardDescription>
+        <CardDescription className="text-xl text-center">{word.reading}</CardDescription>
         <CardTitle className="text-2xl text-center">{word.word}</CardTitle>
         <CardDescription className="text-center text-black">
-          <Button
-            type="button"
-            variant="ghost"
-            className="cursor-pointer"
-            onClick={() => play(word.reading)}
-          >
+          <Button type="button" variant="ghost" className="cursor-pointer" onClick={() => play(word.reading)}>
             <Volume2Icon />
           </Button>
         </CardDescription>
@@ -71,7 +52,10 @@ export default function WordCard({
           </div>
         ) : (
           <CardContent className="space-y-2 text-left px-0">
-            <p className="text-black text-center">{word.meaning_ko}</p>
+            <p className="text-black text-center">
+              {word.pos && `[${word.pos}] `}
+              {word.meaning_ko}
+            </p>
             <div className="flex flex-row justify-start items-center">
               <div>
                 <div>{word.example_ja}</div>
