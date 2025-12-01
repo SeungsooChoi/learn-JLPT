@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import AuthListener from '@/components/auth/AuthListener';
 import Navigation from '@/components/auth/Navigation';
+import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: '하루 단어(一日の単語)',
@@ -22,6 +23,7 @@ export default async function RootLayout({
           {children}
           <Toaster position="top-center" richColors duration={1000} />
         </AuthListener>
+        <Footer />
       </body>
     </html>
   );
