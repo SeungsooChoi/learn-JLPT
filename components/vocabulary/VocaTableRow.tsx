@@ -7,7 +7,7 @@ import { Button } from '../ui/button';
 import { Volume2Icon } from 'lucide-react';
 
 export default function VocaTableRow({ word }: { word: JLPTWord }) {
-  const { play, stop } = useAudio();
+  const { play } = useAudio();
 
   const handlePlay = (word: string | null) => {
     if (word) play(word);

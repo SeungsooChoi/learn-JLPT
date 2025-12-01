@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLearningStore } from '@/lib/stores/learningStore';
 import WordCard from './WordCard';
 import ProgressBar from './Progressbar';
@@ -9,6 +9,7 @@ import { recordReview } from '@/app/(protected)/learn/actions';
 
 export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }) {
   const { words, currentIndex, isFinished, setWords, next } = useLearningStore();
+  const [isRating, setIsRating] = useState(false);
 
   useEffect(() => {
     setWords(initialWords);
@@ -18,13 +19,17 @@ export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }
   const totalWordsCount = words.length;
 
   const handleRate = async (quality: ReviewQuality) => {
-    if (!words[currentIndex]) return;
+    if (!words[currentIndex] || isRating) return;
+
+    setIsRating(true);
 
     try {
       await recordReview(words[currentIndex].id, quality);
       next();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsRating(false);
     }
   };
 
@@ -41,7 +46,7 @@ export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }
   return (
     <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-6">
       <ProgressBar current={currentIndex + 1} total={totalWordsCount} />
-      <WordCard word={currentWord} onRate={handleRate} />
+      <WordCard word={currentWord} onRate={handleRate} isRating={isRating} />
     </div>
   );
 }

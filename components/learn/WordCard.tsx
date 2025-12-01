@@ -1,33 +1,39 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { JLPTWord, ReviewQuality } from '@/types/word';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { Volume2Icon } from 'lucide-react';
 import { useAudio } from '@/hooks/useAudio';
 
-export default function WordCard({ word, onRate }: { word: JLPTWord; onRate: (quality: ReviewQuality) => void }) {
+export default function WordCard({
+  word,
+  onRate,
+  isRating,
+}: {
+  word: JLPTWord;
+  onRate: (quality: ReviewQuality) => void;
+  isRating: boolean;
+}) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isRating, setIsRating] = useState(false);
-  const { play, stop } = useAudio();
+  const { play } = useAudio();
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    if (!isRating) {
+      setIsFlipped(true);
+    }
   };
 
   const handleRate = (quality: ReviewQuality) => {
-    setIsRating(true);
     onRate(quality);
-
-    // 다음 카드
-    setTimeout(() => {
-      setIsFlipped(false);
-      setIsRating(false);
-    }, 300);
   };
 
   const handlePlay = (word: string | null) => {
     if (word) play(word);
   };
+
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [word]);
 
   return (
     <Card className="w-full max-w-md mx-auto gap-2">
