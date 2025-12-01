@@ -5,10 +5,9 @@ import { useLearningStore } from '@/lib/stores/learningStore';
 import WordCard from './WordCard';
 import ProgressBar from './Progressbar';
 import { JLPTWord, ReviewQuality } from '@/types/word';
-import { recordReview } from '@/app/(protected)/learn/actions';
 
 export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }) {
-  const { words, currentIndex, isFinished, setWords, next } = useLearningStore();
+  const { words, currentIndex, isFinished, setWords, recordAndNext } = useLearningStore();
   const [isRating, setIsRating] = useState(false);
 
   useEffect(() => {
@@ -24,8 +23,7 @@ export function WordLearningPanel({ initialWords }: { initialWords: JLPTWord[] }
     setIsRating(true);
 
     try {
-      await recordReview(words[currentIndex].id, quality);
-      next();
+      await recordAndNext(words[currentIndex].id, quality);
     } catch (error) {
       console.error(error);
     } finally {
