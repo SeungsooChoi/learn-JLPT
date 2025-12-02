@@ -21,8 +21,6 @@ export default function AnnouncementModal({ announcements }: { announcements: An
   const latestAnn = useMemo(() => announcements?.[0] ?? null, [announcements]);
 
   useEffect(() => {
-    console.log('isLoading :: ', isLoading);
-    console.log('lastClosedId :: ', lastClosedId);
     if (isLoading) return;
     if (latestAnn.id !== lastClosedId) {
       setOpen(true);

@@ -111,7 +111,6 @@ export async function logoutAction() {
 
 export async function deleteUser(userId: string) {
   try {
-    console.log('deleteUser ::: userID ::: ', userId);
     const supabaseAdmin = await createClientAdmin();
 
     // auth.users에서 사용자 삭제
