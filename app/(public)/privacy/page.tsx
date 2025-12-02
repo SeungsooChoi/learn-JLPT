@@ -31,7 +31,6 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc list-inside ml-6 space-y-1 leading-relaxed">
             <li>이메일 주소</li>
             <li>비밀번호(해시 처리된 형태로 저장되며, 운영자가 확인할 수 없음)</li>
-            <li>프로필 이미지(선택)</li>
           </ul>
           <p className="text-sm text-gray-500 italic ml-6">Supabase Auth를 사용하여 보안 처리됩니다.</p>
 
