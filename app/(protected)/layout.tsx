@@ -15,7 +15,7 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
   }
 
   return (
-    <main className="bg-background">
+    <main className="grow bg-background">
       <div className="container mx-auto px-4 py-8">
         {/* 헤더 */}
         <Link href="/" className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block">

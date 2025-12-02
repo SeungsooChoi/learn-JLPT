@@ -38,7 +38,7 @@ const levels = [
 export default function LearningPage() {
   return (
     // 레벨 선택
-    <main className="bg-background">
+    <main className="grow bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">

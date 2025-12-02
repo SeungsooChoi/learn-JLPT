@@ -21,7 +21,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <AuthListener>
           <Navigation />
           {children}
