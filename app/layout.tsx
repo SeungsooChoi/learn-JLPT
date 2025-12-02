@@ -4,6 +4,8 @@ import { Toaster } from '@/components/ui/sonner';
 import AuthListener from '@/components/auth/AuthListener';
 import Navigation from '@/components/auth/Navigation';
 import { Footer } from '@/components/layout/Footer';
+import { fetchAnnoncements } from './actions/fetchAnnouncements';
+import AnnouncementModal from '@/components/layout/AnnouncementsModal';
 
 export const metadata: Metadata = {
   title: '하루 단어(一日の単語)',
@@ -19,6 +21,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const announcements = await fetchAnnoncements();
+
   return (
     <html lang="ko">
       <body className="flex flex-col min-h-screen">
@@ -27,6 +31,7 @@ export default async function RootLayout({
           {children}
           <Toaster position="top-center" richColors duration={1000} />
         </AuthListener>
+        <AnnouncementModal announcements={announcements} />
         <Footer />
       </body>
     </html>
