@@ -4,6 +4,7 @@ import SearchInput from '@/components/common/SearchInput';
 import { getFeedbackList } from './actions';
 import Pagination from '@/components/common/Pagination';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import FeedBackRow from '@/components/feedback/FeedbackRow';
 
 export default async function FeedbackListPage({
   searchParams,
@@ -48,12 +49,12 @@ export default async function FeedbackListPage({
               </TableRow>
             ) : (
               feedbacks.map((feedback) => (
-                <TableRow key={feedback.id} className="hover:bg-gray-50/50">
+                <FeedBackRow key={feedback.id} feedback={feedback}>
                   <TableCell className="text-left font-medium text-gray-600">{feedback.title}</TableCell>
                   <TableCell className="text-right text-gray-900">
                     {format(new Date(feedback.created_at), 'yyyy-MM-dd HH:mm')}
                   </TableCell>
-                </TableRow>
+                </FeedBackRow>
               ))
             )}
           </TableBody>

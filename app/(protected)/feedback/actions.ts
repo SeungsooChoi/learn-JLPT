@@ -34,3 +34,37 @@ export async function getFeedbackList({ page = 1, query = '' }: { page?: number;
     totalCount: count || 0,
   };
 }
+
+export async function getFeedbackDetail(id: string) {
+  const supabase = await createClient();
+
+  const { data } = await supabase.from('feedbacks').select('*').eq('id', id).single();
+
+  return data;
+}
+
+export async function getPrevNextFeedback(id: string) {
+  const supabase = await createClient();
+
+  const { data: curr } = await supabase.from('feedbacks').select('created_at').eq('id', id).single();
+
+  if (!curr) return { prev: null, next: null };
+
+  const { data: prev } = await supabase
+    .from('feedbacks')
+    .select('id, title')
+    .lt('created_at', curr.created_at)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single();
+
+  const { data: next } = await supabase
+    .from('feedbacks')
+    .select('id, title')
+    .gt('created_at', curr.created_at)
+    .order('created_at', { ascending: true })
+    .limit(1)
+    .single();
+
+  return { prev, next };
+}
