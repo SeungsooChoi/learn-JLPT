@@ -9,9 +9,18 @@ import { ConfirmDialog } from '../common/ConfrmDialog';
 import { toast } from 'sonner';
 import { createClient } from '@/lib/supabase/client';
 
-export default function FeedbackForm() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+type FeedbackFormProps = {
+  mode?: 'create' | 'edit';
+  initialData?: {
+    id: string;
+    title: string;
+    content: string;
+  };
+};
+
+export default function FeedbackForm({ mode = 'create', initialData }: FeedbackFormProps) {
+  const [title, setTitle] = useState(initialData?.title || '');
+  const [content, setContent] = useState(initialData?.content || '');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -45,23 +54,40 @@ export default function FeedbackForm() {
     try {
       setLoading(true);
       const supabase = await createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return null;
 
-      const { data, error } = await supabase.from('feedbacks').insert({
-        user_id: user.id,
-        title,
-        content,
-      });
-      if (error) throw error;
-      toast.success('문의글이 등록되었습니다.');
+      if (mode === 'create') {
+        // 신규 생성
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return null;
+
+        const { data, error } = await supabase.from('feedbacks').insert({
+          user_id: user.id,
+          title,
+          content,
+        });
+        if (error) throw error;
+        toast.success('문의글이 등록되었습니다.');
+      } else {
+        // 수정
+        const { error } = await supabase
+          .from('feedbacks')
+          .update({
+            title,
+            content,
+          })
+          .eq('id', initialData?.id);
+
+        if (error) throw error;
+
+        toast.success('문의글이 수정되었습니다.');
+      }
 
       router.push('/feedback');
     } catch (error) {
       console.error(error);
-      toast.error('문의글 등록에 실패했습니다. 제목 또는 내용이 너무 길거나 내용이 맞지 않습니다.');
+      toast.error('처리 중 오류가 발생했습니다.');
       setLoading(false);
     }
   };
@@ -86,7 +112,7 @@ export default function FeedbackForm() {
             목록으로 돌아가기
           </Button>
           <Button type="submit" disabled={loading}>
-            {loading ? '등록 중...' : '문의 등록'}
+            {loading ? '처리 중...' : mode === 'create' ? '문의 등록' : '수정 저장'}
           </Button>
         </div>
       </form>
@@ -94,9 +120,9 @@ export default function FeedbackForm() {
       <ConfirmDialog
         open={open}
         setOpen={setOpen}
-        title="문의 등록"
-        description="입력하신 내용을 등록하시겠습니까?"
-        confirmLabel="등록"
+        title={mode === 'create' ? '문의 등록' : '문의 수정'}
+        description="입력하신 내용을 저장하시겠습니까?"
+        confirmLabel={mode === 'create' ? '등록' : '수정'}
         cancelLabel="취소"
         onConfirm={submitFeedback}
       />

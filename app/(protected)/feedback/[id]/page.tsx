@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { getFeedbackDetail, getPrevNextFeedback } from '../actions';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import DetailActions from '@/components/feedback/DetailActions';
 
 export default async function FeedbackDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const supabase = await createClient();
@@ -36,6 +36,9 @@ export default async function FeedbackDetailPage({ params }: { params: Promise<{
       </div>
 
       <div className="whitespace-pre-line leading-relaxed text-gray-800 mb-8">{feedback.content}</div>
+      <DetailActions feedback={feedback} userId={user.id} />
+
+      <hr className="my-6" />
 
       <div className="flex justify-between text-sm text-primary">
         {prev ? (
@@ -53,12 +56,6 @@ export default async function FeedbackDetailPage({ params }: { params: Promise<{
         ) : (
           <span className="text-gray-400">다음 글 없음</span>
         )}
-      </div>
-
-      <div className="flex justify-start gap-2 mt-6">
-        <Button variant="outline" asChild>
-          <a href="/feedback">목록으로</a>
-        </Button>
       </div>
     </div>
   );

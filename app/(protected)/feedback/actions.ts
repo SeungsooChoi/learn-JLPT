@@ -1,6 +1,7 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { revalidatePath } from 'next/cache';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -67,4 +68,36 @@ export async function getPrevNextFeedback(id: string) {
     .single();
 
   return { prev, next };
+}
+
+export async function deleteFeedback(id: string) {
+  try {
+    const supabase = await createClient();
+
+    // 로그인 사용자 확인
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return { success: false, message: '로그인 후 이용해주세요.' };
+    }
+
+    // 본인 글인지 확인
+    const { data: feedback } = await supabase.from('feedbacks').select('user_id').eq('id', id).single();
+
+    if (!feedback || feedback.user_id !== user.id) {
+      return { success: false, message: '본인이 작성한 글만 삭제할 수 있습니다.' };
+    }
+
+    const { error } = await supabase.from('feedbacks').delete().eq('id', id);
+    if (error) throw error;
+
+    revalidatePath('/feedback');
+
+    return { success: true, message: null };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: '삭제 중 오류가 발생했습니다.' };
+  }
 }
