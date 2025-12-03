@@ -61,7 +61,7 @@ export default function LearningPage() {
                 <p className="text-sm text-muted-foreground mb-4">{item.wordCount}</p>
                 <div>
                   <Link href={`/learn/${item.level}`}>
-                    <Button className="w-full cursor-pointer" variant="outline">
+                    <Button className="w-full" variant="outline">
                       선택
                     </Button>
                   </Link>

@@ -71,14 +71,10 @@ export default function UserNav() {
     return (
       <div className="flex gap-2">
         <Link href="/auth/login">
-          <Button variant="ghost" className="cursor-pointer">
-            로그인
-          </Button>
+          <Button variant="ghost">로그인</Button>
         </Link>
         <Link href="/auth/signup">
-          <Button variant="outline" className="cursor-pointer">
-            회원가입
-          </Button>
+          <Button variant="outline">회원가입</Button>
         </Link>
       </div>
     );
@@ -89,7 +85,7 @@ export default function UserNav() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="rounded-xl cursor-pointer" size="icon">
+          <Button variant="ghost" className="rounded-xl" size="icon">
             <User></User>
           </Button>
         </DropdownMenuTrigger>
@@ -104,7 +100,7 @@ export default function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <Button variant="outline" className="cursor-pointer" onClick={handleLogout}>
+      <Button variant="outline" onClick={handleLogout}>
         로그아웃
       </Button>
 

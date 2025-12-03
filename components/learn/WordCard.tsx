@@ -41,7 +41,7 @@ export default function WordCard({
         <CardDescription className="text-xl text-center">{word.reading}</CardDescription>
         <CardTitle className="text-2xl text-center">{word.word}</CardTitle>
         <CardDescription className="text-center text-black">
-          <Button type="button" variant="ghost" className="cursor-pointer" onClick={() => play(word.reading)}>
+          <Button type="button" variant="ghost" onClick={() => play(word.reading)}>
             <Volume2Icon />
           </Button>
         </CardDescription>
@@ -73,7 +73,7 @@ export default function WordCard({
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="cursor-pointer ml-2"
+                  className="ml-2"
                   onClick={() => handlePlay(word.example_ja)}
                 >
                   <Volume2Icon />
@@ -99,7 +99,6 @@ export default function WordCard({
               disabled={isRating}
               variant="outline"
               size="sm"
-              className="cursor-pointer"
             >
               {label}
             </Button>

@@ -37,7 +37,7 @@ export default function Navigation() {
               const Icon = item.icon;
               return (
                 <Link key={item.href} href={item.href}>
-                  <Button variant={isActive(item.href) ? 'secondary' : 'ghost'} className="gap-2 cursor-pointer">
+                  <Button variant={isActive(item.href) ? 'secondary' : 'ghost'} className="gap-2">
                     <Icon className="w-4 h-4" />
                     {item.label}
                   </Button>

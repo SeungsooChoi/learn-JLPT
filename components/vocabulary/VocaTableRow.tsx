@@ -23,7 +23,7 @@ export default function VocaTableRow({ word }: { word: JLPTWord }) {
           <Button
             type="button"
             variant="ghost"
-            className="ml-1 cursor-pointer"
+            className="ml-1"
             size="icon-sm"
             onClick={() => handlePlay(word.reading)}
           >
@@ -38,7 +38,7 @@ export default function VocaTableRow({ word }: { word: JLPTWord }) {
           <Button
             type="button"
             variant="ghost"
-            className="ml-1 cursor-pointer"
+            className="ml-1"
             size="icon-sm"
             onClick={() => handlePlay(word.example_ja)}
           >
