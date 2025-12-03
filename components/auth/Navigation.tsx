@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, BookOpenTextIcon, ChartColumn, Menu } from 'lucide-react';
+import { BookOpen, BookOpenTextIcon, ChartColumn, Menu, NotebookPen } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
@@ -16,6 +16,7 @@ export default function Navigation() {
     { href: '/', label: '학습', icon: BookOpen },
     { href: '/stats', label: '통계', icon: ChartColumn },
     { href: '/vocabulary', label: '단어장', icon: BookOpenTextIcon },
+    { href: '/feedback', label: '문의', icon: NotebookPen },
   ];
 
   const isActive = (href: string) => pathname.endsWith(href);

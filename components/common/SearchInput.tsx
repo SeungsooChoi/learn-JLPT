@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Input } from "@/components/ui/input";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
+import { Input } from '@/components/ui/input';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function SearchInput() {
   const searchParams = useSearchParams();
@@ -13,12 +13,12 @@ export default function SearchInput() {
     const params = new URLSearchParams(searchParams);
 
     // 검색 시 페이지를 1로 초기화
-    params.set("page", "1");
+    params.set('page', '1');
 
     if (term) {
-      params.set("query", term);
+      params.set('query', term);
     } else {
-      params.delete("query");
+      params.delete('query');
     }
 
     replace(`${pathname}?${params.toString()}`);
@@ -27,9 +27,9 @@ export default function SearchInput() {
   return (
     <div className="w-full max-w-sm">
       <Input
-        placeholder="단어, 의미, 읽는 법 검색..."
+        placeholder="검색어를 입력하세요."
         onChange={(e) => handleSearch(e.target.value)}
-        defaultValue={searchParams.get("query")?.toString()}
+        defaultValue={searchParams.get('query')?.toString()}
       />
     </div>
   );
