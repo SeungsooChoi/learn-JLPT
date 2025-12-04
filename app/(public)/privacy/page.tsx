@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
     // 전체 컨테이너: 최대 너비, 중앙 정렬, 충분한 여백, 배경/그림자 적용
     <div className="max-w-5xl mx-auto p-8 lg:p-10 my-10 bg-white shadow-lg rounded-xl">
       {/* 메인 제목: 크고 두꺼운 글꼴, 하단 구분선 */}
-      <h1 className="text-3xl font-bold mb-8 text-gray-900 border-b pb-4">개인정보 처리방침</h1>
+      <h1 className="text-2xl font-bold mb-8 text-gray-900 border-b pb-4">개인정보 처리방침</h1>
 
       {/* 서문: 행간을 넓혀 가독성 향상, 회색 텍스트로 보조적인 느낌 부여 */}
       <p className="mb-8 p-4 bg-indigo-50 border-l-4 border-indigo-400 text-gray-700 leading-relaxed rounded-md">
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제1조 수집하는 개인정보 항목 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-4 text-gray-800 border-b pb-2">제1조 수집하는 개인정보 항목</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-4 text-gray-800 border-b pb-2">제1조 수집하는 개인정보 항목</h2>
 
         <div className="space-y-4 p-4 border border-gray-200 rounded-md bg-gray-50">
           <p className="font-medium text-gray-800">서비스는 다음과 같은 최소한의 개인정보를 수집할 수 있습니다.</p>
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제2조 개인정보 수집 방법 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제2조 개인정보 수집 방법</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제2조 개인정보 수집 방법</h2>
         <ul className="list-disc list-inside ml-4 space-y-2 leading-relaxed">
           <li>회원가입 및 로그인 과정에서 이용자가 직접 입력</li>
           <li>서비스 이용 과정에서 자동 생성</li>
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제3조 개인정보의 이용 목적 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제3조 개인정보의 이용 목적</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제3조 개인정보의 이용 목적</h2>
         <p className="leading-relaxed">운영자는 수집한 개인정보를 다음 목적으로 사용합니다.</p>
         <ul className="list-disc list-inside ml-4 space-y-2 leading-relaxed">
           <li>회원 인증 및 로그인 유지</li>
@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제4조 개인정보의 보관 및 파기 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제4조 개인정보의 보관 및 파기</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제4조 개인정보의 보관 및 파기</h2>
         <p className="leading-relaxed font-medium text-red-700">회원 탈퇴 시 즉시 모든 개인정보는 삭제됩니다.</p>
         <p className="leading-relaxed">단, 법령에서 일정 기간 보관을 요구하는 경우 해당 기간 동안만 보관합니다.</p>
 
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제5조 개인정보의 제3자 제공 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제5조 개인정보의 제3자 제공</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제5조 개인정보의 제3자 제공</h2>
         <p className="leading-relaxed font-medium text-green-700">
           운영자는 이용자의 개인정보를 제3자에게 제공하지 않습니다.
         </p>
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제6조 개인정보 처리의 위탁 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제6조 개인정보 처리의 위탁</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제6조 개인정보 처리의 위탁</h2>
         <p className="leading-relaxed">서비스 운영을 위해 다음 업체에 개인정보 처리를 위탁합니다.</p>
 
         {/* 위탁 업체 정보를 표로 정리하여 가독성 향상 */}
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제7조 쿠키(Cookie) 및 로컬 저장소(LocalStorage) --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">
           제7조 쿠키(Cookie) 및 로컬 저장소(LocalStorage)
         </h2>
         <p className="leading-relaxed">서비스는 다음 목적을 위해 쿠키 또는 로컬스토리지를 사용할 수 있습니다.</p>
@@ -180,7 +180,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제8조 이용자의 권리 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제8조 이용자의 권리</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제8조 이용자의 권리</h2>
         <p className="leading-relaxed">이용자는 다음과 같은 권리를 가집니다.</p>
         <ul className="list-disc list-inside ml-4 space-y-2 leading-relaxed">
           <li>개인정보 조회</li>
@@ -196,7 +196,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제9조 개인정보 보호 조치 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제9조 개인정보 보호 조치</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제9조 개인정보 보호 조치</h2>
         <p className="leading-relaxed">운영자는 다음과 같은 기술적·관리적 보호 조치를 시행합니다.</p>
 
         <h3 className="text-lg font-semibold mt-4 text-gray-700">1. 기술적 조치</h3>
@@ -214,7 +214,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제10조 개인정보 처리방침 변경 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제10조 개인정보 처리방침 변경</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제10조 개인정보 처리방침 변경</h2>
         <ul className="list-disc list-inside ml-4 space-y-2 leading-relaxed">
           <li>법령 변경, 서비스 추가·변경 등 사유 발생 시 본 방침이 변경될 수 있습니다.</li>
           <li>중요한 변경 사항은 서비스 내 공지로 안내합니다.</li>
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
 
       {/* --- 제11조 문의처 --- */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제11조 문의처</h2>
+        <h2 className="text-xl font-semibold mt-10 mb-4 text-gray-800 border-b pb-2">제11조 문의처</h2>
         <p className="leading-relaxed">개인정보 관련 문의는 아래로 연락해 주시기 바랍니다.</p>
         <div className="p-4 border border-indigo-200 bg-indigo-50 rounded-md inline-block">
           <p>

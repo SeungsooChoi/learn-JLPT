@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Card, CardContent } from '@/components/ui/card'; // Card 컴포넌트 사용을 위해 유지
 
 export const metadata: Metadata = {
   title: '이용약관',
@@ -10,7 +9,7 @@ export default function TermsPage() {
     // 전체 컨테이너: 최대 너비를 유지하되, 세로 여백을 추가하고 배경색을 흰색으로 설정
     <div className="max-w-5xl mx-auto p-8 lg:p-10 my-10 bg-white shadow-lg rounded-xl">
       {/* 메인 제목: 더 크고, 두꺼운 글꼴, 하단 여백 추가 */}
-      <h1 className="text-3xl font-bold mb-8 text-gray-900 border-b pb-4">이용약관</h1>
+      <h1 className="text-2xl font-bold mb-8 text-gray-900 border-b pb-4">이용약관</h1>
 
       {/* 서문: 행간을 넓혀 가독성 향상, 회색 텍스트로 보조적인 느낌 부여 */}
       <p className="mb-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-gray-700 leading-relaxed rounded-md">
@@ -21,7 +20,7 @@ export default function TermsPage() {
       {/* 각 조항 섹션 */}
       <section className="space-y-6">
         {/* h2 제목: 섹션 구분을 위해 text-xl, semibold, 상단 여백 추가 */}
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제 1조 목적</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제 1조 목적</h2>
         <p className="leading-relaxed">
           본 약관은 운영자(이하 “운영자”)가 제공하는 “하루 단어(一日の単語)”(이하 “서비스”)의 이용과 관련하여 운영자와
           이용자 간의 권리, 의무 및 책임 사항을 규정함을 목적으로 합니다. 본 서비스는 JLPT 단어 학습을 돕기 위한 무료 웹
@@ -30,7 +29,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제2조 약관의 효력 및 변경</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제2조 약관의 효력 및 변경</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>운영자는 본 약관을 서비스 내 게시 또는 안내하여 효력을 발생하게 합니다.</li>
           <li>운영자는 관련 법령 개정, 서비스 변경 등의 사유가 발생하는 경우 약관을 개정할 수 있습니다.</li>
@@ -40,7 +39,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제3조 정의</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제3조 정의</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>“이용자”란 본 약관에 따라 서비스를 이용하는 모든 사용자를 의미합니다.</li>
           <li>“콘텐츠”란 서비스 내에서 제공되는 텍스트, 이미지, 데이터 등을 의미합니다.</li>
@@ -49,7 +48,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제4조 서비스 제공</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제4조 서비스 제공</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>
             운영자는 다음과 같은 서비스를 제공합니다.
@@ -66,7 +65,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제5조 서비스 이용의 제한</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제5조 서비스 이용의 제한</h2>
         {/* 주요 제한 사항을 담은 박스: 배경색 및 테두리 적용으로 강조 */}
         <div className="p-4 border border-red-200 bg-red-50 rounded-md">
           <p className="font-medium text-red-700 mb-3">
@@ -82,7 +81,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제6조 사용자 생성 콘텐츠(UGC)</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제6조 사용자 생성 콘텐츠(UGC)</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>이용자가 서비스에 입력한 데이터는 이용자 본인의 책임하에 관리됩니다.</li>
           <li>사용자가 입력한 단어, 학습 기록 등은 서비스 기능 제공을 위해 활용될 수 있습니다.</li>
@@ -93,7 +92,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제7조 저작권 및 라이선스</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제7조 저작권 및 라이선스</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>
             서비스에서 제공하는 일부 데이터는 공개 라이선스를 따릅니다.
@@ -124,7 +123,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제8조 개인정보 보호</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제8조 개인정보 보호</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>서비스는 로그인, 학습 기록 저장 등 최소한의 기능 제공을 위해 필요한 정보만 수집합니다.</li>
           <li>개인정보 처리에 관한 상세 내용은 “개인정보 처리방침”에서 규정합니다.</li>
@@ -132,7 +131,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제9조 책임의 제한</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제9조 책임의 제한</h2>
         {/* 책임 제한을 담은 박스: 주의 사항임을 강조 */}
         <div className="p-4 border border-gray-300 bg-gray-50 rounded-md">
           <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed font-medium text-gray-800">
@@ -145,7 +144,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제10조 서비스 종료</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제10조 서비스 종료</h2>
         <ol className="list-decimal list-inside space-y-2 pl-4 leading-relaxed">
           <li>운영자는 개인 프로젝트 특성상 서비스 운영을 중단할 수 있습니다.</li>
           <li>서비스 종료 시 사전 안내를 위해 가능한 경우 서비스 내에 고지합니다.</li>
@@ -153,7 +152,7 @@ export default function TermsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800">제11조 준거법 및 분쟁 해결</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-3 text-gray-800">제11조 준거법 및 분쟁 해결</h2>
         <p className="leading-relaxed">
           본 약관은 대한민국 법령을 기준으로 해석되며, 서비스 이용과 관련한 분쟁은 대한민국 법률에 따라 해결합니다.
         </p>
