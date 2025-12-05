@@ -52,6 +52,7 @@ export async function loginAction(formData: { email: string; password: string })
       user: {
         id: data.user?.id,
         email: data.user?.email,
+        user_metadata: data.user?.user_metadata,
       },
     };
   } catch (error) {

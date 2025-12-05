@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useAuthStore, User } from "@/lib/stores/authStore";
-import { createClient } from "@/lib/supabase/client";
-import { ReactNode, useEffect } from "react";
+import { useAuthStore } from '@/lib/stores/authStore';
+import { createClient } from '@/lib/supabase/client';
+import { ReactNode, useEffect } from 'react';
 
 export default function AuthListener({ children }: { children: ReactNode }) {
   const setUser = useAuthStore((state) => state.setUser);
@@ -16,7 +16,11 @@ export default function AuthListener({ children }: { children: ReactNode }) {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
-        setUser(session.user as User);
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+          user_metadata: session.user.user_metadata,
+        });
       } else {
         setUser(null);
       }

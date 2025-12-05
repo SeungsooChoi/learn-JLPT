@@ -35,7 +35,7 @@ export default function UserNav() {
   const [openResetPasswordDialog, setOpenResetPasswordDialog] = useState(false);
 
   const user = useAuthStore((s) => s.user);
-  const isLoading = useAuthStore((s) => s.isLoading); // Store에 isLoading이 있어야 함
+  const isLoading = useAuthStore((s) => s.isLoading);
 
   const router = useRouter();
   const supabase = createClient();
@@ -43,23 +43,39 @@ export default function UserNav() {
   const handleResetPassword = async () => {
     const userEmail = user?.email;
     if (!userEmail) return;
-    const { data, error } = await supabase.auth.resetPasswordForEmail(userEmail, {
-      redirectTo: 'http://localhost:3000/auth/resetPassword',
-    });
+
+    try {
+      const { data, error } = await supabase.auth.resetPasswordForEmail(userEmail, {
+        redirectTo: `${window.location.origin}/auth/resetPassword`,
+      });
+    } catch (error) {
+      toast.error('이메일 발송에 실패했습니다.');
+      console.error(error);
+    }
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast.info('로그아웃되었습니다.');
-    router.replace('/');
+    try {
+      await supabase.auth.signOut();
+      toast.info('로그아웃되었습니다.');
+      router.replace('/');
+    } catch (error) {
+      toast.error('로그아웃에 실패했습니다.');
+      console.error(error);
+    }
   };
 
   const handleDeleteAccount = async () => {
     if (!user) return;
-    await deleteUser(user?.id);
-    await supabase.auth.signOut();
-    router.replace('/auth/login');
-    toast.info('회원 탈퇴되었습니다.');
+    try {
+      await deleteUser(user.id);
+      await supabase.auth.signOut();
+      toast.info('회원 탈퇴되었습니다.');
+      router.replace('/auth/login');
+    } catch (error) {
+      toast.error('회원 탈퇴에 실패했습니다.');
+      console.error(error);
+    }
   };
 
   if (isLoading) {
@@ -90,7 +106,12 @@ export default function UserNav() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="min-w-3xs">
-          <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm font-medium leading-none">{user.email}</p>
+              {user.user_metadata?.role === 'admin' && <p className="text-xs text-muted-foreground">관리자</p>}
+            </div>
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setOpenResetPasswordDialog(!openResetPasswordDialog)}>
             <span className="cursor-pointer">비밀번호 재설정</span>
