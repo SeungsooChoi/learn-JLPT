@@ -1,145 +1,108 @@
-import { getNewWords, getReviewWords, recordReview } from "@/app/(protected)/learn/actions"
+import { fetchWords } from '@/app/(protected)/learn/actions';
 
-// 1. Supabase Mock 함수 정의
-const mockSelect = jest.fn()
-const mockInsert = jest.fn()
-const mockUpsert = jest.fn()
-const mockEq = jest.fn()
-const mockNot = jest.fn()
-const mockLte = jest.fn()
-const mockLimit = jest.fn()
-const mockOrder = jest.fn()
-const mockSingle = jest.fn()
+const mockGetUser = jest.fn();
+const mockSelect = jest.fn();
+const mockFrom = jest.fn();
+const mockRpc = jest.fn();
 
-// 2. 체이닝 헬퍼 함수
-// Supabase 쿼리 빌더(.from().select().eq()...)를 흉내내기 위해 자기 자신(체인)을 반환
-const createChain = () => ({
-  select: mockSelect,
-  insert: mockInsert,
-  upsert: mockUpsert,
-  eq: mockEq,
-  not: mockNot,
-  lte: mockLte,
-  limit: mockLimit,
-  order: mockOrder,
-  single: mockSingle,
-})
+// 체이닝을 위한 빌더 패턴
+const createQueryChain = (finalResult: any) => {
+  const chain = {
+    select: jest.fn().mockReturnThis(),
+    eq: jest.fn().mockReturnThis(),
+    gte: jest.fn().mockReturnThis(),
+    single: jest.fn().mockResolvedValue(finalResult),
+  };
 
-// 각 Mock 함수가 체인 객체를 반환하도록 설정
-mockSelect.mockReturnValue(createChain())
-mockEq.mockReturnValue(createChain())
-mockNot.mockReturnValue(createChain())
-mockLte.mockReturnValue(createChain())
-mockLimit.mockReturnValue(createChain())
-mockOrder.mockReturnValue(createChain())
+  // 마지막 호출에서 결과 반환
+  chain.gte.mockResolvedValue(finalResult);
+  return chain;
+};
 
-// 3. 모듈 모킹 (jest.mock)
 jest.mock('@/lib/supabase/server', () => ({
   createClient: jest.fn(() => ({
     auth: {
-      getUser: jest.fn().mockResolvedValue({ 
-        data: { user: { id: 'test-user-id' } } 
-      })
+      getUser: mockGetUser,
     },
-    from: jest.fn(() => createChain())
-  }))
-}))
+    from: mockFrom,
+    rpc: mockRpc,
+  })),
+}));
 
-describe('Learning Actions (Server Actions)', () => {
-  // 각 테스트 실행 전 Mock 초기화
+describe('Learning Actions Tests', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
-  })
+    jest.clearAllMocks();
 
-  it('새로운 단어만 반환 (학습 기록 배제 필터 확인)', async () => {
-    // Arrange
-    const mockWords = [{ id: 'word-1', word: 'Test1' }, { id: 'word-2', word: 'Test2' }]
-    // limit 호출 시 최종 데이터 반환 설정
-    mockLimit.mockResolvedValue({ data: mockWords, error: null })
+    // 기본 인증
+    mockGetUser.mockResolvedValue({
+      data: { user: { id: 'test-user-id' } },
+    });
+  });
 
-    // Act
-    const words = await getNewWords('N5', 10)
+  describe('fetchWords (Per-Level Daily Limit)', () => {
+    it('N5 레벨을 요청하면 N5의 오늘 학습량만 카운트하고 30개 제한을 적용한다', async () => {
+      // Arrange
+      const todayCount = 5;
+      const mockWords = Array.from({ length: 25 }, (_, i) => ({
+        id: `word-${i}`,
+        word: `こんにちは${i}`,
+        meaning: `Hello${i}`,
+      }));
 
-    // Assert
-    expect(words).toHaveLength(2)
-    // Supabase의 .not() 메서드가 올바른 인자로 호출되었는지 확인
-    expect(mockNot).toHaveBeenCalledWith(
-      'id',
-      'in',
-      expect.stringContaining('select word_id from learning_records')
-    )
-    expect(mockEq).toHaveBeenCalledWith('level', 'N5')
-  })
+      // learning_records 조회 체이닝 설정
+      const queryChain = createQueryChain({ count: todayCount, error: null });
+      mockFrom.mockReturnValue(queryChain);
+      mockSelect.mockReturnValue(queryChain);
 
-  it('복습할 단어만 반환 (날짜 조건 확인)', async () => {
-    // Arrange
-    const today = new Date().toISOString().split('T')[0]
-    const mockRecords = [
-      { jlpt_words: { id: 'w1' }, next_review_date: '2023-01-01' },
-      { jlpt_words: { id: 'w2' }, next_review_date: today }
-    ]
-    mockLimit.mockResolvedValue({ data: mockRecords, error: null })
+      // RPC 호출 결과 설정
+      mockRpc.mockResolvedValue({ data: mockWords, error: null });
 
-    // Act
-    const words = await getReviewWords('N5')
+      // Act
+      const result = await fetchWords('N5', 'test-user-id');
 
-    // Assert
-    expect(words[0]).toEqual({ id: 'w1' }) // 데이터 구조 평탄화 확인
-    expect(mockLte).toHaveBeenCalledWith('next_review_date', today) // 오늘 날짜 이하 조건
-    expect(mockEq).toHaveBeenCalledWith('is_archived', false)
-  })
+      // Assert
+      // 1. from select 호출 확인
+      expect(mockFrom).toHaveBeenCalledWith('learning_records');
+      expect(queryChain.select).toHaveBeenCalledWith('*, jlpt_words!inner(level)', { count: 'exact', head: true });
 
-  it('recordReview가 SM-2 결과를 계산하여 DB에 저장 (신규 학습)', async () => {
-    // Arrange
-    mockSingle.mockResolvedValue({ data: null }) // 기존 기록 없음
-    mockUpsert.mockResolvedValue({ error: null })
+      // 2. 필터링 체인 확인
+      expect(queryChain.eq).toHaveBeenCalledWith('user_id', 'test-user-id');
+      expect(queryChain.eq).toHaveBeenCalledWith('jlpt_words.level', 'N5');
 
-    const wordId = 'new-word-id'
-    
-    // Act
-    const result = await recordReview(wordId, 5) // Quality 5 (완벽)
+      // 3. RPC 호출 시 남은 할당량 (30 - 5 = 25)
+      expect(mockRpc).toHaveBeenCalledWith('fetch_words', {
+        p_user_id: 'test-user-id',
+        p_level: 'N5',
+        p_limit: 25,
+      });
 
-    // Assert
-    expect(result.success).toBe(true)
-    expect(result.repetitions).toBe(1)
-    expect(result.interval).toBe(1)
+      // 검증
+      expect(result).toEqual({
+        words: mockWords,
+        todayCount: todayCount,
+        dailyGoal: 30,
+        isGoalReached: false,
+      });
+    });
 
-    // DB 저장 호출 검증
-    expect(mockUpsert).toHaveBeenCalledWith(expect.objectContaining({
-      user_id: 'test-user-id',
-      word_id: wordId,
-      repetitions: 1,
-      interval_days: 1,
-      next_review_date: expect.any(String)
-    }))
-  })
+    it('N5 목표(30개)를 달성했으면 빈 배열을 반환하고 RPC를 호출하지 않는다.', async () => {
+      // Arrange
+      const queryChain = createQueryChain({ count: 30, error: null });
+      mockFrom.mockReturnValue(queryChain);
 
-  it('recordReview가 SM-2 결과를 계산하여 DB에 저장 (기존 기록 업데이트)', async () => {
-    // Arrange
-    const existingRecord = {
-      repetitions: 1,
-      interval_days: 1,
-      e_factor: 2.5,
-      last_reviewed_at: '2024-01-01T00:00:00.000Z'
-    }
-    mockSingle.mockResolvedValue({ data: existingRecord })
-    mockUpsert.mockResolvedValue({ error: null })
+      // Act
+      const result = await fetchWords('N5', 'test-user-id');
 
-    const wordId = 'existing-id'
+      // Assert
+      expect(mockRpc).not.toHaveBeenCalled();
 
-    // Act
-    // 기존 Rep 1, Interval 1 상태에서 Quality 4(성공) -> Rep 2, Interval 3 예상
-    const result = await recordReview(wordId, 4)
-
-    // Assert
-    expect(result.repetitions).toBe(2)
-    expect(result.interval).toBe(3)
-    
-    expect(mockUpsert).toHaveBeenCalledWith(expect.objectContaining({
-      word_id: wordId,
-      repetitions: 2,
-      interval_days: 3,
-      e_factor: 2.5 // Quality 4는 EF 유지
-    }))
-  })
-})
+      // 검증
+      expect(result).toEqual({
+        words: [],
+        todayCount: 30,
+        dailyGoal: 30,
+        isGoalReached: true,
+      });
+    });
+  });
+});
