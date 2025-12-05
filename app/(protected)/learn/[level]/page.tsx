@@ -1,7 +1,7 @@
-import { fetchWords } from '@/app/actions/fetchWords';
 import { WordLearningPanel } from '@/components/learn/WordLearningPanel';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { fetchWords } from '../actions';
 
 export default async function LearnPage({ params }: { params: Promise<{ level: string }> }) {
   const { level } = await params;
@@ -14,14 +14,15 @@ export default async function LearnPage({ params }: { params: Promise<{ level: s
     redirect('/auth/login');
   }
 
-  const words = await fetchWords(level, user.id);
+  const { words, todayCount, dailyGoal, isGoalReached } = await fetchWords(level, user.id);
 
-  if (!words.length)
-    return (
-      <div className="text-center mt-10">
-        <h1 className="text-xl font-bold">오늘 학습 가능한 단어가 없습니다.</h1>
-      </div>
-    );
-
-  return <WordLearningPanel initialWords={words} />;
+  return (
+    <WordLearningPanel
+      initialWords={words}
+      todayCount={todayCount}
+      dailyGoal={dailyGoal}
+      isGoalReached={isGoalReached}
+      level={level}
+    />
+  );
 }
