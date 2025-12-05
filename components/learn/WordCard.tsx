@@ -1,19 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { JLPTWord, ReviewQuality } from '@/types/word';
+import { JLPTWord } from '@/types/word';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { Volume2Icon } from 'lucide-react';
 import { useAudio } from '@/hooks/useAudio';
 
-export default function WordCard({
-  word,
-  onRate,
-  isRating,
-}: {
-  word: JLPTWord;
-  onRate: (quality: ReviewQuality) => void;
-  isRating: boolean;
-}) {
+export default function WordCard({ word, isRating }: { word: JLPTWord; isRating: boolean }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const { play } = useAudio();
 
@@ -21,10 +13,6 @@ export default function WordCard({
     if (!isRating) {
       setIsFlipped(true);
     }
-  };
-
-  const handleRate = (quality: ReviewQuality) => {
-    onRate(quality);
   };
 
   const handlePlay = (word: string | null) => {
@@ -82,28 +70,6 @@ export default function WordCard({
             </div>
           </CardContent>
         )}
-
-        {/* 평가 */}
-        <div className="grid grid-cols-6 gap-2">
-          {[
-            { q: 0, label: '모름' },
-            { q: 1, label: '어려움' },
-            { q: 2, label: '겨우' },
-            { q: 3, label: '보통' },
-            { q: 4, label: '좋음' },
-            { q: 5, label: '완벽' },
-          ].map(({ q, label }) => (
-            <Button
-              key={q}
-              onClick={() => handleRate(q as ReviewQuality)}
-              disabled={isRating}
-              variant="outline"
-              size="sm"
-            >
-              {label}
-            </Button>
-          ))}
-        </div>
       </CardContent>
     </Card>
   );

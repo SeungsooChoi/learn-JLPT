@@ -5,6 +5,7 @@ import { useLearningStore } from '@/lib/stores/learningStore';
 import WordCard from './WordCard';
 import ProgressBar from './Progressbar';
 import { JLPTWord, ReviewQuality } from '@/types/word';
+import { Button } from '../ui/button';
 
 interface WordLearningPanelProps {
   initialWords: JLPTWord[];
@@ -72,12 +73,12 @@ export function WordLearningPanel({
   if (isFinished) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 text-center">
-        <h2 className="text-2xl font-semibold">세션 완료</h2>
-        <p className="text-lg">
-          오늘 진행도: <span className="font-bold text-blue-600">{Math.min(todayCount + words.length, dailyGoal)}</span>{' '}
-          / {dailyGoal}
+        <h2 className="text-2xl font-bold text-green-600">{level} 단계 할당량 완료</h2>
+        <p className="text-gray-600">
+          오늘 {level} 단계 할당량({dailyGoal}개)을 모두 학습했습니다.
+          <br />
+          다른 레벨을 학습하거나 내일 다시 도전해주세요!
         </p>
-        {/* 아직 목표 미달성 시 '계속하기' 버튼 표시 가능? */}
       </div>
     );
   }
@@ -87,7 +88,28 @@ export function WordLearningPanel({
       <div className="w-full space-y-2 px-4">
         <ProgressBar current={globalProgress} total={dailyGoal} />
       </div>
-      <WordCard word={currentWord} onRate={handleRate} isRating={isRating} />
+      <WordCard word={currentWord} isRating={isRating} />
+      {/* 평가 */}
+      <div className="grid grid-cols-6 gap-2">
+        {[
+          { q: 0, label: '모름' },
+          { q: 1, label: '어려움' },
+          { q: 2, label: '겨우' },
+          { q: 3, label: '보통' },
+          { q: 4, label: '좋음' },
+          { q: 5, label: '완벽' },
+        ].map(({ q, label }) => (
+          <Button
+            key={q}
+            onClick={() => handleRate(q as ReviewQuality)}
+            disabled={isRating}
+            variant="outline"
+            size="sm"
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }

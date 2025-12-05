@@ -50,7 +50,7 @@ export default async function StatsPage() {
       {/* 레벨별 진행률 */}
       <section>
         <h2 className="text-xl font-semibold mb-4">레벨별 진행률</h2>
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-10 max-w-6xl">
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-10">
           {levelStats?.map((level: LevelStats) => {
             const percent = Math.round((level.learned_count / level.total_count) * 100);
             return (

@@ -48,7 +48,7 @@ export default function LearningPage() {
             레벨을 선택하세요. 가장 쉬운 레벨은 N5이며 가장 어려운 레벨은 N1입니다.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {levels.map((item) => (
             <Card key={item.level} className={`flex flex-col justify-between ${item.color}`}>
               <CardHeader>
