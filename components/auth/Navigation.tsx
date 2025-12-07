@@ -24,8 +24,9 @@ export default function Navigation() {
 
           {/* 모바일 Navigation */}
           <div className="md:hidden">
-            <UserNav />
-            <MobileNav />
+            <MobileNav>
+              <UserNav />
+            </MobileNav>
           </div>
         </div>
       </div>

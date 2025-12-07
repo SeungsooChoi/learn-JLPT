@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { loginAction } from '@/app/(public)/auth/actions';
 import { useAuthStore } from '@/lib/stores/authStore';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -86,6 +87,13 @@ export default function LoginForm() {
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? '로그인 중...' : '로그인'}
       </Button>
+
+      <p className="text-sm mt-4">
+        회원이 아니신가요?{' '}
+        <Link href="/auth/signup" className="text-primary underline">
+          회원가입
+        </Link>
+      </p>
     </form>
   );
 }

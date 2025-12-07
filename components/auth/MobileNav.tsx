@@ -2,12 +2,12 @@
 
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import NavItems from './NavItems';
 
-export default function MobileNav() {
+export default function MobileNav({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -26,6 +26,7 @@ export default function MobileNav() {
           </SheetTitle>
           <SheetDescription>JLPT 단어 학습</SheetDescription>
         </SheetHeader>
+        <div className="mb-2 flex justify-center">{children}</div>
         <div className="flex flex-col gap-4">
           <NavItems onItemClick={() => setIsOpen(false)} isMobile />
         </div>

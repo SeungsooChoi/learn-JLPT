@@ -98,7 +98,7 @@ export default function RegisterForm() {
 
       <p className="text-sm mt-4">
         이미 계정이 있으신가요?{' '}
-        <Link href="/login" className="text-primary underline">
+        <Link href="/auth/login" className="text-primary underline">
           로그인
         </Link>
       </p>
