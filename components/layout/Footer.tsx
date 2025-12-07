@@ -23,19 +23,22 @@ export function Footer() {
 
         {/* License Notice */}
         <div className="text-xs leading-relaxed">
-          본 서비스는
+          본 서비스는{' '}
           <Link
             href="https://github.com/jamsinclair/open-anki-jlpt-decks"
             target="_blank"
             className="underline hover:text-foreground"
           >
             “Open Anki JLPT Decks”
-          </Link>
-          (MIT License)을 기반으로 단어 데이터를 사용합니다.
+          </Link>{' '}
+          (MIT License)을 기반 단어 데이터를 사용합니다.
         </div>
 
         {/* Copyright */}
-        <div className="text-xs">© 2025. Seungsoo Choi. All rights reserved.</div>
+        <div>
+          <div className="text-xs">© 2025. Seungsoo Choi. All rights reserved.</div>
+          <div className="text-xs">개발자 문의: tmdtn5389@gmail.com</div>
+        </div>
       </div>
     </footer>
   );
