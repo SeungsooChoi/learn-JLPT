@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/lib/stores/authStore';
-import { BookOpen, BookOpenTextIcon, ChartColumn, FileEdit, NotebookPen } from 'lucide-react';
+import { BookOpen, BookOpenTextIcon, ChartColumn, FileEdit, NotebookPen, Sprout } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '../ui/button';
@@ -16,8 +16,9 @@ export default function NavItems({ onItemClick, isMobile = false }: NavItemsProp
 
   const baseItems = [
     { href: '/', label: '학습', icon: BookOpen },
-    { href: '/stats', label: '통계', icon: ChartColumn },
     { href: '/vocabulary', label: '단어장', icon: BookOpenTextIcon },
+    { href: '/wordtable', label: '글자표', icon: Sprout },
+    { href: '/stats', label: '통계', icon: ChartColumn },
     { href: '/feedback', label: '문의', icon: NotebookPen },
   ];
 
