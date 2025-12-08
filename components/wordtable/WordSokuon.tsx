@@ -1,7 +1,7 @@
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
-export default function WordDoubled({ type = 'hiragana' }: { type: string }) {
+export default function WordSokuon({ type = 'hiragana' }: { type: string }) {
   return (
     <Card className="mb-6 shadow-sm rounded-2xl overflow-hidden">
       <CardHeader>

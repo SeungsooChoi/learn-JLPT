@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WordChart from '@/components/wordtable/WordChart';
-import WordDoubled from '@/components/wordtable/WordDoubled';
+import WordSokuon from '@/components/wordtable/WordSokuon';
 
 export default function WordTablePage() {
   // 히라가나 기본
@@ -100,14 +100,14 @@ export default function WordTablePage() {
           <WordChart data={hiraganaTageum} sectionKey="hiragana-tageum" title="탁음" />
           <WordChart data={hiraganaBanTageum} sectionKey="hiragana-bantageum" title="반탁음" />
           <WordChart data={hiraganaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
-          <WordDoubled type="hiragana" />
+          <WordSokuon type="hiragana" />
         </TabsContent>
         <TabsContent value="katakana" className="space-y-4">
           <WordChart data={katakanaBasic} sectionKey="hiragana-basic" title="가타카나" />
           <WordChart data={katakanaTageum} sectionKey="hiragana-tageum" title="탁음" />
           <WordChart data={katakanaBanTageum} sectionKey="hiragana-bantageum" title="반탁음" />
           <WordChart data={katakanaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
-          <WordDoubled type="katakana" />
+          <WordSokuon type="katakana" />
         </TabsContent>
       </Tabs>
     </div>

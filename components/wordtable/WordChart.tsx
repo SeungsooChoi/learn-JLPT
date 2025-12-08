@@ -71,7 +71,7 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
                     className={`
                       p-2 md:p-3 text-sm md:text-base font-semibold
                       transition-all duration-200
-                      ${isColFocused(idx, sectionKey) ? 'bg-blue-500 text-white shadow-lg' : 'bg-gray-50 text-gray-700'}
+                      ${isColFocused(idx, sectionKey) ? 'bg-blue-400 text-white shadow-lg' : 'bg-gray-50 text-gray-700'}
                     `}
                   >
                     {col}
@@ -88,7 +88,7 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
                       transition-all duration-200
                       ${
                         isRowFocused(rowIdx, sectionKey)
-                          ? 'bg-blue-500 text-white shadow-lg'
+                          ? 'bg-blue-400 text-white shadow-lg'
                           : 'bg-gray-50 text-gray-700'
                       }
                     `}
@@ -109,7 +109,7 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
                           p-2 md:p-4 text-center rounded-xl
                           transition-all duration-200
                           ${isEmpty ? 'cursor-default' : 'cursor-pointer hover:bg-blue-50'}
-                          ${isEmpty ? 'bg-transparent' : focused ? 'bg-blue-50' : 'bg-white'}
+                          ${isEmpty ? 'bg-transparent' : focused ? 'bg-blue-100' : 'bg-white'}
                         `}
                       >
                         {!isEmpty && (
