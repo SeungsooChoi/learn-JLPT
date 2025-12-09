@@ -1,5 +1,5 @@
 import { recordReview } from '@/app/(protected)/learn/actions';
-import { JLPTWord, ReviewQuality } from '@/types/word';
+import { JLPTWord, ReviewQuality } from '@/lib/types';
 import { create } from 'zustand';
 
 type LearningState = {

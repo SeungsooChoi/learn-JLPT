@@ -2,7 +2,7 @@
 
 import { calculateSM2 } from '@/lib/sm2';
 import { createClient } from '@/lib/supabase/server';
-import { JLPTWord, ReviewQuality } from '@/types/word';
+import { JLPTWord, ReviewQuality } from '@/lib/types';
 
 const DAILY_GOAL = 30;
 

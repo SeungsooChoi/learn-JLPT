@@ -1,7 +1,7 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
-import { JLPTWord } from '@/types/word';
+import { JLPTWord } from '@/lib/types';
 
 const ITEMS_PER_PAGE = 20;
 
@@ -21,9 +21,7 @@ export async function getVocabularyList({
   const to = from + ITEMS_PER_PAGE - 1;
 
   // 쿼리 작성
-  let dbQuery = supabase
-    .from('jlpt_words')
-    .select('*', { count: 'exact' });
+  let dbQuery = supabase.from('jlpt_words').select('*', { count: 'exact' });
 
   // 검색어 필터 (단어, 의미, 읽는 법 검색)
   if (query) {

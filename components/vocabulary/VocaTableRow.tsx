@@ -1,6 +1,6 @@
 'use client';
 
-import { JLPTWord } from '@/types/word';
+import { JLPTWord } from '@/lib/types';
 import { TableCell, TableRow } from '../ui/table';
 import { useAudio } from '@/hooks/useAudio';
 import { Button } from '../ui/button';

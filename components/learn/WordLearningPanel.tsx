@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useLearningStore } from '@/lib/stores/learningStore';
 import WordCard from './WordCard';
 import ProgressBar from './Progressbar';
-import { JLPTWord, ReviewQuality } from '@/types/word';
+import { JLPTWord, ReviewQuality } from '@/lib/types';
 import { Button } from '../ui/button';
 
 interface WordLearningPanelProps {

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { JLPTWord } from '@/types/word';
+import { JLPTWord } from '@/lib/types';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { Volume2Icon } from 'lucide-react';
