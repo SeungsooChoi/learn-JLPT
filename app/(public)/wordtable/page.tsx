@@ -95,18 +95,18 @@ export default function WordTablePage() {
           <TabsTrigger value="katakana">가타카나</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="hiragana" className="space-y-4">
+        <TabsContent value="hiragana" className="space-y-4 grid xl:grid-cols-2 gap-6">
           <WordChart data={hiraganaBasic} sectionKey="hiragana-basic" title="히라가나" />
+          <WordChart data={hiraganaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
           <WordChart data={hiraganaTageum} sectionKey="hiragana-tageum" title="탁음" />
           <WordChart data={hiraganaBanTageum} sectionKey="hiragana-bantageum" title="반탁음" />
-          <WordChart data={hiraganaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
           <WordSokuon type="hiragana" />
         </TabsContent>
-        <TabsContent value="katakana" className="space-y-4">
+        <TabsContent value="katakana" className="space-y-4 grid xl:grid-cols-2 gap-6">
           <WordChart data={katakanaBasic} sectionKey="hiragana-basic" title="가타카나" />
+          <WordChart data={katakanaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
           <WordChart data={katakanaTageum} sectionKey="hiragana-tageum" title="탁음" />
           <WordChart data={katakanaBanTageum} sectionKey="hiragana-bantageum" title="반탁음" />
-          <WordChart data={katakanaYoeum} sectionKey="hiragana-youm" title="요음" isYoeum={true} />
           <WordSokuon type="katakana" />
         </TabsContent>
       </Tabs>

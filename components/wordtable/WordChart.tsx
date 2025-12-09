@@ -1,8 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Volume2Icon } from 'lucide-react';
+import { useAudio } from '@/hooks/useAudio';
 
 interface WordChartProps {
   data: string[][];
@@ -20,6 +23,7 @@ interface FocusedCell {
 
 export default function WordChart({ data, sectionKey, title, isYoeum = false }: WordChartProps) {
   const [focusedCell, setFocusedCell] = useState<FocusedCell | null>(null);
+  const { play } = useAudio();
 
   const handleCellClick = (rowIdx: number, colIdx: number, section: string) => {
     if (focusedCell && focusedCell.row === rowIdx && focusedCell.col === colIdx && focusedCell.section === section) {
@@ -42,6 +46,12 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
   const isColFocused = (colIdx: number, section: string) => {
     if (!focusedCell || focusedCell.section !== section) return false;
     return focusedCell.col === colIdx;
+  };
+
+  const handleVolumeClick = (e: FormEvent, word: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (word) play(word);
   };
 
   const columns = ['あ단', 'い단', 'う단', 'え단', 'お단'];
@@ -113,7 +123,7 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
                         `}
                       >
                         {!isEmpty && (
-                          <div className="flex flex-col items-center gap-1">
+                          <div className="flex flex-col items-center gap-1 relative">
                             <div
                               className={`font-medium ${
                                 isYoeum ? 'text-xl md:text-2xl' : 'text-2xl md:text-3xl'
@@ -122,6 +132,15 @@ export default function WordChart({ data, sectionKey, title, isYoeum = false }: 
                               {kana}
                             </div>
                             <div className="text-xs md:text-sm text-gray-500">{romaji}</div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon-sm"
+                              className="absolute right-0 top-0"
+                              onClick={(e) => handleVolumeClick(e, kana)}
+                            >
+                              <Volume2Icon />
+                            </Button>
                           </div>
                         )}
                       </td>
